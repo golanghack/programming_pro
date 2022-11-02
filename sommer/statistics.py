@@ -31,3 +31,66 @@ def main():
         print_results(len(numbers), statistics)
     else:
         print("no numbers found")
+
+def read_data(filename, numbers, frequencies):
+    with open(filename, encoding="ascii") as file:
+        for lino, line in enumerate(file, start=1):
+            for x in line.split():
+                try:
+                    number = float(x)
+                    numbers.append(number)
+                    frequencies[number] += 1
+                except ValueError as err:
+                    print("{filename}:{lino}:skipping {x}: {err}".format(**locals()))
+                    
+def calculate_statistics(numbers, frecuencies):
+    mean = sum(numbers) / len(numbers)
+    mode = calculate_mode(frecuencies, 3)
+    median = calculate_std_dev(numbers, mean)
+    return Statustics(mean, mode, median, std_dev)
+
+def calculate_mode(frecuencies, maximum_modes):
+    highest_frequency = max(frecuencies.values())
+    mode = [number for number, frecuency in frecuencies.items()
+            if frecuency == highest_frequency]
+    if not (1 <= len(mode) <= maximum_modes):
+        mode = None
+    else:
+        mode.sort()
+    return mode
+
+def calculate_median(numbers):
+    numbers = sorted(numbers)
+    middle = len(numbers) // 2 
+    median = numbers[middle]
+    if len(numbers) % 2 == 0:
+        median = (median + numbers[middle - 1]) / 2
+    return median
+
+def calculate_std_dev(numbers, mean):
+    total = 0
+    
+    for number in numbers:
+        total += ((number - mean) ** 2)
+    variance = total / (len(numbers) - 1) # n - 1
+    return math.sqrt(variance)
+
+
+def print_results(count, statistics):
+    real = "9.2f"
+    if statistics.mode is None:
+        modeline = ""
+    elif len(statistics.mode) == 1:
+        modeline = "mode    = {0:{fmt}}\n".format(statistics.mode[0], fmt=real)
+    else:
+        modeline = ("mode    =[" + ", ".join(["{0:.2f}".format(m) for m in statistics.mode]) + "]\n")
+        
+    print("""\
+        count = {0:.6}
+        mean = {mean:{fmt}}
+        median = {median:{fmt}}
+        {1}\
+        std. dev = {std_dev:{fmt}}""".format(count, modeline, fmt=real, **statistics._asdict()))
+
+if __name__ == "__main__":
+    main()
