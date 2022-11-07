@@ -46,7 +46,8 @@ def read_data(filename, numbers, frequencies):
 def calculate_statistics(numbers, frecuencies):
     mean = sum(numbers) / len(numbers)
     mode = calculate_mode(frecuencies, 3)
-    median = calculate_std_dev(numbers, mean)
+    median = calculate_median(numbers)
+    std_dev = calculate_std_dev(numbers, mean)
     return Statustics(mean, mode, median, std_dev)
 
 def calculate_mode(frecuencies, maximum_modes):

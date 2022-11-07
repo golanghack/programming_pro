@@ -13,8 +13,9 @@
 """<--EXTERNAL SITES-->"""
 
 import sys 
+from collections import defaultdict
 
-sites = {}
+sites = defaultdict(set)
 for filename in sys.argv[1:]:
     with open(filename) as file:
         for line in file:
@@ -29,7 +30,7 @@ for filename in sys.argv[1:]:
                             site = line[i:j].lower()
                             break
                     if site and "." in site:
-                        sites.setdefault(site, set()).add(filename)
+                        sites[site].add(filename)
                     i = j
                 else:
                     break
