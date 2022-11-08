@@ -18,4 +18,11 @@ def append_if_even(x, lst=None):
         lst.append(x)
     return lst
 
+def append_if_even_two(x, lst=None):
+    lst = [] if lst is None else lst
+    if x % 2 == 0:
+        lst.append(x)
+    return lst
+
+
 print(append_if_even(2))
