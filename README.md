@@ -1,2 +1,3 @@
 # python_pro
-all my tasks on python
+code python.
+from books, sites, articles.
