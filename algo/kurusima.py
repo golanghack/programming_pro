@@ -5,7 +5,7 @@
 import math
 import random
 
-#size matrix(square)
+#size matrix(square)tax
 n = 11
 
 square = [[float('nan') for i in range(0, n)] for j in range(0, n)]
