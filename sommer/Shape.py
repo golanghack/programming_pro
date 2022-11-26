@@ -56,7 +56,7 @@ class Point:
 
         >>> point = Point()
         >>> point
-        Point (0, 0
+        Point (0, 0)
         """
         
         self.x = x
@@ -76,10 +76,10 @@ class Point:
         return self.x == other.x and self.y == other.y
     
     def __repr__(self):
-        return f"Point ({self.x!r}, {self.y!r}"
+        return f"Point ({self.x!r}, {self.y!r})"
     
     def __str__(self):
-        return f"({self.x!r}, {self.y!r}"
+        return f"({self.x!r}, {self.y!r})"
     
     
 class Circle(Point):
@@ -90,7 +90,7 @@ class Circle(Point):
 
         >>> circle = Circle(2)
         >>> circle
-        Circle (2, 0, 0
+        Circle (2, 0, 0)
         """
         
         super().__init__(x, y)
@@ -132,7 +132,7 @@ class Circle(Point):
         return self.radius == other.radius and super().__eq__(other)
     
     def __repr__(self):
-        return f"Circle ({self.radius!r}, {self.x!r}, {self.y!r}"
+        return f"Circle ({self.radius!r}, {self.x!r}, {self.y!r})"
     
     def __str__(self):
         return repr(self)
