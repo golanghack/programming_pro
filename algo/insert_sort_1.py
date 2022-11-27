@@ -2,6 +2,10 @@
 
 """<--INSERT SORT 1-->"""
 
+from timeit  import default_timer as timer 
+
+
+
 old_lst = [8, 4, 6, 1, 2, 5, 3, 7]
 
 def insert_list(lst, to_insert):
@@ -34,5 +38,8 @@ def insertion_list(old_lst):
        
 
 if __name__ == '__main__':
+    start = timer()
     sorted_lst = insertion_list(old_lst)
+    end = timer()
     print(sorted_lst)
+    print(end - start)
