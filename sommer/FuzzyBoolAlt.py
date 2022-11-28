@@ -158,8 +158,10 @@ class FuzzyBool(float):
         return round(self)
     
     for name, operator in (('__neg__', '-'), ('__index__', 'index()')):
-        message = f'bad operand type for unary {operator}: "{{self}}"'
-        exec(f'def {name}(self): raise TypeError(\"{message}\".format("self=self.__class__.__name__))')
+        message = ("bad operand type for unary {0}: '{{self}}'"
+                   .format(operator))
+        exec("def {0}(self): raise TypeError(\"{1}\".format("
+             "self=self.__class__.__name__))".format(name, message))
         
     for name, operator in (("__xor__", "^"), ("__ixor__", "^="),
             ("__add__", "+"), ("__iadd__", "+="), ("__radd__", "+"),
@@ -185,3 +187,7 @@ class FuzzyBool(float):
              "self=self.__class__.__name__, "
              "join=(\" and\" if len(args) == 1 else \",\"),"
              "args=\", \".join(types)))".format(name, message))
+        
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
