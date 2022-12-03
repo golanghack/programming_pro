@@ -36,6 +36,7 @@ FORMAT_VERSION: str = b'\x1F\x88'
 
 NumberStruct = struct.Struct('<Idi?')
 
+#custom exceprion
 class IncidentError(Exception): pass
 
 class IncidentSaxHandler(xml.sax.handler.ContentHandler):
