@@ -100,7 +100,7 @@ class DiagramFactory:
             self.rows = [list(text)]
             
             
-    def _create_rectangle(width: float, height: float, fill: str):
+    def _create_rectangle(self, width: float, height: float, fill: str):
         rows = [[fill for _ in range(width)] for _ in range(height)]
         for x in range(1, width - 1):
             rows[0][x] = DiagramFactory.HORIZONTAL
