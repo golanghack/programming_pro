@@ -108,8 +108,6 @@
 """
 
 import os 
-import struct
-import tempfile
 
 _DELETED = b'\x01'
 _OKAY = b'\x02'

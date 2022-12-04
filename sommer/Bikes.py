@@ -123,3 +123,178 @@ True
 >>> if os.path.exists(bike_file): os.remove(bike_file)
 """
 
+import struct
+from BinaryRecordFile import BinaryRecordFile as Binary
+
+class Bike:
+    
+    def __init__(self, 
+                 identity: str, 
+                 name: str, 
+                 quantity: int, 
+                 price: float) -> None:
+        assert len(quantity) > 3, (f'invalid bike identity "{identity}"')
+        self.__identity = identity
+        self.name = name
+        self.quantity = quantity
+        self.price = price
+        
+        
+    @property
+    def identity(self) -> str:
+        return self.__identity
+    
+    @property
+    def name(self) -> str:
+        return self.__name
+    
+    @name.setter
+    def name(self, name: str) -> None:
+        assert len(name), 'bike name must not be empty'
+        self.__name = name 
+        
+    @property
+    def quantity(self) -> int:
+        """How many of this bike are in stock"""
+        
+        return self.__quantity 
+    
+    @quantity.setter
+    def quantity(self, quantity: int) -> None:
+        assert 0 <= quantity, 'qiantity must not be negative or zero'
+        self.__quantity = quantity
+        
+    @property
+    def price(self) -> float:
+        """Price"""
+        
+        return self.__price 
+    
+    @price.setter
+    def price(self, price: float) -> None:
+        assert 0 <= price, 'price must not be negative or zero'
+        self.__price = price
+        
+    @property
+    def value(self) -> float:
+        """The Value or these bikes in stock"""
+        
+        return self.quantity * self.price
+    
+_BIKE_STRUCT = struct.Struct('<8s20sid')
+
+def bike_from_record(record: bytearray) -> Bike:
+    """PARSING RECORD WITH INFORMATION OF BIKES"""
+    
+    ID, NAME, QUANTITY, PRICE = range(4)
+    parts: list = list(_BIKE_STRUCT.unpack(record))
+    parts[ID] = parts[ID].decode('utf8').rstrip('\x00')
+    parts[NAME] = parts[NAME].decode('utf8').rstrip('\x00')
+    return Bike(*parts)
+
+
+def _record_from_bike(bike: Bike) -> bytearray:
+    return _BIKE_STRUCT.pack(bike.identity.encode('utf8'), 
+                             bike.name.encode('utf8'),
+                             bike.quantity, 
+                             bike.price)
+    
+class BikeStock:
+    
+    def __init__(self, filename: str) -> None:
+        self.__file = Binary(filename, _BIKE_STRUCT.size)
+        self.__index_from_indentity = {}
+        for index in range(len(self.__file)):
+            record = self.__file[index]
+            if record is not None:
+                bike = bike_from_record(record)
+                self.__index_from_indentity[bike.identity] = index 
+                
+    def close(self) -> None:
+        """Compacts and closes the file"""
+        
+        self.__file.inplace_compact()
+        self.__file.close()
+        
+    def append(self, bike: Bike) -> None:
+        """Adds a news bike to the stock"""
+        
+        index = len(self.__file)
+        self.__file[index] = _record_from_bike(bike)
+        self.__index_from_indentity[bike.identity] = index
+        
+    def __delitem__(self, indentity: str) -> None:
+        """Deletes the stock record for the spectified bike"""
+        
+        del self.__file[self.__index_from_indentity[indentity]]
+        del self.__index_from_indentity[indentity]
+        
+    def __getitem__(self, identity: str) -> None:
+        """retriees the stock record for the specified bike"""
+        
+        record = self.__file[self.__index_from_indentity[identity]]
+        return None if record is None else bike_from_record[record]
+        
+    def __change_bike(self, indentity: str, what: str, value: str) -> bool:
+        """Trying changed"""
+        
+        index = self.__index_from_indentity[indentity]
+        record = self.__file[index]
+        if record is None:
+            return False
+        bike = bike_from_record(record)
+        if what == 'price' and value is not None and value >= 0.0:
+            bike.price = value
+        if what == 'name' and value is not None:
+            bike.name = value
+        else:
+            return False
+        self.__file[index] = _record_from_bike(bike)
+        return True
+    
+    change_name = lambda self, identity, name: self.__change_bike(identity, 'name', name)
+    change_name.__doc__ = 'Changes  the bikes name'
+    change_price = lambda self, identity, price: self.__change_bike(identity, 'price', price)
+    change_price.__doc__ = 'Changes the bike`s price'
+    
+    def __change_stock(self, identity: str, amount: float) -> bool:
+        index = self.__index_from_indentity[identity]
+        record = self.__file[index]
+        if record is None:
+            return False
+        bike = bike_from_record(record)
+        bike.quantity += amount
+        self.__file[index] = _record_from_bike(bike)
+        return True
+    
+    increase_stock = (lambda self, indentity, amount: self.__change_stock(indentity, amount))
+    increase_stock.__doc__ = (
+        'Increases the stock held for the '
+        'specified bike by by the given amount'
+    )
+    decrease_stock = (lambda self, identity, amount: self.__change_stock(identity, -amount))
+    decrease_stock.__doc__ = (
+        'Decreases the stock held for the '
+        'specified bike by by the given amount'
+        )
+    
+    def __iter__(self):
+        for index in range(len(self.__file)):
+            record = self.__file[index]
+            if record is not None:
+                yield bike_from_record(record)
+                
+                
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod
+                                                                    
+     
+        
+    
+
+        
+        
+    
+    
+        
