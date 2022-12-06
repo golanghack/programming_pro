@@ -150,5 +150,5 @@ def get_menu_choice(message: str,
         else:
             return line if not forse_lower else line.lower()
         
-        *-
+        
         
