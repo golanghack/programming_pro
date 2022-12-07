@@ -18,7 +18,6 @@ import datetime
 import os 
 import pickle
 import shelve
-import sys 
 import tempfile
 import xml.etree.ElementTree
 import xml.parsers.expat
