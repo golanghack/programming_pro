@@ -1,0 +1,1 @@
+usage --> generate_usernames.py file1 [file2 [... fileN]]

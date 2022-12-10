@@ -1,0 +1,62 @@
+#! /usr/bin/env python3 
+
+# This program or module is free software: you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version. It is provided for educational
+# purposes and is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+
+"""<--AWFULLPOETRY-->"""
+
+"""This program formation random sentences.
+EXAMPLES:
+awfulpoetry.py
+her man heard politely
+his boy sang
+another woman hoped.
+"""
+
+import random
+import sys 
+
+articles = ["the", "a", "another", "her", "his"]
+subjects = ["cat", "dog", "horse", "man", "woman", "boy", "girl"]
+verbs = ["sang", "ran", "jumped", "said", "fought", "swam", "saw",
+         "heard", "felt", "slept", "hopped", "hoped", "cried",
+         "laughed", "walked"]
+adverbs = ["loudly", "quietly", "quickly", "slowly", "well", "badly",
+           "rudely", "politely"]
+
+print('Enter number --> python3 awfulpoetry.py 5')
+
+number = sys.argv[1]
+
+if (number is None):
+    default = 5
+
+if (int(number) >= 1) and (int(number) <= 10): 
+    
+    for _ in range(int(number)):
+        article = random.choice(articles)
+        subject = random.choice(subjects)
+        verb = random.choice(verbs)
+    
+        if random.randint(0, 1) == 0:
+            print(article, subject, verb)
+        else:
+            adverb = random.choice(adverbs)
+            print(article, subject, adverb)
+else:
+    for _ in range(default):
+        article = random.choice(articles)
+        subject = random.choice(subjects)
+        verb = random.choice(verbs)
+    
+        if random.randint(0, 1) == 0:
+            print(article, subject, verb)
+        else:
+            adverb = random.choice(adverbs)
+            print(article, subject, adverb)
