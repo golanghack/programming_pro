@@ -11,7 +11,7 @@
 
 """<--RECURSI ILLUSTRATED--INDENTEDLIST-->"""
 
-def indented_list_sort(indented_list: list, indent: str='     '):
+def indented_list_sort(indented_list: list, indent: str='    '):
     """Returns an alphabetically sorted copy of the given list
 
     The indented list is assumed to be a list of strings in a
