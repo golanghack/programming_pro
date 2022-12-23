@@ -115,15 +115,17 @@ def valid_string(attr_name: str, empty_allowed: bool=True, regex: str=None, acce
         name = '__' + attr_name
         def getter(self):
             return getattr(self, name)
-        def setter(self, value: str):
+        def setter(self, value):
             assert isinstance(value, str), (attr_name + ' must be a string')
             if not empty_allowed and not value:
                 raise ValueError(f'{attr_name} may not be empty')
             if ((acceptable is not None and value not in acceptable) or 
                 (regex is not None and not regex.match(value))):
-                raise ValueError('{attr_name} cannot be set to ' '{value}'.format(**locals()))
-            setattr(cls, attr_name, GenericDescriptor(getter, setter))
-            return cls
+                raise ValueError('{attr_name} cannot be set to {value}'.format(**locals()))
+            setattr(self, name, value)
+        setattr(cls, attr_name, GenericDescriptor(getter, setter))
+        return cls
+    return decorator
         
 def valid_number(attr_name: str, minimum: float=None, maximum: float=None, acceptable: str=None):
     def decorator(cls):
