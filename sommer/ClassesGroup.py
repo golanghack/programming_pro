@@ -15,7 +15,7 @@ import collections
 
 class LoadableSaveable(type):
     
-    def __init__(cls, classname: str, bases: str, dictonary: dict) -> None:
+    def __init__(cls, classname: str, bases: list, dictonary: dict) -> None:
         super().__init__(classname, bases, dictonary)
         assert hasattr(cls, 'load') and isinstance(getattr(cls, 'load'), collections.Callable), ('class"' + 
                                                                                                  classname + 
