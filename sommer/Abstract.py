@@ -155,7 +155,7 @@ class LoadSave:
                 setattr(self, name, value)
                 
                 
-class FileStaxck(Undo, LoadSave):
+class FileStack(Undo, LoadSave):
     
     def __init__(self, filename: str) -> None:
         Undo.__init__(self)
