@@ -80,3 +80,6 @@ def main():
     while pipes:
         pipe = pipes.pop()
         pipe.wait()
+
+if __name__ == '__main__':
+    main()

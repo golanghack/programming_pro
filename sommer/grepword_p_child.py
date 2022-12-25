@@ -16,6 +16,7 @@ import sys
 #maximum lenght of word
 BLOCK_SIZE = 8000
 
+#debug varible number
 number = f'{sys.argv[1]}' if len(sys.argv) == 2 else ''
 stdin = sys.stdin.buffer.read()
 lines = stdin.decode('utf8', 'ignore').splitlines()
