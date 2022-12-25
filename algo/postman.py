@@ -2,6 +2,7 @@
 
 """<--GEOMETRY-->"""
 
+import math
 import pylab as pl 
 from matplotlib import collections as mc 
 
@@ -30,7 +31,7 @@ def plot_trinagle_generated_simple(triangle: list, thename: str) -> None:
     ys_base = [triangle[0][1], triangle[1][1], triangle[2][1]]
     
     itin = [0, 1, 2, 0]
-    lines = generator_of_lines(triangle, itin)
+
     
     lc_base = mc.LineCollection(generator_of_lines(triangle, itin), linewidths=3)
     ax_coords.add_collection(lc_base)
@@ -42,3 +43,11 @@ def plot_trinagle_generated_simple(triangle: list, thename: str) -> None:
     
     
 plot_trinagle_generated_simple(from_points_to_triangle((0.2, 0.8), (0.5, 0.2), (0.8, 0.7)), 'Triangle')
+
+
+def get_distance(point1: list, point2: list) -> float:
+    """Return distance between points with Pifagore theorem"""
+    
+    distance: float = math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
+    return distance
+
