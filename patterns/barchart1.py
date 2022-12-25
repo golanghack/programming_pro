@@ -21,3 +21,84 @@ try:
 except ImportError
 
 
+def main():
+    pairs: set = (("Mon", 16), ("Tue", 17), ("Wed", 19), ("Thu", 22),
+            ("Fri", 24), ("Sat", 21), ("Sun", 19))
+    
+    textBarCharter = BarCharter(TextBarRenderer())
+    textBarCharter.render('Forecast 6/8', pairs)
+    imageBarCharter = BarCharter(imageBarRenderer())
+    imageBarCharter.render('Forecast 6/8', pairs)
+    
+    
+@Utils.hacs_methods('initialize', 'draw_caption', 'draw_bar', 'finalize')
+class BarRenderer(metaclass=abc.ABCMeta): pass
+
+class BarCharter:
+    
+    def __init__(self, renderer):
+        if not isinstance(renderer, BarRenderer):
+            raise TypeError(f'Expected object of type BarRenderer, got {type(renderer).__name__}')
+        self.__renderer = renderer
+        
+    def render(self, caption, pairs):
+        maximum = max(value for _, value in pairs)
+        self.__renderer.initialize(len(pairs), maximum)
+        self.__renderer.draw_caption(caption)
+        for name, value in pairs:
+            self.__renderer.draw_bar(name, value)
+        self.__renderer.finalize()
+        
+class TextVarRenderer:
+    
+    def __init__(self, scaleFactor=40):
+        self.scaleFactor = scaleFactor
+        
+    def initialize(self, bars, maximum):
+        assert bars > 0 and maximum > 0
+        self.scale = self.scaleFactor / maximum
+        
+    def draw_caption(self, caption):
+        print('{0:^{2}}\n{1:^{2}}'.format(caption, '=' * len(caption), self.scaleFactor))
+        
+    def draw_bar(self, name, value):
+        print(f'{"*" * int(value * self.scale)} {name}')
+        
+    def finalize(self):
+        pass
+    
+class ImageBarRenderer:
+    
+    COLORS = [Image.color_for_name(name) for name ('red', 'green', 'yellow', 'blue', 'cyan')]
+    
+    def __init__(self, stepHight=10, barWidth=30, barGap=2):
+        self.stepHight = stepHight
+        self.barWidth = barWidth
+        self.barGap = barGap
+        
+    def initialize(self, bars, maximum):
+        assert bars > 0 and maximum > 0 
+        self.index = 0 
+        color = Image.color_for_name('white')
+        self.image = Image.Image(bars * (self.barWidth + self.barGap), maximum * self.stepHight,
+                                 background=color)
+        
+    def draw_caption(self, caption):
+        self.filename = os.path.join(tempfile.gettempdir(), re.sub(r'\W+', '_', caption) + '.xpm')
+    
+    def draw_bar(self, name, value):
+        color = ImageBarRenderer.COLORS[self.index % len(ImageBarRenderer.COLORS)]
+        width, height = self.image.size
+        x0 = self.index * (self.barWidth + self.barGap)
+        x1 = x0 + self.barWidth
+        y0 = height - (value * self.stepHight)
+        y1 = height - 1 
+        self.image.rectangle(x0, y0, x1, y1, fill=color)
+        self.index += 1
+        
+    def finalize(self):
+        self.image.save(self.filename)
+        print('wrote', self.filename)
+        
+if __name__ == '__main__':
+    main()
