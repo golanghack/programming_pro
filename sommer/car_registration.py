@@ -18,14 +18,15 @@ import struct
 import sys 
 import Console
 
-
+#global list 
 Address = ['localhost', 9653]
+
 CarTuple = collections.namedtuple('CarTuple', 'seats mileage owner')
 
 class SocketManager:
-    """Managers socket connection"""
+    """Manager of contects -> socket"""
     
-    def __init__(self, address: list) -> None:
+    def __init__(self, address: tuple) -> None:
         self.address = address
     
     def __enter__(self):
@@ -35,7 +36,7 @@ class SocketManager:
         self.sock.connect(self.address)
         return self.sock
     
-    def __exit__(self, *ignore):
+    def __exit__(self, *ignore) -> None:
         """Closing socket connection"""
         
         self.sock.close()
@@ -45,7 +46,7 @@ def main():
     
     if len(sys.argv) > 1:
         Address[0] = sys.argv[1]
-        
+    #maping function menu  
     call = dict(c=get_car_details, 
                 m=change_mileage, 
                 o=change_owner, 
@@ -61,7 +62,7 @@ def main():
         action = Console.get_menu_choice(menu, valid, 'c', True)
         previouse_license = call[action](previouse_license)
         
-def retrieve_car_details(previouse_license):
+def retrieve_car_details(previouse_license) -> tuple:
     """Get car details for formation struct"""
     
     _license = Console.get_string('License', 'license', previouse_license)
@@ -77,7 +78,7 @@ def retrieve_car_details(previouse_license):
     return _license, CarTuple(*data)
 
 
-def get_car_details(previouse_license):
+def get_car_details(previouse_license)  -> tuple:
     """Get car details and formations info message"""
     
     _license, car = retrieve_car_details(previouse_license)
@@ -86,7 +87,7 @@ def get_car_details(previouse_license):
               'Owner --> {owner}'.format(_license, **car._asdict()))
     return _license
 
-def change_mileage(previouse_license):
+def change_mileage(previouse_license) -> tuple:
     """Set mileage"""
     
     _license, car = retrieve_car_details(previouse_license)
@@ -103,7 +104,7 @@ def change_mileage(previouse_license):
         print('Mileage successfully changed')
     return _license
 
-def change_owner(previouse_license):
+def change_owner(previouse_license) -> tuple:
     """set owner"""
     
     _license, car = retrieve_car_details(previouse_license)
@@ -120,7 +121,7 @@ def change_owner(previouse_license):
         print('Owner successfully changed')
     return _license
 
-def new_registration(previouse_license):
+def new_registration(previouse_license) -> tuple:
     """New registration and fomation info table"""
     
     _license = Console.get_string('License', 'license')
@@ -145,21 +146,24 @@ def new_registration(previouse_license):
         print(f'Car {_license} successfully registered')
     return _license
 
-def _quit(*ignore):
+#*ignore -> function ignoring all parameters
+def _quit(*ignore) -> None:
     """Quit"""
     
     sys.exit()
-    
-def stop_server(*ignore):
+#*ignore -> function ignoring all parameters  
+def stop_server(*ignore) -> None:
     """Stop server"""
     
     handle_request('SHUTDOWN', wait_for_reply=False)
     sys.exit()
     
-def handle_request(*items, wait_for_reply=True):
+def handle_request(*items, wait_for_reply=True):#wait_for_reply -> answer from server
     """Formation socket connection and requesting -> Building Struct"""
     
+    #one number 
     size_struct = struct.Struct('!I')
+    #protocol conserving -> 3
     data = pickle.dumps(items, 3)
     
     try:
@@ -169,6 +173,7 @@ def handle_request(*items, wait_for_reply=True):
             
             if not wait_for_reply:
                 return
+            #answer from server
             size_data = sock.recv(size_struct.size)
             size = size_struct.unpack(size_data)[0]
             result = bytearray()
