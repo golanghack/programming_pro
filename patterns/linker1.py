@@ -14,7 +14,6 @@
 import abc 
 import sys 
 
-
 class AbstractItem(metaclass=abc.ABCMeta):
     
     @abc.abstractproperty
@@ -54,8 +53,6 @@ class AbstractCompositeItem(AbstractItem):
         
     def __iter__(self):
         return iter(self.children)
-    
-    
 class CompositeItem(AbstractCompositeItem):
     
     def __init__(self, name: str, *items: str) -> None:
