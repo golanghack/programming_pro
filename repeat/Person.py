@@ -23,9 +23,16 @@ class Person:
     def __repr__(self) -> str:
         return f'[Person -> {self.name}, Pay -> {self.pay}]'
         
-
+class Manager(Person):
+    def give_raise(self, percent: float, bonus: float=0.10):
+        Person.give_raise(self, percent + bonus)
+    
 if __name__ == '__main__':
     #testing
+    tom = Manager('Tom', 'mngr', 5000.0)
+    tom.give_raise(0.10)
+    print(tom)
+    print(tom.last_name)
     bob = Person('Bob')
     sue = Person('Sue', job='dev', pay=100000)
     print(bob.name, bob.job, bob.pay)
