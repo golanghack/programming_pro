@@ -24,6 +24,9 @@ class Person:
         return f'[Person -> {self.name}, Pay -> {self.pay}]'
         
 class Manager(Person):
+    def __init__(self, name: str, pay: float = 0) -> None:
+        Person.__init__(self, name, 'mngr', pay)
+        
     def give_raise(self, percent: float, bonus: float=0.10):
         Person.give_raise(self, percent + bonus)
     
