@@ -23,16 +23,39 @@ class Person:
     def __repr__(self) -> str:
         return f'[Person -> {self.name}, Pay -> {self.pay}]'
         
-class Manager(Person):
+class Manager:
     def __init__(self, name: str, pay: float = 0) -> None:
-        Person.__init__(self, name, 'mngr', pay)
+        self.person = Person(name, 'mngr', pay)
         
     def give_raise(self, percent: float, bonus: float=0.10):
-        Person.give_raise(self, percent + bonus)
+        self.person.give_raise(percent + bonus)
+        
+    def __getattr__(self, attr):
+        return getattr(self.person, attr)
+    def __repr__(self):
+        return str(self.person)
+    
+class Department:
+    
+    def __init__(self, *args):
+        self.members = list(args)
+    
+    def add_member(self, person):
+        self.members.append(person)
+    
+    def give_raise(self, percent):
+        for person in self.members:
+            person.give_raise(percent)
+    
+    def show_all(self):
+        for person in self.members:
+            print(person)
+            
+            
     
 if __name__ == '__main__':
     #testing
-    tom = Manager('Tom', 'mngr', 5000.0)
+    tom = Manager('Tom', 5000.0)
     tom.give_raise(0.10)
     print(tom)
     print(tom.last_name)
@@ -45,6 +68,7 @@ if __name__ == '__main__':
     print(sue)
     
     print('<-----ALL----->')
-    for obj in (bob, tom, sue):
-        obj.give_raise(0.10)
-        print(obj)
+    development = Department(bob, sue)
+    development.add_member(tom)
+    development.give_raise(0.10)
+    development.show_all()
