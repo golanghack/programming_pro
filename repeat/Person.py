@@ -40,3 +40,8 @@ if __name__ == '__main__':
     print(bob.last_name(), sue.last_name())
     sue.give_raise(.10)
     print(sue)
+    
+    print('<-----ALL----->')
+    for obj in (bob, tom, sue):
+        obj.give_raise(0.10)
+        print(obj)
