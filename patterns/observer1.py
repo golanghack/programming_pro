@@ -105,8 +105,8 @@ class LiveView:
         
     def update(self, model):
         tipping_point = round(model.value * self.lenght / (model.maximum - model.minimum))
-        td = '<td style="background-color: {}">&nbsp;</td'
-        html = ['<table style="forn-family: monospace" border="0"><tr>']
+        td = '<td style="background-color: {}"  "color=white">&nbsp;</td'
+        html = ['<table style="font-family: monospace;" border="0"><tr>']
         html.extend(td.format('darkblue') * tipping_point)
         html.extend(td.format('cyan') * (self.lenght - tipping_point))
         html.append(f'<td>{model.value}</td></tr></table>')
