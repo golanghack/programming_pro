@@ -100,13 +100,17 @@ class Text(Mediated):
         return f'Text({self.text!r})'
     
 def test_user_interaction_with(form):
-    form.okButton.click()           
-    print(form.okButton.enabled)    
-    form.nameText.text = "Fred"
-    print(form.okButton.enabled)    
-    form.emailText.text = "fred@bloggers.com"
-    print(form.okButton.enabled)    
-    form.okButton.click()           
-    form.emailText.text = ""
-    print(form.okButton.enabled)    
-    form.cancelButton.click()      
+    form.ok_button.click()           
+    print(form.ok_button.enabled)    
+    form.name_text.text = "Fred"
+    print(form.ok_button.enabled)    
+    form.email_text.text = "fred@bloggers.com"
+    print(form.ok_button.enabled)    
+    form.ok_button.click()           
+    form.email_text.text = ""
+    print(form.ok_button.enabled)    
+    form.cancel_button.click()      
+    
+    
+if __name__ == '__main__':
+    main()
