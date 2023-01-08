@@ -53,6 +53,4 @@ def test_in_dict():
         'id': 123,
     }
     assert c2 == c2_expected
-    
-    
-    
+       
