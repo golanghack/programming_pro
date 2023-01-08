@@ -21,7 +21,11 @@ def main():
     count_words_in_files(sys.argv[1:])
     
 class AbstractWordCounter:
-    """Build abstract wotrd counter"""
+    """Build abstract word counter
+    Methods -> 
+    can_count - return bool
+    count  - return int
+    """
     
     @staticmethod
     def can_count(filename: str):
