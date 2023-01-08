@@ -40,7 +40,7 @@ def delete(card_id: int):
             print(f'Error -> Invalid card id {card_id}')
             
             
-@ap.command('list')
+@app.command('list')
 def list_cards(owner: str=typer.Option(None, '-o', '--owner'), state: str=typer.Option(None, '-s', 'state')):
     """List cards in db."""
     

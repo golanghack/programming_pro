@@ -6,12 +6,12 @@ from dataclasses import asdict
 from dataclasses import dataclass
 from dataclasses import field
 
-from db import DB
+from .db import DB
 
 __all__ = [
     'Card', 
-    'CardDB',
-    'CardException', 
+    'CardsDB',
+    'CardsException', 
     'MissingSummary', 
     'InvalidCardId',
 ]
