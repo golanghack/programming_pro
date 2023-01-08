@@ -2,7 +2,7 @@
 
 """DB for the cards project."""
 
-import tynydb
+import tinydb
 
 class DB:
     
