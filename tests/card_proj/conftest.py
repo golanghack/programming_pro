@@ -54,6 +54,11 @@ def _db():
         yield db 
         db.close()
         
+def db_scope(fixture_name, config):
+    if config.getoption('--func-db', None):
+        return 'function'
+    return 'session'
+
 
         
         
