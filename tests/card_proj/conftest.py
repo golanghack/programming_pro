@@ -44,3 +44,16 @@ def non_empty_db(cards_db, some_cards):
 
 def test_non_empty(non_empty_db):
     assert non_empty_db.count() > 0
+    
+@pytest.fixture(scope='db_scope')
+def _db():
+    """CardsDB object connected to a temporary database."""
+    with TemporaryDirectory() as db_dir:
+        db_path = Path(db_dir)
+        db = cards.CardsDB(db_path)
+        yield db 
+        db.close()
+        
+
+        
+        
