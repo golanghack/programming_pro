@@ -3,6 +3,9 @@
 import cards
 import pytest
 
-def test_no_path_raises():
-    with pytest.raises(TypeError):
+def test_raises_with_info():
+    match_regex = 'missing 1.*position argument'
+    with pytest.raises(TypeError, match=match_regex):
         cards.CardsDB()
+
+    
