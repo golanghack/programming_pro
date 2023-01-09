@@ -29,4 +29,17 @@ def some_cards():
         cards.Card('edit 2nd edition', 'Katie', 'todo'),
     ]
 
+def test_add_some(cards_db, some_cards):
+    expected_count = len(some_cards)
+    for c in some_cards:
+        cards_db.add_card(c)
+    assert cards_db.count() == expected_count
+    
+@pytest.fixture(scope='function')
+def non_empty_db(cards_db, some_cards):
+    """CardsDB object that`s populated with 'some_cards'"""
+    for c in some_cards:
+        cards_db.add_card(c)
+    return cards_db
+
 
