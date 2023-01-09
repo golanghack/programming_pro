@@ -7,7 +7,7 @@ import tinydb
 class DB:
     
     def __init__(self, db_path: str, db_file_prefix: str) -> None:
-        self._db = tinydb.TinyDb(db_path / f'{db_file_prefix}.json', create_dirs=True)
+        self._db = tinydb.TinyDB(db_path / f'{db_file_prefix}.json', create_dirs=True)
         
     def create(self, item: dict) -> int:
         id = self._db.insert(item)
