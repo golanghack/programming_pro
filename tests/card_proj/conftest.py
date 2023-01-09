@@ -19,4 +19,14 @@ def cards_db(db):
     db.delete_all()
     return db 
 
+@pytest.fixture(scope='session')
+def some_cards():
+    """List of different Card objects."""
+    return [
+        cards.Card('write book', 'Brian', 'done'),
+        cards.Card('edit book', 'Katie', 'done'),
+        cards.Card('write 2nd edition', 'Brian', 'todo'),
+        cards.Card('edit 2nd edition', 'Katie', 'todo'),
+    ]
+
 
