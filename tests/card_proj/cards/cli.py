@@ -82,7 +82,7 @@ def start(card_id: int):
         try:
             db.start(card_id)
         except cards.InvalidCardId:
-            prin(f'Error -> Invalid card id {card_id}')
+            print(f'Error -> Invalid card id {card_id}')
             
 @app.command()
 def finish(card_id: int):

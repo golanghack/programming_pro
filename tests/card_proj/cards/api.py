@@ -113,7 +113,7 @@ class CardsDB:
         """Remove a card from db with given card_id."""
         
         try:
-            self,_db.delete(card_id)
+            self._db.delete(card_id)
         except KeyError as exc:
             raise InvalidCardId(card_id) from exc
         
