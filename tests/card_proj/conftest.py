@@ -42,4 +42,5 @@ def non_empty_db(cards_db, some_cards):
         cards_db.add_card(c)
     return cards_db
 
-
+def test_non_empty(non_empty_db):
+    assert non_empty_db.count() > 0
