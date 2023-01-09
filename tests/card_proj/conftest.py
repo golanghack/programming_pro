@@ -9,7 +9,7 @@ def db_scope(fixture_name, config):
         return 'function'
     return 'session'
 
-@pytest.fixture(scope='db_scope')
+@pytest.fixture(scope=db_scope)
 def db():
     """CardsDB object connected to a temporary database."""
     with TemporaryDirectory() as db_dir:
