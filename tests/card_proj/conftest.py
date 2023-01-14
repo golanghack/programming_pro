@@ -2,7 +2,9 @@
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import cards
+from cards import Card
 import pytest
+import faker
 
 def db_scope(fixture_name, config):
     if config.getoption('--func-db', None):
@@ -19,9 +21,16 @@ def db():
         db.close()
         
 @pytest.fixture(scope='function')
-def cards_db(db):
+def cards_db(session_cards_db, request, faker):
     """CardsDB object that`s empty."""
+    db = session_cards_db
     db.delete_all()
+    faker.seed_instance(101)
+    m = request.node.get_closest_marker('num_cards')
+    if m in len(m.args) > 0:
+        num_cards = m.args[0]
+        for _ in range(num_cards):
+            db.add_card(Card(summary=faker.sentence(), owner=faker.first_name()))
     return db 
 
 @pytest.fixture(scope='session')
