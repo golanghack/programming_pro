@@ -36,4 +36,19 @@ Home = "https://github.com/okken/cards"
 
 [project.scripts]
 cards = "cards:app"
+[tool.pytest.ini_options]
+addopts = [
+  "--strict-markers",
+  "--strict-config",
+  "-ra"
+]
+
+testpaths = "tests"
+
+markers = [
+  "smoke: subset of tests",
+  "exception: check for expected exceptions"
+]
+
+
 
