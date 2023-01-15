@@ -1,10 +1,10 @@
 #! /usr/bin/env python3 
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import faker
 import cards
 from cards import Card
 import pytest
-import faker
 
 def db_scope(fixture_name, config):
     if config.getoption('--func-db', None):
