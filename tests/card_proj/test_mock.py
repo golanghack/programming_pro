@@ -27,3 +27,23 @@ def test_mock_path():
             print()
             print(f'{db.path=}')
             print(f'{db.path()=}')
+            
+@pytest.fixture()
+def mock_cardsdb():
+    with mock.patch.object(cards, 'CardsDB', autospec=True) as CardsDB:
+        yield CardsDB.return_value
+        
+def test_config(mock_cardsdb):
+    mock_cardsdb.path.return_value = '/foo/'
+    result = runner.invoke(app, ['config'])
+    assert result.stdout.rstrip() == '/foo/'
+    
+def test_bad_mock():
+    with mock.patch.object(cards, 'CardsDB') as CardsDB:
+        db = CardsDB('/some/path')
+        db.path()
+        db.path(35)
+        db.not_valid()
+        
+
+        
