@@ -2,7 +2,7 @@
 
 import re 
 
-def test_patterns(text: str, patterns: str) -> None:
+def test_patterns(text: str, patterns: list) -> None:
     """Get text and list of patterns as arguments
     find all occurences every pattern in text and output results in stdout.
     """
