@@ -2,13 +2,16 @@
 
 from flask import Flask 
 from flask import request 
+from flask import make_response
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    user_agent = request.headers.get('User-Agent')
-    return f'<p>Your brouser is {user_agent}</p>'
+   response = make_response('<h1>This is document carries a cockie!</h1>')
+   response.set_cookie('answer', '42')
+   return response
+
 @app.route('/user/<name>')
 def user(name: str) -> str:
     return f'<h1>Hello, {name}</h1>'
