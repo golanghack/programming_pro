@@ -1,17 +1,21 @@
 #! /usr/bin/env python3 
 
 from flask import Flask 
-from flask import redirect
+from flask import abort
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-   return redirect('https://google.com')
+    word = 'word!'
+    return f'Hello {word}'
 
-@app.route('/user/<name>')
-def user(name: str) -> str:
-    return f'<h1>Hello, {name}</h1>'
+@app.route('/user/<id>')
+def user(id: int) -> str:
+    user = load_user(id)
+    if not user:
+        abort(404)
+    return f'<h1>Hello, {user.name}'
 
 if __name__ == '__main__':
     app.run(debug=True)
