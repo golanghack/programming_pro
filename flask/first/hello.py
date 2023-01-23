@@ -1,16 +1,13 @@
 #! /usr/bin/env python3 
 
 from flask import Flask 
-from flask import request 
-from flask import make_response
+from flask import redirect
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-   response = make_response('<h1>This is document carries a cockie!</h1>')
-   response.set_cookie('answer', '42')
-   return response
+   return redirect('https://google.com')
 
 @app.route('/user/<name>')
 def user(name: str) -> str:
