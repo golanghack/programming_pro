@@ -1,7 +1,6 @@
 #! /usr/bin/env python3 
 
-import enum
-from enam_create import BugStatus
+from enum_create import BugStatus
 
 actual_state = BugStatus.wont_fix
 desired_state = BugStatus.fix_released
