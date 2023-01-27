@@ -26,7 +26,6 @@ def index():
         if old_name is not None and old_name != form.name.data:
             flash('Looks like you have changed yor name!')
         session['name'] = form.name.data
-        form.name.data = ''
         return redirect(url_for('index'))
     return render_template('index.html', 
                            current_time=datetime.utcnow(), 
