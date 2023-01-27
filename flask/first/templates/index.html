@@ -1,1 +1,2 @@
-<h1>Hello</h1>
+<h1>local time -> {{ moment(current_time).format('LLL') }}.</h1> 
+<h1>That was {{ moment(current_time).fromNow(refresh=True) }}.</h1>
