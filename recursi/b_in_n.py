@@ -5,8 +5,9 @@ def b_in_n(b: int, n: int) -> int:
     
     if n == 0:
         return 1
-    if n == 1:
+    elif n == 1:
         return b 
+    elif n < 0:
+        return b * b_in_n(b, n + 1)
     else:
         return b * b_in_n(b, n - 1)
-    
