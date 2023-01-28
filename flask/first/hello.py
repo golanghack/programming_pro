@@ -65,9 +65,11 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, index=True)
+    users = db.relationship('User', backref='role')
     
     def __repr__(self) -> str:
         return f'<User {self.username}>'
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
 if __name__ == '__main__':
     app.run()
