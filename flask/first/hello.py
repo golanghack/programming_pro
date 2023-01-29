@@ -6,8 +6,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
-from flask import Flask, render_template, session, redirect, url_for, flash
-from datetime import datetime
+from flask import Flask, render_template, session, redirect, url_for
 
 
 app = Flask(__name__)
@@ -33,13 +32,17 @@ def index():
         if user is None:
             user = User(username=form.name.data)
             db.session.add(user)
+            db.session.commit()
             session['known'] = False
         else:
             session['known'] = True
         session['name'] = form.name.data
         form.name.data = ''
         return redirect(url_for('index'))
-    return render_template('index.html', form=form, name=session.get('name'), known=session.get('known', False))
+    return render_template('index.html', 
+                           form=form,
+                           name=session.get('name'), 
+                           known=session.get('known', False))
 
 @app.route('/user/<name>')
 def user(name):
