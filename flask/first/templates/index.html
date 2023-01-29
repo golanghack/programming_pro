@@ -6,6 +6,12 @@
 <h1>That was {{ moment(current_time).fromNow(refresh=True) }}.</h1>
 <div class="page-header">
     <h1>Hi -> {% if name %}{{ name }}{% else %}Stranger{% endif %}
+        {% if not known %} 
+            <p>Pleased to meet you!</p>
+        {% else %}
+            <p>Happy to see you again!
+        {% endif %}
+
     </div>
 {{ wtf.quick_form(form) }}
 {% endblock content %}
