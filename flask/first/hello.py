@@ -2,7 +2,7 @@
 import os 
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask_mail import Mail
+from flask_mail import Mail, Message
 from flask_wtf import FlaskForm 
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -90,6 +90,17 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['SITE_MAIL_SUBJECT_PREFIX'] = '[Site]'
+app.config['SITE_MAIL_SENDER'] = 'Site Admin site@example.com'
+
+def send_mail(to: str, subject: str, template: str, **kwargs):
+    """Email sending."""
+    
+    msg = Message(app.config['SITE_MAIL_SUBJECT_PREFIX'] + subject, 
+                  sender=app.config['SITE_MAIL_SENDER'], recipients=[to])
+    msg.body = render_template(template + '.txt', **kwargs)
+    msg.html = render_template(template + '.html', **kwargs)
+    mail.send(msg)
 
 if __name__ == '__main__':
     app.run()
