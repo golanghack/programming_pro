@@ -21,6 +21,8 @@ mail = Mail(app)
 app.config['SECRET_KEY'] = 'hard to guess string'
 bootstrap = Bootstrap(app)
 moment = Moment(app)
+#admin
+app.config['SITE_ADMIN'] = os.environ.get('SITE_ADMIN')
 
 #form
 class NameForm(FlaskForm):
@@ -37,6 +39,8 @@ def index():
             db.session.add(user)
             db.session.commit()
             session['known'] = False
+            if app.config['SITE_ADMIN']:
+                send_mail(app.config['SITE_ADMIN'], 'New User', 'mail/new_user', user=user)
         else:
             session['known'] = True
         session['name'] = form.name.data
