@@ -76,5 +76,10 @@ class User(db.Model):
         return '<User %r>' % self.username
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     
+#shell
+@app.shell_context_processor
+def make_shell_context():
+    return dict(db=db, User=User, Role=Role)    
+
 if __name__ == '__main__':
     app.run()
