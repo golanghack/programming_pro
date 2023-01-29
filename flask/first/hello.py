@@ -1,5 +1,6 @@
 #! /usr/bin/env python3 
 import os 
+from threading import Thread
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_mail import Mail, Message
@@ -97,6 +98,12 @@ app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['SITE_MAIL_SUBJECT_PREFIX'] = '[Site]'
 app.config['SITE_MAIL_SENDER'] = 'Site Admin site@example.com'
 
+def send_async_email(app: str, msg: str):
+    """Asynchronic send email."""
+    
+    with app.app_context():
+        mail.send(msg)
+
 def send_mail(to: str, subject: str, template: str, **kwargs):
     """Email sending."""
     
@@ -104,7 +111,10 @@ def send_mail(to: str, subject: str, template: str, **kwargs):
                   sender=app.config['SITE_MAIL_SENDER'], recipients=[to])
     msg.body = render_template(template + '.txt', **kwargs)
     msg.html = render_template(template + '.html', **kwargs)
-    mail.send(msg)
+    thr = Thread(target=send_async_email, args=[app, msg])
+    thr.start()
+    return thr
+
 
 if __name__ == '__main__':
     app.run()
