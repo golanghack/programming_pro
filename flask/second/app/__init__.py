@@ -27,7 +27,11 @@ def create_app(config_name: str):
     moment.init_app(app)
     db.init_app(app)
     
-    # routes
+    # routes ...
+    
+    # main blueprint registration
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
     
     return app
 
