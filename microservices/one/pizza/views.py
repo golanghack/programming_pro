@@ -1,5 +1,6 @@
 import json
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Permission
 from django.http import HttpResponse
 from .models import Pizza
 
@@ -29,3 +30,14 @@ def index(request: str, pid: int) -> HttpResponse:
                 'description': pizza.description,
             }
         )
+    elif request.method == 'DELETE':
+        if 'can_delete' in request.user.user_permissions:
+            pizza = Pizza.objects.get(id=pid)
+            pizza.delete()
+            return HttpResponse(
+                content={
+                    'id': pizza.id,
+                }
+            )
+        else:
+            return HttpResponse(status_code=404)
