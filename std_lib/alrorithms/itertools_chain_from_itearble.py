@@ -9,3 +9,6 @@ def make_iterable_to_chain():
 for i in chain.from_iterable(make_iterable_to_chain()):
     print(i, end=' ')
 print()
+
+for i in zip([1, 2, 3], ['a', 'b', 'c']):
+    print(i)
