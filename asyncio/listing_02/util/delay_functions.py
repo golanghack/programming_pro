@@ -1,12 +1,8 @@
-#! /usr/bin/env python3 
-"""This module for delay functions."""
-
 import asyncio
 
+
 async def delay(delay_seconds: int) -> int:
-    """Function sleeping delay for coroutines."""
-    
-    print(f'I`m sleeping on -> {delay_seconds} sec.')
+    print(f'sleeping for {delay_seconds} second(s)')
     await asyncio.sleep(delay_seconds)
-    print(f'sleep current -> {delay_seconds} sec finished.')
+    print(f'finished sleeping for {delay_seconds} second(s)')
     return delay_seconds
