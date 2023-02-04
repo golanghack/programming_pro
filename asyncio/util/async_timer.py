@@ -17,7 +17,7 @@ def async_timed():
             finally:
                 end = time.time()
                 total = end - start
-                print(f'{func} called for {total:.f} sec.')
+                print(f'{func} called for {total:.2f} sec.')
         return wrapped
     return wrapper
 
