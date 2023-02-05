@@ -1,4 +1,48 @@
-header h1 a {
+body {
     color: aqua;
-    font-size: large;
+    font-size: 40px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+header {
+    border-bottom: 3px solid #999;
+    margin-bottom: 3rem;
+    display: flex;
+}
+
+header h1 a {
+    color: red;
+    text-decoration:  none;
+}
+
+.nav-left {
+    margin-right: auto;
+}
+
+.nav-right {
+    display: flex;
+    padding-top: 3rem;
+}
+
+.post-entry {
+    margin-bottom: 3rem;
+}
+
+.post-entry h2 {
+    margin: 1rem 0;
+}
+
+.post-entry h2 a,
+.post-entry h2 a:visited {
+    color: blue;
+    text-decoration: none;
+}
+
+.post-entry p {
+    margin: 0;
+    font-weight: 400;
+}
+
+.post-entry h2 a:hover {
+    color:green;
 }
