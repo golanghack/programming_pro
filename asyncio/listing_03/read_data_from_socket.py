@@ -15,13 +15,15 @@ try:
     
     buffer = b''
     
-    while buffer[-2:] != b'\r\n':
+    while buffer[2:] != b'\r\n':
         data = connection.recv(2)
         if not data:
             break
         else:
             print(f'Got data -> {data}')
+            buffer = buffer + data
     print(f'All the data is -> {buffer}')
+    connection.sendall(buffer)
     
 finally:
     server_socket.close()
