@@ -3,14 +3,20 @@
 import asyncio
 import socket
 from asyncio import AbstractEventLoop
+import logging
 
 async def echo(connection: socket, loop: AbstractEventLoop) -> None:
     """This function working one connection."""
     
-    while data := await loop.sock_recv(connection, 1024): # wait data from client
-        if data == b'wow\r\n':
-            raise Exception('Dont panic - we sent Error!')
-        await loop.sock_sendall(connection, data) # sent data -> return back client
+    try:
+        while data := await loop.sock_recv(connection, 1024): # wait data from client
+            if data == b'wow\r\n':
+                raise Exception('Dont panic - we sent Error!')
+            await loop.sock_sendall(connection, data) # sent data -> return back client
+    except Exception as ex:
+        logging.exception(ex)
+    finally:
+        connection.close()
         
 async def listen_for_connection(server_socket: socket, loop: AbstractEventLoop):
     """Listener for connection."""
