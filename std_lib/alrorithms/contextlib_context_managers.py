@@ -1,7 +1,7 @@
 #! /usr/bin/env python3 
 
 import contextlib
-
+from contextlib_contexmanager import make_context
 class Tracker:
     """Main classfor managers context, generated errors."""
     
@@ -51,7 +51,14 @@ class ErrorOnEnter(Tracker):
     def __exit__(self, *exc_info: list) -> None:
         self.msg('exiting')
         
+
+def variable_stack(n, msg):
+    with contextlib.ExitStack() as stack:
+        for i in range(n):
+            stack.enter_context(make_context(i))
+        print(msg)
         
+         
 print('ONE EXAMPLE\n')
 print('No errors -> ')
 variable_stack([
