@@ -16,9 +16,9 @@ class Multiplier(threading.Thread):
         
     def run(self) -> None:
         context = decimal.getcontext().copy()
-        context.prec
+        context.prec = self.prec
         decimal.setcontext(context)
-        self.q.put((self.prec, self.a * self.b))
+        self.q.put((self.prec, a * b))
         
 a = decimal.Decimal('3.14')
 b = decimal.Decimal('1.234')
