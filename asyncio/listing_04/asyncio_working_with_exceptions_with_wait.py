@@ -3,7 +3,6 @@
 import asyncio
 import logging
 import aiohttp
-from aiohttp import ClientSession
 from util import async_timed, fetch_status
 
 @async_timed()

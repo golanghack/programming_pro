@@ -2,8 +2,7 @@
 
 import asyncio
 import aiohttp
-from aiohttp import ClientSession
-from util import async_timed, fetch_status
+from util import fetch_status
 
 async def main() -> None:
     async with aiohttp.ClientSession() as session:
