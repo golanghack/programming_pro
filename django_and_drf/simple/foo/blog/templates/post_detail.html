@@ -6,4 +6,5 @@
         <p>{{ object.body }}</p>
     </div>
     <a href="{% url 'post_edit' post.pk %}">+ Edit</a>
+    <p><a href="{% url 'post_delete' post.pk %}">- Delete</a></p>
 {% endblock content %}
