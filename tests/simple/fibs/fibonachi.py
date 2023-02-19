@@ -8,4 +8,3 @@ def fib(n:int) -> int:
     M[n] = fib(n - 1) + fib(n - 2)
     return M[n]
 
-print(fib(7))
