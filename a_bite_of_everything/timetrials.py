@@ -10,5 +10,5 @@ def timetrials(func, n_range, trials=10):
         func(list(range(n_range)))
         end = time.time()
         total = end - start
-    print(f'average -> {total / trials:10.7f} = {n_range}')
+    print(f'average -> {total / trials:10.7f} secs  ->  {n_range}')
         
