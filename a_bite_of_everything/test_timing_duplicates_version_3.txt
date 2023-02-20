@@ -1,0 +1,7 @@
+average ->  0.0000128 secs  ->  50
+average ->  0.0001957 secs  ->  200
+average ->  0.0007773 secs  ->  400
+average ->  0.0031998 secs  ->  800
+average ->  0.0133936 secs  ->  1600
+average ->  0.0543973 secs  ->  3200
+average ->  0.2152478 secs  ->  6400
