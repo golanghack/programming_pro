@@ -5,7 +5,7 @@ import time
 def timetrials(func, n_range, trials=10):
     """Counting time for count operation any functions."""
     
-    for i in range(trials):
+    for _ in range(trials):
         start = time.time()
         func(list(range(n_range)))
         end = time.time()
