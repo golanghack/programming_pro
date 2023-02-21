@@ -1,6 +1,5 @@
 #! /usr/bin/env python3 
 
-import csv
 from typing import List, Tuple
 from series import highest_rated, oldest
 import pytest
