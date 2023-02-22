@@ -1,0 +1,12 @@
+APScheduler
+beautifulsoup4
+certifi
+python-dateutil
+python-decouple
+python-telegram-bot 
+pytz
+requests
+six
+soupsieve
+tornado
+urllib3
