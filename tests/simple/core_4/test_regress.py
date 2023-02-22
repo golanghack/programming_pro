@@ -1,5 +1,6 @@
 #! /usr/bin/env python3 
 
+from data_
 from typing import List, Dict
 def obtain_series() -> List[Dict]:
     return [
@@ -22,6 +23,6 @@ def test_obtain_series_asserts() -> None:
     assert data[1]['rating'] == 8.4
     
     
-def test_obtain_series(data_regression):
+def test_obtain_series(data_regressions):
     data = obtain_series()
     data_regression.check(data)
