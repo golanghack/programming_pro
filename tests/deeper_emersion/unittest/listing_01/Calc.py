@@ -7,6 +7,6 @@ class Calc(object):
             raise TypeError(f'Invalid type -> {type(x)} and {type(y)}')
         return x + y
     
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
     calc = Calc()
     result = calc.add(3, 3)
