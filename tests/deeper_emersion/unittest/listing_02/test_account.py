@@ -1,11 +1,18 @@
 #! /usr/bin/env python3 
 
 import unittest
-from mock import Mock
+from mock import Mock, patch
 from Account import Account
 
 class TestAccoiunt(unittest.TestCase):
     """Testing simple class Account."""
+    
+    @patch('Account.requests')
+    def test_get_current_balance_returns_data_correctly(self, mock_requests):
+        mock_requests.get.return_value = '500'
+        account = Account(Mock())
+        
+        self.assertEqual('500', account.get_current_balance('1'))
     
     def test_account_returns_data_for_id_1(self) -> None:
         account_data = {'id': '1', 'name': 'test'}
