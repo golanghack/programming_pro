@@ -1,7 +1,7 @@
 #! /usr/bin/env python3 
 
 import requests
-from typing import Dict, Any
+from typing import Any
 class Account(object):
     """Simple class for testing."""
     
