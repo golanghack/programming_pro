@@ -4,6 +4,6 @@ from typing import Any
 
 class ListNode:
     
-    def __init__(self, data: Any, link: str) -> None:
+    def __init__(self, data: Any, link: str=None) -> None:
         self.data = data
         self.link = link
