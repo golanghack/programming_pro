@@ -1,6 +1,7 @@
 #! /usr/bin/env python3 
 
 import requests
+from typing import Dict, Any
 class Account(object):
     """Simple class for testing."""
     
@@ -14,7 +15,10 @@ class Account(object):
             result = 'Connection error occured. Try again.'
         return result
     
-    def get_current_balance(sefl, id_num: int):
-        return requests.get('https://some-account-uri/' + id_num)
-    
+    def get_current_balance(self, id_num: int) -> Any:
+        """Get balance."""
+        
+        response = requests.get('https://some-account-uri/' + id_num)
+        return {'status': response.status_code, 
+                'data': response.text}
     
