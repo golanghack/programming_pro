@@ -1,5 +1,6 @@
 #! /usr/bin/env python3 
 
+import requests
 class Account(object):
     """Simple class for testing."""
     
@@ -12,5 +13,8 @@ class Account(object):
         except ConnectionError:
             result = 'Connection error occured. Try again.'
         return result
+    
+    def get_current_balance(sefl, id_num: int):
+        return requests.get('https://some-account-uri/' + id_num)
     
     
