@@ -1,7 +1,5 @@
 #! /usr/bin/env python3 
 
-class ConnectionError(Exception):
-    pass
 class Account(object):
     """Simple class for testing."""
     
@@ -12,7 +10,7 @@ class Account(object):
         try:
             result = self.data_int.get(id_num)
         except ConnectionError:
-            result = 'Connection error occured.Try again.'
+            result = 'Connection error occured. Try again.'
         return result
     
     
