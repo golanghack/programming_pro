@@ -2,7 +2,7 @@
 from typing import Any
 from ListQueueFakeDelete import ListQueueFakeDelete
 
-class ListQueue0(ListQueueFakeDelete):
+class ListQueue(ListQueueFakeDelete):
     
     def dequeue(self) -> Any:
         item = self._queue[self._head]
