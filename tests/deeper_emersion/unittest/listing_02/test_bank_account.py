@@ -2,6 +2,7 @@
 
 import unittest 
 from Account import Account
+from Bank import Bank
 
 class BankTest(unittest.TestCase):
     
@@ -13,8 +14,8 @@ class BankTest(unittest.TestCase):
     def test_add_account(self):
         bank = Bank()
         
-        account_1 = Account('001', 100)
-        account_2 = Account('002', 200)
+        account_1 = Account(1, 100)
+        account_2 = Account(2, 200)
         
         bank.add_account(account_1)
         bank.add_account(account_2)

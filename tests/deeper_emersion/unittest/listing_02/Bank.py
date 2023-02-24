@@ -1,3 +1,5 @@
 #! /usr/bin/env python3 
- class Bank:
-     pass
+class Bank:
+     
+     def __init__(self):
+         self.accounts = {}

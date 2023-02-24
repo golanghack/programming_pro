@@ -22,3 +22,5 @@ class Account(object):
         return {'status': response.status_code, 
                 'data': response.text}
     
+    def add_account(self, account: str):
+        self.accounts[account.account_number] = account.balance
