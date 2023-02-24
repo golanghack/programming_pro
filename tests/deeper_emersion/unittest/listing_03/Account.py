@@ -1,5 +1,7 @@
 #! /usr/bin/env python3 
 
 class Account(object):
-    pass
+    
+    def __init__(self, account_number: str, balance: float) -> None:
+        pass
 
