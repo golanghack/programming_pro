@@ -4,7 +4,7 @@ import unittest
 from mock import Mock, patch
 from Account import Account
 
-class TestAccoiunt(unittest.TestCase):
+class TestAccount(unittest.TestCase):
     """Testing simple class Account."""
     
     @patch('Account.requests')
