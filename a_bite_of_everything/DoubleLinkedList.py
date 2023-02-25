@@ -69,3 +69,19 @@ class DoubleLinkedList:
     def remove_last(self):
         return self._remove(self._tail)
         
+
+    # union two doublelinkedlist
+    def __iadd__(self, other: list):
+        if other._head is not None:
+            if self._head is None:
+                self._head = other._head
+            else:
+                self._tail.link = other._head
+                other._head.prev = self._tail
+            self._tail = other._tail 
+            self._lenght = self._lenght + other._lenght
+            #cleanin other list
+            other.__init__()
+        return self
+    
+    
