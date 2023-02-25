@@ -29,7 +29,7 @@ class StressTest:
         if self._load_test_future:
             self._loop.call_soon_threadsafe(self._load_test_future.cancel)
     
-    async def _get_url(self, session: ClientSession, url: str):
+    async def _get_url(self, session: ClientSession(), url: str):
         try:
             await session.get(url)
         except Exception as e:
