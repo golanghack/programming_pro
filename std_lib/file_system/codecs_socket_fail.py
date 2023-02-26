@@ -12,7 +12,6 @@ class Echo(socketserver.BaseRequestHandler):
         return 
     
 if __name__ == '__main__':
-    import codecs
     import socket
     import threading
     
