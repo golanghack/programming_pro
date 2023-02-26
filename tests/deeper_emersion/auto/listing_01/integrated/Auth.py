@@ -34,8 +34,8 @@ class Authorization:
     ]
     
     def can(self, user: str, action: str) -> bool:
-        for user in self.PERMISSIONS:
-            if user['user'] == user['username']:
-                return action in user['permissions']
+        for u in self.PERMISSIONS:
+            if u['user'] == user['username']:
+                return action in u['permissions']
             else:
                 return False
