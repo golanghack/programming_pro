@@ -33,10 +33,11 @@ class TestChatClient(unittest.TestCase):
 class TestConnection(unittest.TestCase):
     
     def test_broadcast(self):
-        conn = Connection(('localhost', 9090))
-        conn.broadcast('some message')
-        
-        assert conn.get_messages()[-1] == 'some message'
+        with unittest.mock.patch.object(Connection, 'connect'):
+            conn = Connection(('localhost', 9090))
+            conn.broadcast('some message')
+            
+            assert conn.get_messages()[-1] == 'some message'
         
 if __name__ == '__main__':
     unittest.main()
