@@ -2,6 +2,7 @@
 
 import unittest
 from ChatClient import ChatClient
+from _DummyConnection import _DummyConnection
 
 class TestChatAcceptance(unittest.TestCase):
     
@@ -23,6 +24,7 @@ class TestChatClient(unittest.TestCase):
         
     def test_send_message(self):
         client = ChatClient('User 1')
+        client.connection = _DummyConnection()
         sent_message = client.send_message('Hello')
         
         assert sent_message == 'User 1: Hello'
