@@ -1,6 +1,7 @@
 #! /usr/bin/env python3 
 
 import unittest
+from ChatClient import ChatClient
 
 class TestChatAcceptance(unittest.TestCase):
     
@@ -19,6 +20,12 @@ class TestChatClient(unittest.TestCase):
         client = ChatClient('User 1')
         
         assert client.nickname == 'User 1'
+        
+    def test_send_message(self):
+        client = ChatClient('User 1')
+        sent_message = client.send_message('Hello')
+        
+        assert sent_message == 'User 1: Hello'
         
 if __name__ == '__main__':
     unittest.main()
