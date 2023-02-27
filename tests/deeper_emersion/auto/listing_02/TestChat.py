@@ -40,6 +40,14 @@ class TestConnection(unittest.TestCase):
             conn.broadcast('Some message')
             
             assert conn.get_messages()[-1] == 'Some message'
+            
+    def test_client_connection(self):
+        client = ChatClient('User 1')
+        connection_spy = unittest.mock.MagicMock()
+        with unittest.mock.patch.object(client, '_get_connection', return_value=connection_spy):
+            client.send_message('Hello')
+            
+        connection_spy.broadcast.assert_called_with('User 1: Hello')
         
 if __name__ == '__main__':
     unittest.main()
