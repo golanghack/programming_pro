@@ -21,7 +21,19 @@ class FakeServer:
         
     def recv(self, *args, **kwargs):
         # for now we don`t support any command so just error.
-        return '#!!!ERROR!!!', ValueError(f'{self.last_command} - {self.last_args}')
+        if self.last_command == 'dummy':
+            return '#RETURN', None
+        elif self.last_command == 'create':
+            return '#RETURN', ('fakeid', tuple())
+        elif self.last_command == 'append':
+            self.messages.append(self.last_args[0])
+            return '#RETURN', None
+        elif self.last_command == '__getitem__':
+            return '#RETURN', self.messages[self.last_args[0]]
+        elif self.last_command in ('incref', 'decref', 'accept_connection'):
+            return '#RETURN', None
+        else:
+            return '#!!!ERROR!!!', ValueError(f'{self.last_command} - {self.last_args}')
     
     def close(self):
         pass
