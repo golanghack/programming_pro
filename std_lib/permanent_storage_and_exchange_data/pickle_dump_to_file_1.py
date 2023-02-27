@@ -19,7 +19,7 @@ if __name__ == '__main__':
     
     filename = sys.argv[1]
     
-    with open(filename, 'wb', encoding='utf-8') as out:
+    with open(filename, 'wb') as out:
         for obj in data:
             print(f'WRITING -> {obj.name} ({obj.name_backwards})')
             pickle.dump(obj, out)
