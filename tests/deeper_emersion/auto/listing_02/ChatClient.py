@@ -5,6 +5,7 @@ class ChatClient:
     def __init__(self, nickname: str) -> None:
         self.nickname = nickname
         self._connection = None
+        self._last_msq_idx = 0
         
     def send_message(self, message: str) -> str:
         sent_message = f'{self.nickname}: {message}'
@@ -25,3 +26,11 @@ class ChatClient:
         
     def _get_connection(self):
         return Connection(('localhost', 9090))
+    
+    def fetch_messages(self):
+        messages = list(self.connection.get_messages())
+        new_messages = messages[self._last_msq_idx:]
+        self._last_msq_idx = len(messages)
+        return new_messages
+    
+    
