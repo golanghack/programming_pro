@@ -35,9 +35,11 @@ class TestConnection(unittest.TestCase):
     def test_broadcast(self):
         with unittest.mock.patch.object(Connection, 'connect'):
             conn = Connection(('localhost', 9090))
-            conn.broadcast('some message')
+        
+        with unittest.mock.patch.object(conn, 'get_messages', return_value = []):
+            conn.broadcast('Some message')
             
-            assert conn.get_messages()[-1] == 'some message'
+            assert conn.get_messages()[-1] == 'Some message'
         
 if __name__ == '__main__':
     unittest.main()
