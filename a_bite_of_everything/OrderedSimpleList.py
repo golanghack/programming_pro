@@ -28,7 +28,14 @@ class OrderedSimpleList:
         return self._lst[index]
     
     def __contains__(self, item: Any) -> bool:
-        return item in self._lst
+        left, right = 0, len(self._lst)
+        while right - left > 1:
+            median = (right + left) // 2
+            if item < self._lst[median]:
+                right = median
+            else:
+                left = median
+        return right > left and self._lst[left] == item
     
     def __len__(self) -> int:
         return len(self._lst)
