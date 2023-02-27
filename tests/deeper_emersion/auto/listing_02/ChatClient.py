@@ -1,6 +1,5 @@
 #! /usr/bin/env python3 
 
-from _DummyConnection import _DummyConnection
 class ChatClient:
     
     def __init__(self, nickname: str) -> None:
