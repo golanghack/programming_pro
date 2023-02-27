@@ -2,6 +2,7 @@
 
 import unittest
 from ChatClient import ChatClient
+from Connection import Connection
 import unittest.mock
 
 class TestChatAcceptance(unittest.TestCase):
@@ -28,6 +29,14 @@ class TestChatClient(unittest.TestCase):
         sent_message = client.send_message('Hello')
         
         assert sent_message == 'User 1: Hello'
+        
+class TestConnection(unittest.TestCase):
+    
+    def test_broadcast(self):
+        conn = Connection(('localhost', 9090))
+        conn.broadcast('some message')
+        
+        assert conn.get_messages()[-1] == 'some message'
         
 if __name__ == '__main__':
     unittest.main()
