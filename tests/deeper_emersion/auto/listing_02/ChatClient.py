@@ -8,7 +8,7 @@ class ChatClient:
         
     def send_message(self, message: str) -> str:
         sent_message = f'{self.nickname}: {message}'
-        self.connection.broadcast(message)
+        self.connection.broadcast(sent_message)
         return sent_message
     
     @property

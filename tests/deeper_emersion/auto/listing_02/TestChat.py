@@ -3,6 +3,7 @@
 import unittest
 from ChatClient import ChatClient
 from Connection import Connection
+from FakeServer import FakeServer
 import unittest.mock
 
 class TestChatAcceptance(unittest.TestCase):
@@ -48,6 +49,21 @@ class TestConnection(unittest.TestCase):
             client.send_message('Hello')
             
         connection_spy.broadcast.assert_called_with('User 1: Hello')
+        
+    def test_exchange_with_server(self):
+        with unittest.mock.patch(
+            'multiprocessing.managers.listener_client', 
+            new={
+                'pickle': (
+                    None, FakeServer(),
+                ),
+            },
+        ):
+            conn1 = Connection(('localhost', 9090))
+            conn2 = Connection(('localhost', 9090))
+            
+            conn1.broadcast('connected message')
+            assert conn2.get_messages()[-1] == 'connected message'
         
 if __name__ == '__main__':
     unittest.main()
