@@ -11,7 +11,7 @@ class ChatClient:
         
     def send_message(self, message: Any) -> str:
         sent_message = f'{self.nickname}: {str(message)}'
-        self.connection.broadcast(message)
+        self.connection.broadcast(sent_message)
         return sent_message
     
     def _get_connection(self):
