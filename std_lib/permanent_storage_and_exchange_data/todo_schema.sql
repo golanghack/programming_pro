@@ -6,9 +6,10 @@ CREATE TABLE project (
 
 CREATE TABLE task (
     id integer PRIMARY KEY key AUTOINCREMENT NOT NULL, 
-    priority text, 
+    priority integer default  1,
+    details text,  
     status text, 
     deadline date, 
     completed_on date, 
-    project text NOT NULL REFERENCES project(NAME)
+    project text NOT NULL REFERENCES project(name)
 )
