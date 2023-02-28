@@ -2,7 +2,7 @@
 
 import unittest
 from ChatClient import ChatClient
-from connection import _DummyConnection
+import unittest.mock
 
 class TestChatClient(unittest.TestCase):
     
@@ -13,7 +13,7 @@ class TestChatClient(unittest.TestCase):
         
     def test_semd_message(self):
         client = ChatClient('User 1')
-        client.connection = _DummyConnection()
+        client.connection = unittest.mock.Mock()
         sent_message = client.send_message('Hi')
         
         assert sent_message == 'User 1: Hi'
