@@ -6,6 +6,7 @@ from collections import deque
 from util.supporting_functions_for_ansi import move_back_one_char, clear_line
 
 async def read_line(stdin_reader: StreamReader) -> str:
+    
     # function for remove before symbol from stdin
     def erase_last_char():
         move_back_one_char()
