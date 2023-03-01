@@ -11,7 +11,7 @@ db_is_new = not os.path.exists(db_filename)
 with sqlite3.connect(db_filename) as conn:
     if db_is_new:
         print('Creating schema')
-        with open(schema_filename, 'rt') as file_:
+        with open(schema_filename,  encoding='utf-8') as file_:
             schema = file_.read()
             conn.executescript(schema)
         

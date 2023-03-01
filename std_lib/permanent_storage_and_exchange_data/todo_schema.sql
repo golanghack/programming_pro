@@ -1,11 +1,11 @@
 CREATE TABLE project (
     name text PRIMARY KEY, 
-    DESCRIPTION text, 
+    description text, 
     deadline date
 );
 
 CREATE TABLE task (
-    id integer PRIMARY KEY key AUTOINCREMENT NOT NULL, 
+    id integer PRIMARY KEY AUTOINCREMENT NOT NULL, 
     priority integer default  1,
     details text,  
     status text, 
