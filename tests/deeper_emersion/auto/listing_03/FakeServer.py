@@ -18,7 +18,10 @@ class FakeServer:
         self.last_args = args
         
     def recv(self, *args, **kwargs):
-        return '#ERROR', ValueError(f'{self.last_command} - {self.last_args!r}')
+        if self.last_command == 'dummy':
+            return '#RETURN', None
+        else:
+            return '#ERROR', ValueError(f'{self.last_command} - {self.last_args}')
     
     def close(self):
         pass

@@ -21,7 +21,7 @@ class TestConnection(unittest.TestCase):
             new={'pickle': (None, FakeServer())}
         ):
             conn1 = Connection(('localhost', 9090))
-            conn2 -= Connection(('localhost', 9090))
+            conn2 = Connection(('localhost', 9090))
             
             conn1.broadcast('connected message')
             
