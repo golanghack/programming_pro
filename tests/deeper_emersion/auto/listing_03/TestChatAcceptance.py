@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 import unittest
-
+from ChatClient import ChatClient
 class TestChatAcceptance(unittest.TestCase):
     
     def test_message_exchange(self):
