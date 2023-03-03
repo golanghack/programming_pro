@@ -7,9 +7,9 @@ from typing import List
 async def main() -> None:
     connection = await asyncpg.connect(host='127.0.0.1', 
                                        port=5432, 
-                                       user='postgres', 
+                                       user='user_one', 
                                        database='products', 
-                                       password='password'
+                                       password='x326y457z'
                                        )
     await connection.execute('INSERT INTO brand VALUES(DEFAULT, "Levis")')
     await connection.execute('INSERT INTO brand VALUES(DEFAULT, "Seven")')
