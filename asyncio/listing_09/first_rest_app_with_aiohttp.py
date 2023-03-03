@@ -15,6 +15,7 @@ async def time(request: Request) -> Response:
         'day': today.day,
         'time': str(today.time())
     }
+    print(request.headers)
     return web.json_response(result)
 
 app  = web.Application()
