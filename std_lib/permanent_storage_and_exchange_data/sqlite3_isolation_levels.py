@@ -7,7 +7,7 @@ import threading
 import time 
 
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s (%(thread_name) - 10s) %(message)s',)
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s (%(threadName) - 10s) %(message)s',)
 
 db_filename = 'todo.db'
 isolation_level = sys.argv[1]
@@ -15,7 +15,7 @@ isolation_level = sys.argv[1]
 def writer():
     with sqlite3.connect(db_filename, isolation_level=isolation_level) as conn:
         cursor = conn.cursor()
-        cursor.execute('update task priority = priority + 1')
+        cursor.execute('update task set priority = priority + 1')
         logging.debug('waiting to synchronize')
         ready.wait()
         
