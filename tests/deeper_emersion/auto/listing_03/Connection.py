@@ -13,5 +13,7 @@ class Connection(SyncManager):
     def broadcast(self, message: Any) -> list:
         messages = self.get_messages()
         messages.append(message)
+        return messages
         
+
         
