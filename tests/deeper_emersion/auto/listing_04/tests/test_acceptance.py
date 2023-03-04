@@ -2,9 +2,20 @@
 
 import unittest
 import threading
-
+import queue
+from todo.app import TODOapp
 class TestTODOAcceptance(unittest.TestCase):
     
+    def setUp(self):
+        self.inputs = queue.Queue()
+        self.outputs = queue.Queue()
+        
+        self.fake_output = lambda txt: self.outputs.put(txt)
+        self.fake_input = lambda: self.inputs.get()
+        
+        self.get_output = lambda: self.outputs.get(timeout=1)
+        self.send_input = lambda cmd: self.inputs.put(cmd)
+        
     def test_main(self):
         app = TODOapp(io=(self.fake_input, self.fake_output))
         
