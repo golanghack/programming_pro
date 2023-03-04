@@ -11,7 +11,7 @@ async def get_url_details(session: ClientSession, url: str):
     response_body = await response.text()
     end_time = datetime.now()
     return {
-        'status': response.status(),
+        'status': response.status,
         'time': (end_time - start_time).microseconds, 
         'body_lenght': len(response_body),
     }
@@ -24,11 +24,11 @@ async def make_requests(url: str, request_num: int):
         successfully_results = [result for result in results if not isinstance(result, Exception)]
         return {
             'failed_results': failed_results, 
-            'successsfully_results': successfully_results,
+            'successfully_results': successfully_results,
         }
         
 async def requests_view(request):
     url: str = request.GET['url']
     request_num: int = int(request.GET['request_num'])
     context = await make_requests(url, request_num)
-    return render(request, 'async_api/requests/html', context)
+    return render(request, 'async_api/requests.html', context)
