@@ -1,39 +1,41 @@
-#! /usr/bin/env python3 
+#! /usr/bin/env python3
 
 import asyncio
 from starlette.applications import Starlette
 from starlette.endpoints import WebSocketEndpoint
 from starlette.routing import WebSocketRoute
 
+
 class UserCounter(WebSocketEndpoint):
-    
-    encoding = 'text'
+
+    encoding = "text"
     sockets = []
-    
+
     # if user connected added his in list  of sockets
     async def on_connect(self, websocket) -> None:
         await websocket.accept()
         UserCounter.sockets.append(websocket)
         await self._send_count()
-        
+
     # if user disconnect remove from list of sockets
     async def on_disconnect(self, websocket, close_code: int) -> None:
         UserCounter.sockets.remove(websocket)
         await self._send_count()
-        
+
     # messaging for all about of count users (conn/disconn)
     async def _send_count(self):
         if len(UserCounter.sockets) > 0:
             count_str = str(len(UserCounter.sockets))
-            task_to_socket = {asyncio.create_task(websocket.send_text(count_str)): websocket 
-                              for websocket in UserCounter.sockets}
-            
+            task_to_socket = {
+                asyncio.create_task(websocket.send_text(count_str)): websocket
+                for websocket in UserCounter.sockets
+            }
+
             done, pending = await asyncio.wait(task_to_socket)
             for task in done:
                 if task.exception() is not None:
                     if task_to_socket[task] in UserCounter.sockets:
                         UserCounter.sockets.remove(task_to_socket[task])
 
-app = Starlette(routes=[WebSocketRoute('/counter', UserCounter)])
-        
-    
+
+app = Starlette(routes=[WebSocketRoute("/counter", UserCounter)])
