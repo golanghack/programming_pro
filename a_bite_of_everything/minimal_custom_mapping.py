@@ -18,17 +18,17 @@ class Entry:
     def __str__(self) -> str:
         return str(self.key) + ' : ' + str(self.value)
     
-    def map_put(l: list, key: Any, value: Any) -> None:
-        for element in l:
-            if element.key == key:
-                element.value = value
-                return
+def map_put(l: list, key: Any, value: Any) -> None:
+    for element in l:
+        if element.key == key:
+            element.value = value
+            return
         l.append(Entry(key, value))
         
-    def map_get(l: list, key: Any) -> Any:
-        for element in l:
-            if element.key == key:
-                return element.value
-        raise KeyError
+def map_get(l: list, key: Any) -> Any:
+    for element in l:
+        if element.key == key:
+            return element.value
+    raise KeyError
     
     
