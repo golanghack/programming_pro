@@ -11,7 +11,7 @@ class TODOapp:
     def run(self):
         self._quit = False
         while not self._quit:
-            self._out(self.prompt(''))
+            self._out(self.prompt(self.items_list()))
             command = self._in()
             self._dispatch(command)
         self._out('buy!\n')
@@ -23,7 +23,7 @@ class TODOapp:
 > """
 
     def _dispatch(self, cmd):
-        cmd, *args = cmd.split('', 1)
+        cmd, *args = cmd.split(' ', 1)
         executor = getattr(self, f'cmd_{cmd}', None)
         if executor is None:
             self._out(f'Invalid command -> {cmd}')
@@ -33,4 +33,10 @@ class TODOapp:
         
     def cmd_add(self, what):
         self._entries.append(what)
+        
+    def items_list(self):
+        enumerated_items = enumerate(self._entries, start=1)
+        return '\n'.join(
+            '{}. {}'.format(idx, entry) for idx, entry in enumerated_items
+        )
         

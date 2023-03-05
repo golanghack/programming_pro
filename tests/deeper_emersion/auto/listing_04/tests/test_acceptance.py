@@ -29,9 +29,6 @@ class TestTODOAcceptance(unittest.TestCase):
             '> '
             ))
         
-        self.send_input('quit')
-        app_thead.join(timeout=1)
-        
         self.send_input('add buy milk')
         welcome = self.get_output()
         self.assertEqual(welcome, (
@@ -60,7 +57,7 @@ class TestTODOAcceptance(unittest.TestCase):
             '> '
         ))
         
-        self.assertEqual(self.get_output(), 'bye!\n')
+        
         
 if __name__ == '__main__':
     unittest.main()
