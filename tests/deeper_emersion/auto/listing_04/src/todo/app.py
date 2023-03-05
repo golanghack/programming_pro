@@ -34,6 +34,16 @@ class TODOapp:
     def cmd_add(self, what):
         self._entries.append(what)
         
+    def cmd_quit(self, *_):
+        self._quit = True
+        
+    def cmd_del(self, idx):
+        idx = int(idx) - 1
+        if idx < 0 or idx >= len(self._entries):
+            self._out('Invalid index\n')
+            return
+        self._entries.pop(idx)
+        
     def items_list(self):
         enumerated_items = enumerate(self._entries, start=1)
         return '\n'.join(
