@@ -3,7 +3,9 @@
 import unittest
 import threading
 import queue
+import tempfile
 from todo.app import TODOapp
+
 class TestTODOAcceptance(unittest.TestCase):
     
     def setUp(self):
@@ -58,6 +60,34 @@ class TestTODOAcceptance(unittest.TestCase):
         ))
         
         
+    def test_persistance(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            app_thread = threading.Thread(target=TODOapp(
+                io=(self.fake_input, self.fake_output), 
+                dbpath=temp_dir,
+            ).run,
+            daemon=True)
+            app_thread.start()
+            
+            welcome = self.get_output()
+            self.assertEqual(welcome, (
+                'TODOs:\n'
+                '\n'
+                '\n'
+                '> '
+            ))
+            
+            self.send_input('add buy bread')
+            self.send_input('quit')
+            
+            app_thread.join(timeout=1)
+            
+            while True:
+                try:
+                    self.get_output()
+                except queue.Empty:
+                    break
+            
         
 if __name__ == '__main__':
     unittest.main()
