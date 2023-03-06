@@ -1,5 +1,6 @@
 #! /usr/bin/env python3 
 
+import functools
 import asyncio
 from asyncio import Task 
 import aiohttp
@@ -8,6 +9,7 @@ from aiohttp.web_request import Request
 from aiohttp.web_response import Response
 import logging
 from typing import Dict, Set, Awaitable, Optional, List
+from retry_request import retry, TooManyRetries
 
 routes = web.RouteTableDef()
 
@@ -16,12 +18,19 @@ INVENTORY_BASE = 'http://127.0.0.1:8081'
 FAVORITE_BASE = 'http://127.0.0.1:8082'
 CART_BASE = 'http://127.0.0.1:8083'
 
+
+
 @routes.get('/products/all')
 async def all_products(request: Request) -> Response:
+    
     async with aiohttp.ClientSession() as session:
-        products = asyncio.create_task(session.get(f'{PRODUCT_BASE}/products'))
-        favorites = asyncio.create_task(session.get(f'{FAVORITE_BASE}/users/3/favorites'))
-        cart = asyncio.create_task(session.get(f'{CART_BASE}/users/3/cart'))
+        product_request = functools.partial(session.get, f'{PRODUCT_BASE}/products')
+        favorite_request = functools.partial(session.get, f'{FAVORITE_BASE}/users/5/favorites')
+        cart_request = functools.partial(session.get, f'{CART_BASE}/users/5/cart')
+        
+        products = asyncio.create_task(retry(product_request, max_retries=3, timeout=.1, retry_interval=.1))
+        favorites = asyncio.create_task(retry(favorite_request, max_retries=3, timeout=.1, retry_interval=.1))
+        cart = asyncio.create_task(retry(cart_request, max_retries=3, timeout=.1, retry_interval=.1))
         
         requests = [products, favorites, cart]
         done, pending = await asyncio.wait(requests, timeout=1.0)
