@@ -1,8 +1,8 @@
 #! /usr/bin/env python3
 
 import unittest
+from pathlib import Path
 from unittest.mock import Mock
-from tempfile import Path 
 import threading
 import queue
 import tempfile

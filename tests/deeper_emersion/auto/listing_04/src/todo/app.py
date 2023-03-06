@@ -3,13 +3,20 @@
 import functools
 class TODOapp:
     
-    def __init__(self, io=(input, functools.partial(print, end='')), dbpath=None):
+    def __init__(self, io=(input, 
+                           functools.partial(print, end='')), 
+                            dbpath=None, 
+                            dbmanager=None):
         self._in, self._out = io 
         self._quit = False
         self._entries = []
         self._dbpath = dbpath or '.'
+        self._dbmanager = dbmanager
         
     def run(self):
+        if self._dbmanager is not None:
+            self._entries = self._dbmanager.load(self._dbpath)
+            
         self._quit = False
         while not self._quit:
             self._out(self.prompt(self.items_list()))
