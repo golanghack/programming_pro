@@ -1,6 +1,8 @@
 #! /usr/bin/env python3
 
 import unittest
+from unittest.mock import Mock
+from tempfile import Path 
 import threading
 import queue
 import tempfile
@@ -59,6 +61,14 @@ class TestTODOAcceptance(unittest.TestCase):
             '> '
         ))
         
+    def test_load(self):
+        dbpath = Path(tempfile.gettempdir(), 'something')
+        dbmanager = Mock(load=Mock(return_value=['buy bread', 'buy water']))
+        app = TODOapp(io=(Mock(return_value='quit'), Mock()), dbpath=dbpath, dbmanager=dbmanager)
+        app.run()
+        
+        dbmanager.load.assert_called_with(dbpath)
+        assert app._entries == ['buy bread', 'buy water']
         
     def test_persistance(self):
         with tempfile.TemporaryDirectory() as temp_dir:

@@ -12,8 +12,7 @@ class TestTODOapp(unittest.TestCase):
         assert Path('.').resolve() == Path(app._dbpath).resolve()
         
     def test_accepts_dbpath(self):
-        expected_path = Path(tempfile.gettempdir(), something)
+        expected_path = Path(tempfile.gettempdir(), 'something')
         app = TODOapp(dbpath=str(expected_path))
         assert expected_path == Path(app._dbpath)
         
-unittest.main()
