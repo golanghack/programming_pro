@@ -7,6 +7,7 @@ import threading
 import queue
 import tempfile
 from todo.app import TODOapp
+from todo.db import BasicDB 
 
 class TestTODOAcceptance(unittest.TestCase):
     
@@ -82,7 +83,7 @@ class TestTODOAcceptance(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             app_thread = threading.Thread(target=TODOapp(
                 io=(self.fake_input, self.fake_output), 
-                dbpath=temp_dir,
+                dbmanager=BasicDB(Path(temp_dir, 'db'))
             ).run,
             daemon=True)
             app_thread.start()
