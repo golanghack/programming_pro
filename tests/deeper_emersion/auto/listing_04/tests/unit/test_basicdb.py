@@ -20,3 +20,12 @@ class TestBasicDB(unittest.TestCase):
         self.assertEqual(mock_opener.call_args[0][0], Path('testdb'))
         
         mock_file.read.assert_called_with()
+        
+    def test_missing_load(self):
+        mock_opener = mock.Mock(side_effect=FileNotFoundError)
+        
+        db = BasicDB(Path('testdb'), _fileopener=mock_opener)
+        loaded = db.load()
+        
+        self.assertEqual(loaded, [])
+        self.assertEqual(mock_opener.call_args[0][0], Path('testdb'))
