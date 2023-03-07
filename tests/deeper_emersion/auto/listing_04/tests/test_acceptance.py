@@ -70,6 +70,14 @@ class TestTODOAcceptance(unittest.TestCase):
         dbmanager.load.assert_called_with(dbpath)
         assert app._entries == ['buy bread', 'buy water']
         
+    
+    def test_noload(self):
+        app = TODOapp(io=(Mock(return_value='quit'), Mock()), dbmanager=None)
+        
+        app.run()
+        
+        assert app._entries == []    
+    
     def test_persistance(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             app_thread = threading.Thread(target=TODOapp(
