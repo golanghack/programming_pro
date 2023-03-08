@@ -26,24 +26,15 @@ class TestRegressions(unittest.TestCase):
         fake_file = io.StringIO()
         fake_file.close = Mock()
         
-        app = TODOapp(
-            io=(Mock(side_effect=['add buy milk', 'add install "Focal Fossa"', 'quit']), 
-                Mock()),
-            dbmanager=BasicDB(None, _fileopener=Mock(side_effect=[
-                FileNotFoundError, 
-                fake_file,
-            ]))
-        )
-        app.run()
+        data = ['buy milk', 'install "Focal Fossa"']
         
+        dbmanager = BasicDB(None, _fileopener=Mock(return_value=fake_file))
+        
+        dbmanager.save(data)
         fake_file.seek(0)
+        loaded_data = dbmanager.load()
         
-        restarted_app = TODOapp(
-            io=(Mock(return_value='quit'), Mock()),
-            dbmanager=BasicDB(None, _fileopener=Mock(return_value=fake_file))
-        )
-        
-        restarted_app.run()
+        self.assertEqual(loaded_data, data)
             
 unittest.main()
 
