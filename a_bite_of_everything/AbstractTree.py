@@ -13,12 +13,15 @@ class Tree:
         self.data = next(iterator)
         self.children = [Tree(child) for child in iterator]
         
-    def __str__(self, level: int=0) -> str:
-        tree_string = '-*-' * level + str(self.data)
+    def _list_with_levels(self, level: int, trees: list):
+        trees.append('-*-' * level + str(self.data))
         for child in self.children:
-            tree_string += '\n' + child.__str__(level + 1)
-        return tree_string
-    
+            child._list_with_levels(level + 1, trees)
+            
+    def __str__(self) -> str:
+        trees = []
+        self._list_with_levels(0, trees)
+        return '\n'.join(trees)
 
 tree = Tree(['a', ['b', ['c', ['d']]], ['e', ['f'], ['g', ['h']]]])
 print(tree)    
