@@ -1,6 +1,7 @@
 #! /usr/bin/env python3 
 
 import unittest
+from unittest.mock import Mock
 import threading
 import queue
 import tempfile
@@ -23,7 +24,7 @@ class TestRegressions(unittest.TestCase):
     def test_os_release(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             app_thead = threading.Thread(target=TODOapp(
-                io=(self.fake_input, self.fake_output), 
+                io=(Mock(side_effect='quit'), Mock()), 
                 dbmanager=BasicDB(Path(temp_dir, 'db'))
             ).run, daemon=True)
             
