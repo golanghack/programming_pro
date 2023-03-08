@@ -22,6 +22,10 @@ class Tree:
         trees = []
         self._list_with_levels(0, trees)
         return '\n'.join(trees)
+    
+    def __eq__(self, other) -> bool:
+        return self.data == other.data and self.children == other.children
+    
 
 tree = Tree(['a', ['b', ['c', ['d']]], ['e', ['f'], ['g', ['h']]]])
 print(tree)    
