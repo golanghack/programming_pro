@@ -34,6 +34,11 @@ class Tree:
         
     def __contains__(self, k):
         return self.data == k or any(k in child for child in self.children)
+    
+    def print_post_order(self, tree:list):
+        for ch in self.children:
+            ch.print_post_order(ch)
+            print(tree.data)
 
 tree = Tree(['a', ['b', ['c', ['d']]], ['e', ['f'], ['g', ['h']]]])
 print(tree)    
