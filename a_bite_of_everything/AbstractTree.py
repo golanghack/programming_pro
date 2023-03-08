@@ -26,6 +26,11 @@ class Tree:
     def __eq__(self, other) -> bool:
         return self.data == other.data and self.children == other.children
     
+    def height(self) -> int:
+        if len(self.children) == 0:
+            return 0 
+        else:
+            return 1 + max(child.height() for child in self.children)
 
 tree = Tree(['a', ['b', ['c', ['d']]], ['e', ['f'], ['g', ['h']]]])
 print(tree)    
