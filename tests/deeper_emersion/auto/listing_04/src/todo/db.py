@@ -1,5 +1,6 @@
 #! /usr/bin/env python3 
 
+import json
 class BasicDB:
     
     def __init__(self, path: str, _fileopener=open):
@@ -9,14 +10,13 @@ class BasicDB:
     def load(self):
         try:
             with self._fileopener(self._path, 'r', encoding='utf-8') as file_:
-                txt = file_.read()
-            return eval(txt)
+                return json.load(file_)
         except FileNotFoundError:
             return []
         
     def save(self, values):
         with self._fileopener(self._path, 'w+', encoding='utf-8') as file_:
-            file_.write(repr(values).replace("'", '"'))
+            file_.write(json.dumps(values))
             
     
     
