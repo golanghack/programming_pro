@@ -3,8 +3,8 @@
 tree = ['c', ['a', ['b', 'c', 'd']], ['o', ['p']]]
 
 def print_tree_without_iterator(tree):
-    
-    print(tree[0])
+    zero = tree[0]
+    print(zero)
     for child in range(1, len(tree)):
         print_tree_without_iterator(tree[child])
         
