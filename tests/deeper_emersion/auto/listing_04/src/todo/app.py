@@ -15,13 +15,15 @@ class TODOapp:
         
     def run(self):
         if self._dbmanager is not None:
-            self._entries = self._dbmanager.load(self._dbpath)
+            self._entries = self._dbmanager.load()
             
         self._quit = False
         while not self._quit:
             self._out(self.prompt(self.items_list()))
             command = self._in()
             self._dispatch(command)
+        if self._dbmanager is not None:
+            self._dbmanager.save(self._entries)
         self._out('buy!\n')
         
     def prompt(self, output):
