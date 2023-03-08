@@ -31,6 +31,9 @@ class Tree:
             return 0 
         else:
             return 1 + max(child.height() for child in self.children)
+        
+    def __contains__(self, k):
+        return self.data == k or any(k in child for child in self.children)
 
 tree = Tree(['a', ['b', ['c', ['d']]], ['e', ['f'], ['g', ['h']]]])
 print(tree)    
