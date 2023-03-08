@@ -2,6 +2,7 @@
 
 import unittest
 from unittest.mock import Mock
+import io 
 import threading
 import queue
 import tempfile
@@ -22,32 +23,27 @@ class TestRegressions(unittest.TestCase):
         self.send_input = lambda cmd: self.inputs.put(cmd)
         
     def test_os_release(self):
-        with tempfile.TemporaryDirectory() as temp_dir:
-            app_thead = threading.Thread(target=TODOapp(
-                io=(Mock(side_effect='quit'), Mock()), 
-                dbmanager=BasicDB(Path(temp_dir, 'db'))
-            ).run, daemon=True)
-            
-            app_thead.start()
-            self.get_output()
-            
-            self.send_input('add buy milk')
-            self.send_input('add "Focal Fossa"')
-            self.send_input('quit')
-            app_thead.join(timeout=1)
-            
-            while True:
-                try:
-                    self.get_output()
-                except queue.Empty:
-                    break
-                
-            app_thead = threading.Thread(target=TODOapp(
-                io=(self.fake_input, self.fake_output),
-                dbmanager=BasicDB(Path(temp_dir, 'db'))
-            ).run, daemon=True)
-            app_thead.start()
-            self.get_output()
+        fake_file = io.StringIO()
+        fake_file.close = Mock()
+        
+        app = TODOapp(
+            io=(Mock(side_effect=['add buy milk', 'add install "Focal Fossa"', 'quit']), 
+                Mock()),
+            dbmanager=BasicDB(None, _fileopener=Mock(side_effect=[
+                FileNotFoundError, 
+                fake_file,
+            ]))
+        )
+        app.run()
+        
+        fake_file.seek(0)
+        
+        restarted_app = TODOapp(
+            io=(Mock(return_value='quit'), Mock()),
+            dbmanager=BasicDB(None, _fileopener=Mock(return_value=fake_file))
+        )
+        
+        restarted_app.run()
             
 unittest.main()
 
