@@ -14,5 +14,9 @@ class BasicDB:
         except FileNotFoundError:
             return []
         
+    def save(self, values):
+        with self._fileopener(self._path, 'w+', encoding='utf-8') as file_:
+            file_.write(repr(values).replace("'", '"'))
+            
     
     
