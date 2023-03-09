@@ -2,19 +2,7 @@
 
 from multiprocessing.managers import SyncManager, ListProxy
 
-class Connection(SyncManager):
-    
-    def __init__(self, address: str):
-        self.register('get_messages', 
-                      proxytype=ListProxy)
-        super().__init__(address=address, 
-                         authkey=b'mysecretchat')
-        self.connect()
-        
-    def broadcast(self, message):
-        messages = self.get_messages()
-        messages.append(message)
-        
+      
 class ChatClient:
     
     def __init__(self, nickname: str, 
@@ -42,3 +30,16 @@ class ChatClient:
         return self._connection
     
     
+
+class Connection(SyncManager):
+    
+    def __init__(self, address: str):
+        self.register('get_messages', 
+                      proxytype=ListProxy)
+        super().__init__(address=address, 
+                         authkey=b'mysecretchat')
+        self.connect()
+        
+    def broadcast(self, message):
+        messages = self.get_messages()
+        messages.append(message)
