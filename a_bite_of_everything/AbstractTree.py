@@ -55,6 +55,22 @@ class Tree:
             for descedent in child._preorder():
                 yield descedent
                 
+    def _postorder(self):
+        node, childiter = self, iter(self.children)
+        stack = [(node, childiter)]
+        while stack:
+            node, childiter = stack[-1]
+            try:
+                child = next(childiter)
+                stack.append((child, iter(child.children)))
+            except StopIteration:
+                yield node
+                stack.pop()
+                
+    def postorder(self):
+        return (node.data for node in self._postorder())
+    
+    
 tree = Tree(['a', ['b', ['c', ['d']]], ['e', ['f'], ['g', ['h']]]])
 print(tree)    
     
