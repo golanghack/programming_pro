@@ -1,5 +1,6 @@
 #! /usr/bin/env python3 
 
+from queue import Queue
 class Tree:
     """Abstract Tree.
     :param -> height -> heght tree
@@ -69,6 +70,22 @@ class Tree:
                 
     def postorder(self):
         return (node.data for node in self._postorder())
+    
+    def _layer_order(self):
+        node, childiter = self, iter(self.children)
+        queue = Queue()
+        queue.enqueue((node, childiter))
+        while queue:
+            node, childiter = queue.peek()
+            try:
+                child = next(childiter)
+                queue.enqueue((child, iter(child.children)))
+            except StopIteration:
+                yield node
+                queue.dequeue()
+                
+    def layer_order(self):
+        return (node.data for node in self._layer_order())
     
     
 tree = Tree(['a', ['b', ['c', ['d']]], ['e', ['f'], ['g', ['h']]]])
