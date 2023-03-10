@@ -40,6 +40,21 @@ class Tree:
             ch.print_post_order(ch)
             print(tree.data)
 
+    def preorder(self):
+        yield self.data
+        for child in self.children:
+            for data in child.preorder():
+                yield data
+    
+    __iter__ = preorder
+    
+    # close 
+    def _preorder(self):
+        yield self
+        for child in self.children:
+            for descedent in child._preorder():
+                yield descedent
+                
 tree = Tree(['a', ['b', ['c', ['d']]], ['e', ['f'], ['g', ['h']]]])
 print(tree)    
     
