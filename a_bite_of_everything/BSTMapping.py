@@ -4,7 +4,7 @@ from Mapping import Mapping
 from BSTNode import BSTNode
 from typing import Any
 
-class BTSMapping(Mapping):
+class BSTMapping(Mapping):
     """Binary Tree Mapping
     
     :param v -> value

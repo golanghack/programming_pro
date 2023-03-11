@@ -93,6 +93,13 @@ class BSTNode:
         self._update_lenght()
         return self
     
+    def rotate_right(self):
+        new_root = self.left
+        self.left = new_root.right
+        new_root.right = self
+        return new_root
+    
+    
 
         
                 
