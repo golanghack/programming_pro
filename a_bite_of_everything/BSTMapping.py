@@ -1,6 +1,7 @@
 #! /usr/bin/env python3 
 
 from Mapping import Mapping
+from BSTNode import BSTNode
 from typing import Any
 
 class BTSMapping(Mapping):
