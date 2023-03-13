@@ -2,7 +2,7 @@
 
 import pytest
 
-pytest_plugins = ['fizzbuzz.testing.fixtures']
+pytest_plugins = ['src.fizzbuzz.testing.fixtures']
 
 def pytest_runtest_setup(item):
     print('Hooking announce', item)

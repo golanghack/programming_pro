@@ -1,8 +1,8 @@
 #! /usr/bin/env python3 
 
 import pytest
-import fizzbuzz
-from fizzbuzz import out_fizz, out_buzz, end_num
+import src.fizzbuzz
+from src.fizzbuzz import out_fizz, out_buzz, end_num
 
 @pytest.fixture(params=['fizz', 'buzz'])
 def expected_output(request):
@@ -10,7 +10,7 @@ def expected_output(request):
     if request.config.getoption('--upper'):
         text = text.upper()
     
-    text_case_marker = request.node.get_closest_market('textcase')
+    text_case_marker = request.node.get_marker('textcase')
     if text_case_marker:
         text_case, = text_case_marker.args
         if text_case == 'upper':
@@ -20,7 +20,7 @@ def expected_output(request):
         else:
             raise ValueError('Invalid Test Marker')
 
-    yield getattr(fizzbuzz, f'out{request.param}'), text 
+    yield getattr(src.fizzbuzz, f'out{request.param}'), text 
 
 
 def test_output(expected_output, capsys):

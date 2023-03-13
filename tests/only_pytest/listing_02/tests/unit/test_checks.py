@@ -1,7 +1,7 @@
 #! /usr/bin/env python3 
 
 import pytest
-from fizzbuzz import is_fizz, is_buzz
+from src.fizzbuzz import is_fizz, is_buzz
 
 @pytest.mark.parametrize('n, res', [
     (1, False), 
