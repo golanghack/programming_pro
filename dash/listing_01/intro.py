@@ -2,8 +2,15 @@
 
 import dash 
 import dash_html_components as html 
+import dash_bootstrap_components as dbc 
+dbc.Col(children=[child1, child2, ...], lg={'size': 6, 'offset': 4}, md=12)
+dbc.Row([
+    dbc.Col('Column 1', width=2), 
+    dbc.Col('Column 2', width=5), 
+    dbc.Col('Column 3', width=4),
+])
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 
 app.layout = html.Div([
     html.H1('Database', 
