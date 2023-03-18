@@ -46,20 +46,30 @@ H T H T H H H (18 flips)
 H (12 flips)
 were needed.
 """
-import random 
 
-coin_sides = ['H', 'T']
+import random
 
-base = ''
-
-string_H = 'H H H'
-string_T = 'T T T'
+result = {}
 
 for i in range(10):
-    while ((base.join(random.choice(coin_sides)) not in string_H) 
-                 or (base.join(random.choice(coin_sides)) not in string_T)):
-            base = base + random.choice(coin_sides)
-            print(f'{base} all try -> {len(base)}')
-    
+    trying = []
+
+    while True:
+        trying.append('H' if random.random() < 0.5 else 'T')
+        for j in range(len(trying) - 2):
+            if ((trying[j] == trying[j + 1]) and
+                        trying[j + 1] == trying[j + 2]):
+                        break
+        else:
+            continue
+        break
+    result[f'Trying on -> {i + 1}'] = trying
+print(result)
+
+
+
+
+
+
 
 
