@@ -48,7 +48,7 @@ class App:
 
     def add(self, name, phone_number):
         if not isinstance(phone_number, str):
-            raise ValueError('A valid phone numbers is required')
+            raise ValueError('A valid phone number is required')
 
         if not self.PHONE_EXPLORER.match(phone_number):
             raise ValueError(f'Invalid phone number -> {phone_number}')
