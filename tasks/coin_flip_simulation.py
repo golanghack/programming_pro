@@ -49,22 +49,33 @@ were needed.
 
 import random
 
-result = {}
+sides = ['H', 'T']
 
-for i in range(10):
-    trying = []
 
-    while True:
-        trying.append('H' if random.random() < 0.5 else 'T')
-        for j in range(len(trying) - 2):
-            if ((trying[j] == trying[j + 1]) and
+def sporadic_choicing_sides():
+
+    for _ in range(10):
+        trying = []
+
+        while True:
+            trying.append('H' if random.choice(sides) == 'H' else 'T')
+
+            for j in range(len(trying) - 2):
+                if ((trying[j] == trying[j + 1]) and
                         trying[j + 1] == trying[j + 2]):
-                        break
-        else:
-            continue
-        break
-    result[f'Trying on -> {i + 1}'] = trying
-print(result)
+                            break
+            else:
+                continue
+            break
+        result = str(trying)
+        counter = len(trying)
+    return result, counter
+        
+
+for _ in range(10):
+    res, count = sporadic_choicing_sides()
+    print(f'{res} trying -> {count}')
+
 
 
 
