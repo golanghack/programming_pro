@@ -1,0 +1,27 @@
+============================= test session starts ==============================
+platform linux -- Python 3.8.10, pytest-7.2.0, pluggy-1.0.0
+rootdir: /home/neo/Рабочий стол/python_pro/tests/only_pytest/listing_04/tests, configfile: pytest.ini
+plugins: bdd-6.1.1, anyio-2.2.0, Faker-16.4.0, flaky-3.7.0, dash-1.19.0, cov-4.0.0, asyncio-0.20.3
+asyncio: mode=strict
+collected 22 items
+
+acceptance/test_adding.py ..                                             [  9%]
+acceptance/test_delete.py .                                              [ 13%]
+functional/test_baseic.py ...                                            [ 27%]
+functional/test_main.py .                                                [ 31%]
+unit/test_adding.py ......                                               [ 59%]
+unit/test_app.py .......                                                 [ 90%]
+unit/test_flaky.py .                                                     [ 95%]
+unit/test_persistence.py .                                               [100%]WARNING: Failed to generate report: No data to report.
+
+
+
+---------- coverage: platform linux, python 3.8.10-final-0 -----------
+
+===Flaky Test Report===
+
+test_appender passed 1 out of the required 1 times. Success!
+
+===End Flaky Test Report===
+
+============================== 22 passed in 0.22s ==============================
