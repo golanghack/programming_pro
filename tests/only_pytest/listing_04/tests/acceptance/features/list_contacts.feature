@@ -10,5 +10,5 @@ Scenario: Listing Added Contacts
 
     Examples:
     | first    | second  | listed_contacts  |
-    |  Mario   |  Luigi  |  Mario,Luigi     |
-    |  John    |  Jane   |  John,Jane       |
+    |  A       |  A      |  A, A            |
+    |  B       |  B      |  B, B            |
