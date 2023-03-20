@@ -3,7 +3,7 @@
 import sys
 from unittest import mock
 
-import contacts
+from src import contacts
 
 
 class TestMain:

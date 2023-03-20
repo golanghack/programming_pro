@@ -3,7 +3,7 @@
 import os
 import json
 
-from contacts import Application
+from src.contacts import Application
 
 
 class TestLoading:

@@ -2,7 +2,7 @@
 
 from pytest_bdd import scenario, given, when, then, parsers
 
-import contacts
+from src import contacts
 
 
 @given("I have a contact book", target_fixture="contactbook")

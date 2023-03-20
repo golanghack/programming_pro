@@ -1,6 +1,6 @@
 #! /usr/bin/env python3 
 
-from contacts import Application
+from src.contacts import Application
 
 def test_loading(benchmark):
     app = Application()

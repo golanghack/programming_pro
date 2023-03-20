@@ -2,7 +2,7 @@
 
 from pytest_bdd import scenario, given, when, then, parsers
 
-import contacts
+from src import contacts
 
 from .steps import *
 

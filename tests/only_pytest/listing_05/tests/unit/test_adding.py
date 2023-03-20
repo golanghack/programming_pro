@@ -2,7 +2,7 @@
 
 import pytest
 
-from contacts import Application
+from src.contacts import Application
 
 
 class TestAddContacts:

@@ -1,6 +1,6 @@
 #! /usr/bin/env python3 
 
-import contacts
+from src import contacts
 
 
 class TestAddingEntries:

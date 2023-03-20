@@ -4,7 +4,7 @@ from unittest import mock
 
 import pytest
 
-from contacts import Application
+from src.contacts import Application
 
 def test_application():
     app = Application()
