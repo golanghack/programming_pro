@@ -3,7 +3,7 @@
 import dash 
 import dash_html_components as html 
 import dash_bootstrap_components as dbc 
-dbc.Col(children=[child1, child2, ...], lg={'size': 6, 'offset': 4}, md=12)
+
 dbc.Row([
     dbc.Col('Column 1', width=2), 
     dbc.Col('Column 2', width=5), 
@@ -19,17 +19,30 @@ app.layout = html.Div([
         'fontSize': '45px',
     }),
     html.H2('The World Bank'), 
-    html.P('Key Facts -> '),
-    html.Ul([
-        html.Li('Number of Economies -> 170'), 
-        html.Li('Temporal Coverage -> 174 - 2019'), 
-        html.Li('Update Frequency -> Quartely'), 
-        html.Li('Last Updated -> March 18, 2020'),
-        html.Li([
-            'Source -> ', 
-            html.A('https://datacatalog.worldbank.org/dataset/property-and-equuty-database', 
-            href='https://datacatalog.worldbank.org/dataset/proverty-and-equity-database')
-        ])
+    dbc.Tabs([
+        dbc.Tab([
+            html.Ul([
+                html.Br(), 
+                html.Li('Number of Economies -> 170'), 
+                html.Li('Temporal Coverage -> 1974 - 2019'),
+                html.Li('Update Frequency -> Quarterly'), 
+                html.Li('Last Updated -> March 18, 2020'),
+                html.Li([
+                    'Source -> ', 
+                    html.A('https://datacatalog.worldbank.org/dataset/poverty-and-equity-database',
+                                    href='https://datacatalog.worldbank.org/dataset/poverty-and-equity-database')
+                ]) 
+            ])
+        ], label='Two'), 
+        dbc.Tab([
+            html.Ul([
+                html.Br(), 
+                html.Li('Data'),
+                html.Li(['Githyb -> ', html.A('https://github.com', 
+                                href='https://github.com')
+            ])
+            ])
+        ], label='One')
     ])
 ])
 
