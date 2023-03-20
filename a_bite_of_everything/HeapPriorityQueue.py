@@ -54,3 +54,13 @@ class HeapPQ:
 
     def __len__(self):
         return len(self._entries)
+
+    def _heapify(self):
+        n = len(self._entries)
+        for i in reversed(range(n)):
+            self._down_heap(i)
+
+    def _heapify_slower(self):
+        n = len(self._entries)
+        for i in range(n):
+            self._upheap(i)
