@@ -49,4 +49,11 @@ class PriorityQueue(HeapPQ):
         self._down_heap(0)
         return item
 
-    
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if len(self) > 0:
+            return self.remove_min()
+        else:
+            raise StopIteration
