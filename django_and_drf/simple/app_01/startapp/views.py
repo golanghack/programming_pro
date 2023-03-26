@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
 from .models import AppDb, Rubric
+from .forms import BbForm
+from typing import Any, Dict
 
 def index(request: str) -> str:
     
@@ -18,3 +22,14 @@ def by_rubric(request, rubric_id):
         'current_rubric': current_rubric,
     }
     return render(request, 'startapp/by_rubric.html', context)
+
+class BoardCreateView(CreateView):
+
+    template_name = 'startapp/create.html'
+    form_class = BbForm
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['rubrics'] = Rubric.objects.all()
+        return context

@@ -9,6 +9,7 @@
 <body>
     <h1>BOARD</h1>
     <h2>Rubric -> {{ current_rubric.name }}</h2>
+    <h3><a href="{% url 'add' %}">Add</a></h3>
     <div class="">
         <a href="{% url 'index' %}">Main</a>
         {% for rubric in rubrics %} 
