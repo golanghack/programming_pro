@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ current_rubric.name }} -> Dashboard</title>
-</head>
-<body>
-    <h1>BOARD</h1>
+{% extends "layout/base.html" %} 
+
+{% block title %} {{ current_rubric.name }} {% endblock %} 
+{% block content %} 
     <h2>Rubric -> {{ current_rubric.name }}</h2>
-    <h3><a href="{% url 'add' %}">Add</a></h3>
-    <div class="">
-        <a href="{% url 'index' %}">Main</a>
-        {% for rubric in rubrics %} 
-            <a href="{% url 'by_rubric' rubric.pk %}">{{ rubric.name }}</a>
-        {% endfor %} 
-    </div>
     {% for board in boards %} 
         <div class="">
             <h2>{{ board.title }}</h2>
             <p>{{ board.content }}</p>
-            <p>{{ board.published|date:'d.m.Y H:i:s' }}</p>
+            <p>{{ board.published|date:"d.m.Y H:i:s" }}</p>
         </div>
     {% endfor %} 
-</body>
-</html>
+{% endblock %} 
