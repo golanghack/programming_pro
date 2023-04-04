@@ -36,3 +36,6 @@ class AdjacencySetGraph:
 
     def __len__(self):
         return len(self._nbrs)
+
+    def has_edge(self, u, v):
+        return v in self._nbrs[u]
