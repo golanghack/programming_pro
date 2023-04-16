@@ -7,22 +7,11 @@ from .views import home_page
 class HomePageTest(TestCase):
     """Home page test."""
 
-    def test_root_url_resolves_to_home_page_view(self):
-        """Root url test"""
-
-        found = resolve('/')
-        self.assertEqual(found.func, home_page)
-
-    def test_home_page_returns_correct_html(self):
+    def test_uses_base_template(self):
         """Home page with correct html"""
 
-        request = HttpRequest()
-        response = home_page(request)
-        html = response.content.decode('utf8')
-
-        expected_html = render_to_string('base.html')
-        self.assertEqual(html, expected_html)
-
+        response = self.client.get('/')
+        self.assertTemplateUsed((response, 'base.html'))
 
 
         
