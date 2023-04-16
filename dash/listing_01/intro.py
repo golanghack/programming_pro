@@ -12,14 +12,19 @@ app.layout = html.Div([
     dcc.Dropdown(id='color_dropdown', 
                     options=[{'label': color, 'value': color}
                                 for color in ['blue', 'green', 'yellow']]),
+    html.Br(),
     html.Div(id='color_output')
 ])
 
+@app.callback(Output('color_output', 'children'), 
+                Input('color_dropdown', 'value'))
 # simple function for selected color 
 def display_selected_color_from_dropdown(color: str) -> str:
     if color is None:
         color = 'not value for color'
     return f'You selected -> {color}'
+
+
 
 if __name__ == '__main__':
     app.run_server(mode='inline')
