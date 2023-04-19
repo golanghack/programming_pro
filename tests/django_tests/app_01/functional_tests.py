@@ -42,7 +42,7 @@ class NewVisitorTest(unittest.TestCase):
         table = self.browser.find_element(By.ID, 'id_list_table')
         rows = table.find_elements(By.TAG_NAME, 'tr')
         self.assertTrue(any(row.text == '1: Bye wins' for row in rows),
-            'new element did not set in table')
+            f'new element did not set in table. Content did \n{table.text}')
         self.fail('End')
 
 if __name__ == '__main__':
