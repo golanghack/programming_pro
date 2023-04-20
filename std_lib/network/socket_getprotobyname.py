@@ -2,7 +2,7 @@
 
 import socket
 
-def get_constants(prefix: str) -> str:
+def get_constants(prefix: str) -> dict:
     """Create dict for const from socket module with names."""
 
     return {
