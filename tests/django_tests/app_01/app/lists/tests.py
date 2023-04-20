@@ -18,8 +18,20 @@ class HomePageTest(TestCase):
         """Test -> can save a post request"""
 
         response = self.client.post('/', data={'item_text': 'A new list item'})
+
+        self.assertEqual(Item.objects.count(), 1)
+        new_item = Item.objects.first()
+
+        self.assertEqual(new_item.text, 'A new list item')
+
         self.assertIn('A new list item', response.content.decode())
         self.assertTemplateUsed(response, 'base.html')
+
+    def test_only_saves_items_when_necessary(self):
+        """Only saves elemnts on needs."""
+
+        self.client.get('/')
+        self.assertEqual(Item.objects.count(), 0)
 
 
 # database
