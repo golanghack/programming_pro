@@ -10,8 +10,8 @@ server_address = '/.uds_socket'
 try:
     os.unlink(server_address)
 except OSError:
-    if os.path.exists(server_address)
-    raise
+    if os.path.exists(server_address):
+        raise
 
 # create UDS 
 sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
