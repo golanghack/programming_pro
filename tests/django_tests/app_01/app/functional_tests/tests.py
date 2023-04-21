@@ -1,5 +1,6 @@
 #! /usr/bin/env python3 
 
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By 
@@ -7,7 +8,7 @@ import time
 import unittest
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
     """Test of new user."""
 
     def setUp(self):
@@ -31,7 +32,7 @@ class NewVisitorTest(unittest.TestCase):
         """Test-> may begin list and get his later.
         """
         
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
         input_box = self.browser.find_element(By.ID, 'id_new_item')
         input_box.send_keys('Bye wins')
         input_box.send_keys(Keys.ENTER)
@@ -46,7 +47,4 @@ class NewVisitorTest(unittest.TestCase):
         self.check_for_row_in_list_table('1: Bye wins')
         self.check_for_row_in_list_table('2: Make auto')
 
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
     
