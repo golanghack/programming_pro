@@ -54,4 +54,45 @@ class NewVisitorTest(LiveServerTestCase):
         self.wait_for_row_in_list_table('1: Bye wins')
         self.wait_for_row_in_list_table('2: Make auto')
 
+    def test_can_start_a_list_for_one_user(self):
+        """Can start used list for one user in app."""
+
+        self.wait_for_row_in_list_table('2: Make auto')
+        self.wait_for_row_in_list_table('1: Bye wins')
+
+    def test_miltiple_users_can_start_at_different_urls(self):
+        """Many users from different urls."""
+
+        self.browser.get(self.live_server_url)
+        input_box = self.browser.find_element(By.ID, 'id_new_item')
+        input_box.send_keys('Bye wins')
+        input_box.send_keys(Keys.ENTER)
+        self.wait_for_row_in_list_table('1: Bye wins')
+
+        unic_list_url = self.browser.current_url
+        self.assertRegex(unic_list_url, '/lists/.+')
+
+        self.browser.quit()
+        self.browser = webdriver.Firefox()
+
+        # new user 
+        self.browser.get(self.live_server_url)
+        page_text = self.browser.find_element(By.TAG_NAME, 'body').text 
+        self.assertNotIn('Bye wins', page_text)
+        self.assertNotIn('Make auto', page_text)
+
+        input_box = self.browser.find_element(By.ID, 'id_new_item')
+        input_box.send_keys('Bye milk')
+        input_box.send_keys(Keys.ENTER)
+        self.wait_for_row_in_list_table('1: Bye milk')
+
+        # url for new user
+        new_user_list_url = self.browser.current_url
+        self.assertRegex(new_user_list_url, '/lists/.+')
+        self.assertNotEqual(new_user_list_url, unic_list_url)
+
+        page_text = self.browser.find_element(By.TAG_NAME, 'body').text 
+        self.assertNotIn('Bye wins', page_text)
+        self.assertIn('Bye milk', page_text)
+
     
