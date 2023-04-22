@@ -22,7 +22,48 @@ def capitalizer(message: str) -> str:
     """Capitalizer for first letters."""
 
     get_string = input(message)
-    for letter in get_string:
-        if letter == ' ':
-            
+    list_punctuation = ['.', '!', '?', '`']
+    position = 0 
+
+    while position < len(get_string) and get_string[position] == ' ':
+        position += 1
     
+    if position < len(get_string):
+        # replace symbol to Capitalize
+        get_string = (get_string[0: position] + 
+                            get_string[position].upper() +
+                            get_string[position + 1: len(get_string)])
+
+    # for !, ?, . 
+    while position < len(get_string):
+        if get_string[position] in list_punctuation:
+            position += 1
+            while position < len(get_string) and get_string[position] == ' ':
+                position += 1
+        
+        if position < len(get_string):
+            get_string = (get_string[0: position] + 
+                                get_string[position].upper() + 
+                                get_string[position + 1: len(get_string)])
+    
+    # next symbol 
+    #position += 1
+
+    position = 1 
+    while position < len(get_string) - 1:
+        if (get_string[position - 1] == ' ' and 
+            get_string[position] == 'i' and 
+            get_string[position + 1] == ' ' or 
+            get_string[position + 1] in list_punctuation):
+            # replace i on I 
+            get_string = (get_string[0: position] + 
+                        'I' + 
+                        get_string[position + 1: len(get_string)])
+        position += 1
+    return get_string
+
+def main():
+    print(capitalizer('Enter string -> '))
+
+if __name__ == '__main__':
+    main()
