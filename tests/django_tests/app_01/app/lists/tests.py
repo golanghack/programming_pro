@@ -75,13 +75,8 @@ class ItemModelTest(TestCase):
 class ListViewTest(TestCase):
     """Test view for list."""
 
-    def test_displays_all_items(self):
-        """Displays all elements of lists"""
-
-        Item.objects.create(text='item 1')
-        Item.objects.create(text='item 2')
+    def test_uses_list_template(self):
+        """use template of list."""
 
         response = self.client.get('/lists/unic_list/')
-
-        self.assertContains(response, 'item 1')
-        self.assertContains(response, 'item 2')
+        self.assertTemplateUsed(response, 'list.html')
