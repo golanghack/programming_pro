@@ -79,8 +79,28 @@ class ListViewTest(TestCase):
     def test_uses_list_template(self):
         """use template of list."""
 
-        response = self.client.get('/lists/unic_list/')
+        list_ = List.objects.create()
+        response = self.client.get(f'/lists/{list_.id}/')
         self.assertTemplateUsed(response, 'list.html')
+
+    def test_displays_only_items_for_that_list(self):
+        """Display elemts only this list."""
+
+        correct_list = List.objects.create()
+        Item.objects.create(text='item 1', list=correct_list)
+        Item.objects.create(text='item 2', list=correct_list)
+        other_list = List.objects.create()
+        Item.objects.create(text='another element 1 list', list=other_list)
+        Item.objects.create(text='another element 2 list', list=other_list)
+
+        response = self.client.get(f'/lists/{correct_list.id}/')
+
+        self.assertContains(response, 'item 1')
+        self.assertContains(response, 'item 2')
+        self.assertNotContains(response, 'another element 1 list')
+        self.assertNotContains(response, 'another element 2 list')
+
+        
 
 class NewListTest(TestCase):
     """NEW LIST"""
