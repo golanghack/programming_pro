@@ -25,9 +25,10 @@ class HomePageTest(TestCase):
     def test_redirects_after_POST(self):
         """Redirecting test."""
 
-        response = self.client.post('/', data={'item_text': 'A new list item'})
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/lists/unic_list/')
+        response = self.client.post('/lists/new', 
+                        data={'item_text': 'A new list item'})
+        new_list = List.objects.first()
+        self.assertRedirects(response, f'/lists/{new_list.id}/')
 
 # database
 
@@ -80,7 +81,7 @@ class ListViewTest(TestCase):
         """use template of list."""
 
         list_ = List.objects.create()
-        response = self.client.get(f'/lists/{list_.id}/')
+        response = self.client.get('/lists/unic_list/')
         self.assertTemplateUsed(response, 'list.html')
 
     def test_displays_only_items_for_that_list(self):
@@ -93,14 +94,14 @@ class ListViewTest(TestCase):
         Item.objects.create(text='another element 1 list', list=other_list)
         Item.objects.create(text='another element 2 list', list=other_list)
 
-        response = self.client.get(f'/lists/{correct_list.id}/')
+        response = self.client.get(f'/lists/unic_list/')
 
         self.assertContains(response, 'item 1')
         self.assertContains(response, 'item 2')
         self.assertNotContains(response, 'another element 1 list')
         self.assertNotContains(response, 'another element 2 list')
 
-        
+
 
 class NewListTest(TestCase):
     """NEW LIST"""
@@ -116,5 +117,7 @@ class NewListTest(TestCase):
     def test_redirects_after_POST(self):
         """redirect after post"""
 
-        response = self.client.post('/lists/new', data={'item_text': 'A new list item'})
-        self.assertRedirects(response, '/lists/unic_list/')
+        response = self.client.post('/lists/new', 
+                        data={'item_text': 'A new list item'})
+        new_list = List.objects.first()
+        self.assertRedirects(response, f'/lists/{new_list.id}/')
