@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 selenium = "*"
+coverage = "*"
 
 [dev-packages]
 

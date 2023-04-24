@@ -1,8 +1,6 @@
 #! /usr/bin/env python3 
 
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By 
 import unittest
 
 
@@ -27,6 +25,7 @@ class NewVisitorTest(unittest.TestCase):
 
         self.browser.get('http://localhost:8000')
         self.assertIn('The install worked', self.browser.title)
+
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
