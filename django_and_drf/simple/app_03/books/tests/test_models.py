@@ -20,3 +20,11 @@ class TestModels(TestCase):
         rouling.book_set.add(book)
 
         self.assertEqual(book.authors.count(), 2)
+
+
+    def test_model_str(self):
+        book = Book.objects.create(title='The Lord of the Rings.')
+        tolkin = Author.objects.create(first_name='John', last_name='Tolkien')
+
+        self.assertEqual(str(book), 'The Lord of the Rings.')
+        self.assertEqual(str(tolkin), 'John Tolkien')
