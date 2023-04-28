@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 coverage = "*"
+model-bakery = "*"
 
 [dev-packages]
 

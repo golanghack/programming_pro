@@ -1,5 +1,6 @@
 from django.test import TestCase 
-from books.models import Author, Book
+from books.models import Author, Book, Event
+from datetime import datetime
 
 class TestModels(TestCase):
 
@@ -28,3 +29,21 @@ class TestModels(TestCase):
 
         self.assertEqual(str(book), 'The Lord of the Rings.')
         self.assertEqual(str(tolkin), 'John Tolkien')
+
+    def test_event_model(self):
+
+        event = Event.objects.create(
+            title='The Lord of the Rings.'
+            seo_title='Some', 
+            seo_description='Some desc',
+            abstract='The abstract',
+            body='The body', 
+            duration=2,
+            slug='the-slug',
+            start_date=datetime.now()
+            end_date=datetime.now(),
+            price=800,
+            location='London',
+            published=False,
+        )
+        
