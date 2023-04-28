@@ -1,6 +1,6 @@
 from django.test import TestCase 
 from books.models import Author, Book, Event
-from datetime import datetime
+from model_bakery import baker
 
 class TestModels(TestCase):
 
@@ -31,19 +31,6 @@ class TestModels(TestCase):
         self.assertEqual(str(tolkin), 'John Tolkien')
 
     def test_event_model(self):
-
-        event = Event.objects.create(
-            title='The Lord of the Rings.'
-            seo_title='Some', 
-            seo_description='Some desc',
-            abstract='The abstract',
-            body='The body', 
-            duration=2,
-            slug='the-slug',
-            start_date=datetime.now()
-            end_date=datetime.now(),
-            price=800,
-            location='London',
-            published=False,
-        )
+        event = baker.make(Event, title='The lord of the rings')
+        self.assertEqual(str(event), 'The lord of the rings')
         
