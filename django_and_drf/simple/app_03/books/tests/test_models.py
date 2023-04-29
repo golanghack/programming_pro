@@ -1,5 +1,5 @@
 from django.test import TestCase 
-from books.models import Author, Book, Event
+from books.models import Author, Book, Event, Contact
 from model_bakery import baker
 
 class TestModels(TestCase):
