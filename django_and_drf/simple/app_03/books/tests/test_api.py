@@ -1,5 +1,7 @@
 from django.test import TestCase
 from ..models import Contact
+from django.urls import reverse
+
 
 class TestContanctForm(TestCase):
 
@@ -12,6 +14,7 @@ class TestContanctForm(TestCase):
         }
 
         contact = Contact.objects.create()
+        rsponse = self.client.get(reverse('contact'))
         # created Contaxct in db?
         response = self.client.post('/contact/', data=data)
         self.assertEqual(Contact.objects.count(), 2)
