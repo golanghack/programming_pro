@@ -1,7 +1,7 @@
 from django.test import TestCase
 from ..models import Contact
 from django.urls import reverse
-
+from django.forms.models import model_to_dict
 
 class TestContanctForm(TestCase):
 
@@ -13,13 +13,15 @@ class TestContanctForm(TestCase):
             'message': 'Hello Joe',
         }
 
-        contact = Contact.objects.create()
-        rsponse = self.client.get(reverse('contact'))
-        # created Contaxct in db?
-        response = self.client.post('/contact/', data=data)
-        self.assertEqual(Contact.objects.count(), 2)
+        contact = Contact.objects.create(
+            first_name='Jane', 
+            last_name='Dow', 
+            message='Hello, Jane',
+        )
 
-        # correct redirect?
-        self.assertRedirects(response, '/correct/')
+        self.assertEqual(str(contact), 'Jane Dow')
+        data = model_to_dict(contact)
+        response = self.client.post(reverse('contact'), data=data)
+        self.assertRedirects(response, reverse('correct'))
 
        
