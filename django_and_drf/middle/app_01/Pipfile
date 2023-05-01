@@ -7,6 +7,8 @@ name = "pypi"
 django = "*"
 selenium = "*"
 coverage = "*"
+sphinx = "*"
+model-bakery = "*"
 
 [dev-packages]
 
