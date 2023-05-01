@@ -32,12 +32,29 @@ def is_prime(number: int) -> bool:
     return False
 
 """ 
-
+"""
 def is_prime(number):
     for i in range(2, int(number ** 0.5) + 1):
         if number % i == 0:
             return False
     return True
+""" 
+
+
+def is_prime(number: int) -> bool:
+    valid = [0, 1, 2, 3, 5, 7, 9]
+    if number < 1:
+        number = number * (-1)
+    counter = 0
+    if number in valid:
+        return True
+    else:
+        for i in range(2, number // 2 + 1):
+            if number % i == 0:
+                counter += 1
+        if counter == 0:
+            return True
+    return False
 
 def main():
     message = 'Enter number -> '
