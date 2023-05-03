@@ -5,7 +5,7 @@ from random import randrange
 class Monster():
 
     def __init__(self, rows, cols, speed):
-        self.rows = rows, 
+        self.rows = rows
         self.cols = cols
         self.my_rows = randrange(self.rows)
         self.my_cols = randrange(self.cols)
