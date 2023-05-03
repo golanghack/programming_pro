@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.http import Http404
 from .models import Post
 
@@ -11,12 +11,9 @@ def post_list(request: str) -> tuple:
 
 def post_detail(request: str, id: int) -> tuple:
     
-    try:
-        post = Post.published.get(id=id)
-    except Post.DoesNotExist:
-        raise Http404('No Post Found in blog')
+    post = get_list_or_404(Post, id=id, status = Post.Status.PUBLISHED)
 
     return render(request, 
                     'blog/post/detail.html', 
                     {'post': post,})
-                    
+
