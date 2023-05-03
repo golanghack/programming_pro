@@ -1,7 +1,12 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from managers.PublishManager import PublishedManager
+
+class PublishedManager(models.Manager):
+    """Custom manager."""
+
+    def get_queryset(self):
+        return super().get_queryset().filter(status=Post.Status.PUBLISHED)
 
 class Post(models.Model):
 
