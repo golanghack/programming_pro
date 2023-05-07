@@ -18,21 +18,6 @@ False
 >>> a_point != point
 True
 
->>> circle = Circle(22)
->>> circle
-Circle(22, 0, 0)
->>> circle.radius = 100
->>> circle.x = 33
->>> circle
-Circle(33, 100, 0)
->>> a_circle = Circle(1, 2, 3)
->>> b_circle = Circle(1, 2, 3)
->>> a_circle == b_circle
-True
->>> a_circle == circle
-False
->>> a_circle != circle
-True
 """
 
 import math 
@@ -40,12 +25,12 @@ import math
 
 class Point:
 
-    def __init__(self, x: int = 0, y: int = 0):
+    def __init__(self, x: int = 0, y: int = 0) -> None:
         """2D cortesian coordinate
 
         >>> point = Point()
         >>> point
-        Point(0, 0) 
+        Point(0, 0)
         """
 
         self.x = x
@@ -72,3 +57,6 @@ class Point:
         return f'({self.x!r}, {self.y!r})'
 
 
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
