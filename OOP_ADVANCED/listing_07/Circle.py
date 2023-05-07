@@ -1,5 +1,8 @@
 #! /usr/bin/env python3 
 
+import math 
+from Point import Point
+
 """ 
 >>> circle = Circle(22)
 >>> circle
@@ -18,18 +21,9 @@ False
 True
 """
 
-import math 
-from Point import Point
-
 class Circle(Point):
 
     def __init__(self, radius, x=0, y=0):
-        """A Circle
-
-        >>> circle = Circle(2)
-        >>> circle
-        Circle(2, 0, 0)
-        """
         super().__init__(x, y)
         self.radius = radius
 
