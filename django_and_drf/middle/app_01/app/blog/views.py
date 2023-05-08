@@ -11,7 +11,7 @@ def post_list(request: str) -> tuple:
 
 def post_detail(request: str, year: int, month: int, day: int, post: str) -> tuple:
     
-    post = get_object_or_404(Post, id=id, 
+    post = get_object_or_404(Post, 
                                 status = Post.Status.PUBLISHED,
                                 slug=post, 
                                 publish__year=year, 
