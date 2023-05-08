@@ -25,7 +25,7 @@ class Post(models.Model):
     # VARCHAR in BD
     title: str = models.CharField(max_length=300)
     # VARCHAR in DB
-    slug: str = models.SlugField(max_length=300)
+    slug: str = models.SlugField(max_length=300, unique_for_date='publish')
     author: str = models.ForeignKey(User, 
                                     on_delete=models.CASCADE, 
                                     related_name='blog_posts')
