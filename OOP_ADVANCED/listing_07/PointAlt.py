@@ -56,3 +56,7 @@ class Point:
         return f'({self.x!r}, {self.y!r})'
 
     
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
