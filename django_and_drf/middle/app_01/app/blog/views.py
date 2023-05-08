@@ -1,17 +1,24 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
-from django.views.generic import ListView
 from .models import Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-class PostListView(ListView):
-    """Alter views list of posts."""
+def post_list(request: str) -> tuple:
+    post_list = Post.published.all()
+    paginator = Paginator(post_list, 3)
+    page_number = request.GET.get('page', 1)
 
-    queryset = Post.published.all()
-    content_object_name = 'posts'
-    paginate_by = 3
-    template_name = 'blog/post/list.html'
+    try:
+        posts = paginator.page(page_number)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+        
+    return render(request, 
+                    'blog/post/list.html',
+                    {'posts': posts,})
 
 
 def post_detail(request: str, year: int, month: int, day: int, post: str) -> tuple:
