@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from .models import Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .forms import EmailPostForm
 
 
 def post_list(request: str) -> tuple:
@@ -33,4 +34,25 @@ def post_detail(request: str, year: int, month: int, day: int, post: str) -> tup
     return render(request, 
                     'blog/post/detail.html', 
                     {'post': post,})
+
+
+def post_share(request: str, post_id: int):
+    """Shareing posts for email."""
+
+    # post from id 
+    post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
+    # testing methods in form
+    if request.method == 'POST':
+        # form send 
+        form = EmailPostForm(request.POST)
+        if form.is_valid():
+            # validation success
+            cd = form.cleaned_data
+            # send email
+    else:
+        form = EmailPostForm()
+    return render(request, 'blog/post/share.html', {
+        'post': post, 
+        'form': form,
+    })
 
