@@ -55,7 +55,7 @@ def post_share(request: str, post_id: int):
                 post.get_absolute_url())
             subject = f'{cd["name"]} recommends you read f{post.title}'
             message = f'Read {post.title} at {post_url}\n\n {cd["name"]} comments -> {cd["comments"]}'
-            send_mail(subject, message, 'testuser@gmail.com', cd['to'])
+            send_mail(subject, message, 'testuser@gmail.com', [cd['to']])
             sent = True
 
     else:
