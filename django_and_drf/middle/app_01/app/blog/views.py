@@ -32,10 +32,16 @@ def post_detail(request: str, year: int, month: int, day: int, post: str) -> tup
                                 publish__year=year, 
                                 publish__month=month, 
                                 publish__day=day)
+    # full list comment to post 
+    comments = post.comments.filter(active=True)
+    # form for comments
+    form = CommentForm()
 
     return render(request, 
                     'blog/post/detail.html', 
-                    {'post': post,})
+                    {'post': post,
+                    'comments': comments, 
+                    'form': form,})
 
 
 def post_share(request: str, post_id: int):
