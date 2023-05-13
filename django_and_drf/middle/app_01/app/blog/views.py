@@ -5,10 +5,15 @@ from django.core.mail import send_mail
 from .models import Post, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EmailPostForm, CommentForm
+from taggit.models import Tag
 
 
-def post_list(request: str) -> tuple:
+def post_list(request: str, tag_slug: str = None) -> tuple:
     post_list = Post.published.all()
+    tag = None 
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        post_list = post_list.filter(tags__in=[tag])
     paginator = Paginator(post_list, 3)
     page_number = request.GET.get('page', 1)
 
@@ -21,7 +26,8 @@ def post_list(request: str) -> tuple:
         
     return render(request, 
                     'blog/post/list.html',
-                    {'posts': posts,})
+                    {'posts': posts,
+                    'tag': tag,})
 
 
 def post_detail(request: str, year: int, month: int, day: int, post: str) -> tuple:
