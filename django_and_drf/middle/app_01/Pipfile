@@ -9,6 +9,7 @@ selenium = "*"
 coverage = "*"
 sphinx = "*"
 model-bakery = "*"
+django-taggit = "*"
 
 [dev-packages]
 
