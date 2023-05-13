@@ -58,7 +58,7 @@ class Post(models.Model):
             self.slug,
         ])
 
-        tags = TaggableManager()
+    tags = TaggableManager()
 
 
 class Comment(models.Model):
