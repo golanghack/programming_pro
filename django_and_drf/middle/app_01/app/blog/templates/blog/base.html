@@ -19,6 +19,13 @@
         <h2>Blog</h2>
         <p>****----****</p>
         <p>I`ve written {% total_posts %} posts so far.</p>
+        <p>
+            <h3>
+                Latest posts: 
+            </h3>
+            {% show_latest_posts 3 %} 
+            
+        </p>
         <p>return on <a href="{% url 'blog:post_list' %}">Main page</a></p>
     </div>
 </body>
