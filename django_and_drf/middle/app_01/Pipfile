@@ -10,6 +10,7 @@ coverage = "*"
 sphinx = "*"
 model-bakery = "*"
 django-taggit = "*"
+markdown = "*"
 
 [dev-packages]
 
