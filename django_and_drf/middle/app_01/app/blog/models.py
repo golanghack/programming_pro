@@ -34,9 +34,9 @@ class Post(models.Model):
     body = models.TextField(verbose_name='Enter text')
     # DATETIME in DB
     publish = models.DateTimeField(default=timezone.now)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=2, 
+    created = models.DateTimeField(auto_now_add=True, max_length=400)
+    updated = models.DateTimeField(auto_now=True, max_length=400)
+    status = models.CharField(max_length=12, 
                                 choices=Status.choices, 
                                 default=Status.DRAFT)
 
