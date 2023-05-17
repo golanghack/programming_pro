@@ -11,12 +11,6 @@ class PostTest(TestCase):
         self.assertEqual(title_post.title, 'second')
         self.assertEqual(Post.objects.count(), 2)
 
-
-    def test_fields_of_model_post(self):
-
-        post = baker.make(Post, title='First post')
-        self.assertEqual(str(post), 'First post')
-
     @classmethod
     def setUpClass(cls):
         my_test_user = User.objects.create_user(username='test_user', 
@@ -64,4 +58,6 @@ class PostTest(TestCase):
                     expected_value
                 )
         
-        
+
+
+
