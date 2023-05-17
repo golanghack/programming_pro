@@ -23,8 +23,8 @@ class NewVisitorTest(unittest.TestCase):
         -> may begin list and get his later.
         """
 
-        self.browser.get('http://localhost:8000')
-        self.assertIn('The install worked', self.browser.title)
+        self.browser.get('http://localhost:8000/blog')
+        self.assertIn('My blog', self.browser.title)
 
 
 if __name__ == '__main__':

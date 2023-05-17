@@ -17,4 +17,10 @@ class PostTest(TestCase):
         post = baker.make(Post, title='First post')
         self.assertEqual(str(post), 'First post')
 
+
+class TestForm(TestCase):
+    def test_cant_send_form_user(self):
+        """Testing forms."""
+
+        
         
