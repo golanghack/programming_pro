@@ -47,5 +47,21 @@ class PostTest(TestCase):
         excpected_object_name = post.title 
 
         self.assertEqual(excpected_object_name, str(post))
+
+    # subtesting 
+    def test_verbose_naming(self):
+        post = PostTest.post
+        field_verboses = {
+            'title': 'Title',
+            'body': 'Enter text',
+            'slug': 'slug', 
+        }
+
+        for field, expected_value in field_verboses.items():
+            with self.subTest(field=field):
+                self.assertEqual(
+                    post._meta.get_field(field).verbose_name, 
+                    expected_value
+                )
         
         
