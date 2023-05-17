@@ -24,14 +24,14 @@ class Post(models.Model):
         PUBLISHED = 'PB', 'Published'
 
     # VARCHAR in BD
-    title: str = models.CharField(max_length=300)
+    title: str = models.CharField(max_length=300, verbose_name='Title', help_text='Enter short title')
     # VARCHAR in DB
     slug: str = models.SlugField(max_length=300, unique_for_date='publish')
     author: str = models.ForeignKey(User, 
                                     on_delete=models.CASCADE, 
                                     related_name='blog_posts')
     # TEXT in DB
-    body = models.TextField()
+    body = models.TextField(verbose_name='Enter text')
     # DATETIME in DB
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
@@ -64,7 +64,7 @@ class Post(models.Model):
 class Comment(models.Model):
 
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    name = models.CharField(max_length=80)
+    name = models.CharField(max_length=80, verbose_name='Enter name', help_text='Enter name')
     email = models.EmailField()
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
@@ -78,4 +78,4 @@ class Comment(models.Model):
         ]
 
     def __str__(self):
-        return f'Cokment by {self.name} on {self.post}'
+        return f'Comment by {self.name} on {self.post}'
