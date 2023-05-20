@@ -13,4 +13,9 @@ class TestStaticPagesURL(TestCase):
 
         response = self.guest_client.get('/blog/')
         self.assertEqual(response.status_code, 200)
-        
+
+    def test_home_url_uses_correct_template(self):
+        """Testing template for url /blog/"""
+
+        response = self.guest_client.get('/blog/')
+        self.assertTemplateUsed(response, 'blog/base.html')
