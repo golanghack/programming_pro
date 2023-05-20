@@ -76,7 +76,7 @@ class TestPostTemplateUsed(TestCase):
         response = self.client.get('/blog/')
         self.assertTemplateUsed(response, 'blog/base.html')
 
-    def test_list_url_uses_correct_template(self):
+    def test_search_url_uses_correct_template(self):
         """List detail"""
 
         response = self.client.get('/blog/search/')
