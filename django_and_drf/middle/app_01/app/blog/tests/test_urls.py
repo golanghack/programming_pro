@@ -19,3 +19,16 @@ class TestStaticPagesURL(TestCase):
 
         response = self.guest_client.get('/blog/')
         self.assertTemplateUsed(response, 'blog/base.html')
+
+
+class TestCommonURL(TestCase):
+    def setUp(self):
+        """Don`t authorisation client"""
+
+        self.guest_client = Client()
+
+    def test_home_url_exists_at_desired_location(self):
+        """Page ->/<- open every user"""
+
+        response = self.guest_client.get('/blog/')
+        self.assertEqual(response.status_code, 200)
