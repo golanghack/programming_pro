@@ -32,3 +32,14 @@ class TestCommonURL(TestCase):
 
         response = self.guest_client.get('/blog/')
         self.assertEqual(response.status_code, 200)
+
+    def test_list_post_url_exists_at_desired_location(self):
+        """Post feed visible every users"""
+
+        response = self.guest_client.get('/blog/feed/')
+        self.assertEqual(response.status_code, 200)
+
+        
+    def test_blog_search_url(self):
+        response = self.guest_client.get('/blog/search/')
+        self.assertEqual(response.status_code, 200)
