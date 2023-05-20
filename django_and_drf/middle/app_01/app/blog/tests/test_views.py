@@ -30,5 +30,5 @@ class TestPostViews(TestCase):
         """Correect context"""
 
         response = self.client.get(reverse('blog:post_list'))
-DONT WORK POSRTGES UTILS IN DJANGO
+DONT WORK POSRTGRES UTILS IN DJANGO
 '''
