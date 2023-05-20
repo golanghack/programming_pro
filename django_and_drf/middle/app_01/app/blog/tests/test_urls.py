@@ -1,5 +1,8 @@
 from  django.test import TestCase, Client
+from ..models import Post
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 class TestStaticPagesURL(TestCase):
     def setUp(self):
         """Don`t authorisation client."""
@@ -43,3 +46,37 @@ class TestCommonURL(TestCase):
     def test_blog_search_url(self):
         response = self.guest_client.get('/blog/search/')
         self.assertEqual(response.status_code, 200)
+
+
+
+class TestPostTemplateUsed(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        my_test_user_template = User.objects.create_user(username='test_user_template', 
+                                            email='test_template@test.com',
+                                            password='pass123')
+        super().setUpClass()
+        Post.objects.create(
+            title='Test post', 
+            body='Test text blog',
+            author=my_test_user_template, 
+            slug='test_slug'
+        )
+
+    def setUp(self):
+        # create anonnymouse client 
+        self.guest_client = Client()
+        
+
+    
+    def test_home_url_uses_correct_template(self):
+        """home -> template base"""
+
+        response = self.client.get('/blog/')
+        self.assertTemplateUsed(response, 'blog/base.html')
+
+
+
+
+
