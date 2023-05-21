@@ -25,25 +25,44 @@ def get_string_from_user(message: str) -> str:
 
 
 def get_lower_letter(password: str) -> bool:
+    """
+    >>> get_lower_letter('aa')
+    True
+    >>> get_lower_letter('B')
+    False
+    """
+
     for low in password:
         if low in SAFE_LOWER_LETTER:
             return True
-        else:
-            return False
+    return False
 
 def get_upper_letter(password: str) -> bool:
+    """ 
+    >>> get_upper_letter('aaa')
+    False
+    >>> get_upper_letter('Bnnn')
+    True
+    """ 
+
     for up in password:
         if up in SAFE_UPPER_LETTER:
             return True
-        else:
-            return False
+    return False
 
 
 def get_integer_include(password: str) -> bool:
+    """ 
+    >>> get_integer_include('aaa8Bgggsgs9')
+    True
+    >>> get_integer_include('bbbdbbd')
+    """ 
+
     for i in password:
-        if i in SAFE_INTEGER:
+        if str(i) in SAFE_INTEGER:
             return True
-    return False
+
+
 
 def is_good_password(password) -> bool:
     is_good = (get_integer_include(password) == get_lower_letter(password) == get_upper_letter(password))
@@ -54,3 +73,6 @@ if __name__ == '__main__':
     password = get_string_from_user(MESSAGE)
     verdict = is_good_password(password)
     print(f'You entered password -> {password} and this -> {verdict}')
+
+    import doctest
+    doctest.testmod()
