@@ -10,7 +10,9 @@
             Please try again.
         </p>
     {% else %} 
-        <p>Lease use following form to log-in -> </p>
+        <p>Lease use following form to log-in. If You don`t hav an acoount 
+            <a href="{% url 'register' %}">register now</a>
+        </p>
     {% endif %} 
         <div class="login-form">
             <form action="{% url 'login' %}" method="post">
