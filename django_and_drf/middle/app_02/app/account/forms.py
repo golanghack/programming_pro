@@ -22,7 +22,7 @@ class UserRegistrationForm(forms.ModelForm):
         return cd['password2']
 
 
-class UserEditionForm(forms.ModelForm):
+class UserEditForm(forms.ModelForm):
 
     class Meta:
 
