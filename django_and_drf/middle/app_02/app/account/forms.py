@@ -22,6 +22,17 @@ class UserRegistrationForm(forms.ModelForm):
         return cd['password2']
 
 
+    def clean_email(self):
+        """Realisation unic email for user registration""" 
+
+        data = self.cleaned_data['email']
+        if User.objects.filter(email=data).exists():
+            raise forms.ValidationError('Error alredy in use.')
+        return data 
+
+        
+
+
 class UserEditForm(forms.ModelForm):
 
     class Meta:
