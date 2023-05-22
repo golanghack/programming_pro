@@ -42,7 +42,6 @@ class UserEditForm(forms.ModelForm):
 
     def clean_email(self):
         """Validation email for used email another user"""
-        
         data = self.cleaned_data['email']
         qs = User.objects.exclude(id=self.instance.id).filter(email=data)
 

@@ -63,7 +63,11 @@ def get_integer_include(password: str) -> bool:
             return True
 
 
+def corect_lenght(password) -> bool:
+    lenght = len(password)
+    return lenght >= SAFE_LENGHT
 
+print(corect_lenght('AHSHSHSHHHHHHHHHHHHH'))
 def is_good_password(password) -> bool:
     is_good = (get_integer_include(password) == get_lower_letter(password) == get_upper_letter(password))
     return is_good

@@ -17,15 +17,19 @@ import random
 def random_password():
     """Generated random password from ascii table.""" 
 
-    ascii_table = [chr(i) for i in range(33, 127, 1)]
+    ascii_table = [chr(i) for i in range(65, 91)] + [chr(j) for j in range(97, 123)]
+    random_integer = [str(i) for i in range(10)]
     len_password = [7, 8, 9, 10]
     choice_len = random.choice(len_password)
     empty_string = ''
     password = []
     for _ in range(choice_len):
         password.append(random.choice(ascii_table))
+        password.append(random.choice(random_integer))
 
-    return empty_string.join(password)
+    long_apssword = empty_string.join(password)
+    short_password = long_apssword[:choice_len]
+    return short_password
 
 def main():
     generated = random_password()
