@@ -60,6 +60,7 @@ def edit(request):
             user_form.save()
             profile_form.save()
             messages.success(request, 'Successfully updated!')
+        
         else:
             messages.error(request, 'Error!Try again!')
     else:
