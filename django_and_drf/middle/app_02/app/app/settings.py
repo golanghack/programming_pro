@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-gu21cto(*8+3=2v(bh4w!n#2)(^5pl*s84j%!8phhl=3(!z7yo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['matrix.com', 'localhiost', '127.0.0.1']
+ALLOWED_HOSTS = ['matrix.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
