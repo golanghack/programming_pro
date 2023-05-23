@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    #downloaded 
+    'social_django',
 ]
 
 MIDDLEWARE = [
