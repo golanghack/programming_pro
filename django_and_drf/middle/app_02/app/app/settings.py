@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     #downloaded 
     'social_django',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
