@@ -157,3 +157,7 @@ cython_debug/
 
 # geckodriver
 geckodriver.log
+
+# crt
+cert.crt
+cert.key
