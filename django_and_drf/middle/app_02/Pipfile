@@ -8,6 +8,7 @@ selenium = "*"
 pillow = "*"
 social-auth-app-django = "*"
 pyopenssl = "*"
+requests = "*"
 
 [dev-packages]
 
