@@ -11,7 +11,7 @@
         <p>You have add bookmarked {{ total_images_created }} image{{ total_images_created|pluralize }}</p>
     {% endwith %} 
     <p>Drag the following button to our book toolbar to bookmark images from other websites 
-        => <a href="javascript:{% include 'launcher.js' %}" class="button">Added it</a>
+        => <a href="javascript:{% include 'bookmarklet_launcher.js' %}" class="button">Added it</a>
     </p>
         
 {% endblock %} 
