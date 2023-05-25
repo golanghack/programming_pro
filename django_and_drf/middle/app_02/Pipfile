@@ -9,6 +9,7 @@ pillow = "*"
 social-auth-app-django = "*"
 pyopenssl = "*"
 requests = "*"
+easy-thumbnails = "*"
 
 [dev-packages]
 

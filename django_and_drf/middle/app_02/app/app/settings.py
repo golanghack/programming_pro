@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     #downloaded 
+    'easy_thumbnails',
     'social_django',
     'django_extensions',
     # local 
