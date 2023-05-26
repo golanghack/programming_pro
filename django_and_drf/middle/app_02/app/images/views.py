@@ -62,7 +62,7 @@ def image_list(request):
 
     
     images = Image.objects.all()
-    paginator = Paginator(images, 5)
+    paginator = Paginator(images, 6)
     page = request.GET.get('page')
     images_only = request.GET.get('images_only')
     
