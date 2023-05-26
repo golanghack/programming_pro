@@ -32,6 +32,7 @@ class Contact(models.Model):
 
 # added field in User model 
 user_model = get_user_model()
+# !!! DO NOT GOOD PRACTIC !!!
 user_model.add_to_class('following', models.ManyToManyField('self',
                                 through=Contact, 
                                 related_name='followers', 
