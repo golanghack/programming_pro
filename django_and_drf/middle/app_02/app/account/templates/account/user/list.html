@@ -11,7 +11,11 @@
         {% for user in users %} 
             <div class="user">
                 <a href="{{ user.get_absolute_url }}">
-                    <img src="{% thumbnail user.profile.photo 160x160 %}" alt="usr">
+                    {% if user.profile.photo %} 
+                        <img src="{% thumbnail user.profile.photo 160x160 %}" alt="usr">
+                    {% else %} 
+                        <img src="{% static 'default_images/user.png' %}" alt="">
+                    {% endif %} 
                 </a>
                 <div class="info">
                     <a href="{{ user.get_absolute_url }}" class="title">
