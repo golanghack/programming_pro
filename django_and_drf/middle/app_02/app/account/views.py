@@ -9,6 +9,7 @@ from .forms import LoginForm, UserRegistrationForm
 from .forms import UserEditForm, ProfileEditForm
 from .models import Profile, Contact
 from actions.utils import create_action
+from account.models import Action 
 
 def register(request):
     if request.method == 'POST':
@@ -48,8 +49,16 @@ def user_login(request: str) -> HttpResponse:
 
 @login_required
 def dashboard(request):
+    # all actions default 
+    actions = Action.objects.exclude(user=request.user)
+    following_ids = request.user.following.values_list('id', flat=True)
+    if following_ids:
+        # if user following -> get only actions
+        actions = actions.filter(user_id__in=following_ids)
+    actions = actions[:10]
     return render(request, 'account/dashboard.html', 
-                    {'section': 'dashboard'})
+                    {'section': 'dashboard',
+                    'actions': actions})
 
 
 @login_required
