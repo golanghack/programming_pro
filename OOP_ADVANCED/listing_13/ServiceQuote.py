@@ -21,4 +21,4 @@ class ServiceQuote:
         return self.__parts_large_working
 
     def get_total(self) -> str:
-        return self.__partst_middle_working + self.__parts_large_working + (__partst_middle_working * TAX_RATE)
+        return self.__partst_middle_working + self.__parts_large_working + (self.__partst_middle_working * TAX_RATE)
