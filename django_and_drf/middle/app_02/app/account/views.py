@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from .forms import LoginForm, UserRegistrationForm
 from .forms import UserEditForm, ProfileEditForm
 from .models import Profile, Contact
+from actions.utils import create_action
 
 def register(request):
     if request.method == 'POST':
@@ -17,6 +18,7 @@ def register(request):
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
             Profile.objects.create(user=new_user)
+            create_action(new_user, 'Created account')
             return render(request, 'account/register_done.html', {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
