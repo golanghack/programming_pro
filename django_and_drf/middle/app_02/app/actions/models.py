@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
-class Actions(models.Model):
+class Action(models.Model):
     user = models.ForeignKey('auth.User', related_name='actions', on_delete=models.CASCADE)
     verb = models.CharField(max_length=255, verbose_name='Enter verbs')
     created = models.DateTimeField(auto_now_add=True)
