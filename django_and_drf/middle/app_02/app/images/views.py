@@ -7,6 +7,8 @@ from django.contrib import messages
 from .forms import ImageCreateForm
 from .models import Image
 from actions.utils import create_action
+import redis 
+from django.conf import settings
 
 @login_required()
 def image_create(request):
@@ -86,3 +88,8 @@ def image_list(request):
     return render(request, 'images/image/list.html',
                                 {'section': 'images',
                                 'images': images,})
+
+# Redis 
+r = redis.Redis(host=settings.REDIS_HOST, 
+                port=settings.REDIS_PORT, 
+                db=settings.REDIS_DB)
