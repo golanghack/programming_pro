@@ -9,7 +9,7 @@ from .forms import LoginForm, UserRegistrationForm
 from .forms import UserEditForm, ProfileEditForm
 from .models import Profile, Contact
 from actions.utils import create_action
-from account.models import Action 
+from actions.models import Action 
 
 def register(request):
     if request.method == 'POST':
