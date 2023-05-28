@@ -43,6 +43,8 @@ def image_detail(request, id, slug):
     image = get_object_or_404(Image, id=id, slug=slug)
     # union views for images
     total_views = r.incr(f'image:{image.id}:views')
+    # raiting 
+    r.zincrby('image_rank', 1, image.id)
     return render(request, 'images/image/detail.html', 
                     {'section': 'images', 
                     'image': image, 
