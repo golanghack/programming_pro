@@ -10,6 +10,11 @@ from actions.utils import create_action
 import redis 
 from django.conf import settings
 
+# Redis 
+r = redis.Redis(host=settings.REDIS_HOST, 
+                port=settings.REDIS_PORT, 
+                db=settings.REDIS_DB)
+
 @login_required()
 def image_create(request):
     if request.method == 'POST':
@@ -88,8 +93,3 @@ def image_list(request):
     return render(request, 'images/image/list.html',
                                 {'section': 'images',
                                 'images': images,})
-
-# Redis 
-r = redis.Redis(host=settings.REDIS_HOST, 
-                port=settings.REDIS_PORT, 
-                db=settings.REDIS_DB)
