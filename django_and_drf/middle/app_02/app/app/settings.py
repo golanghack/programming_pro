@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'social_django',
     'django_extensions',
+    'debug_toolbar',
     # local 
     'images.apps.ImagesConfig',
     'actions.apps.ActionsConfig',

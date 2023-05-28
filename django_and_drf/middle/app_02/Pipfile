@@ -10,6 +10,7 @@ social-auth-app-django = "*"
 pyopenssl = "*"
 requests = "*"
 easy-thumbnails = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 
