@@ -55,7 +55,7 @@ def dashboard(request):
     if following_ids:
         # if user following -> get only actions
         actions = actions.filter(user_id__in=following_ids)
-    actions = actions.select_related('user', 'user__profile')[:12]
+    actions = actions.select_related('user', 'user__profile')[:12].prefetch_related('target')[:12]
     return render(request, 'account/dashboard.html', 
                     {'section': 'dashboard',
                     'actions': actions})
