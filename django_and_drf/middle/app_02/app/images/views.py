@@ -98,3 +98,15 @@ def image_list(request):
     return render(request, 'images/image/list.html',
                                 {'section': 'images',
                                 'images': images,})
+
+@login_required
+def image_ranking(request):
+    # get dict for raiting 
+    image_rank = r.zrange('image_rank', 0, 1, desc=True)[:10]
+    image_rank_ids = [int(id) for id in image_rank]
+    # get most view image
+    most_viewed_images = list(Image.objects.filter(id__in=image_rank_ids))
+    most_viewed_images.sort(key=lambda x: image_rank_ids.index(x.id))
+    return render(request, 'images/image/rank.html',
+                            {'section': 'images', 
+                            'most_viewed_images': most_viewed_images,})
