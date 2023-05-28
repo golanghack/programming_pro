@@ -13,5 +13,10 @@
     <p>Drag the following button to our book toolbar to bookmark images from other websites 
         => <a href="javascript:{% include 'bookmarklet_launcher.js' %}" class="button">Added it</a>
     </p>
-        
+    <h2>Whats up? </h2>
+    <div class="action-list">
+        {% for action in actions %} 
+            {% include 'actions/action/detail.html' %} 
+        {% endfor %} 
+    </div>
 {% endblock %} 
