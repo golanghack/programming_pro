@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
-from http import HTTPStatus
 from account.models import Profile, Contact
 
 User = get_user_model()
@@ -59,3 +58,12 @@ class TestAccountURL(TestCase):
         response = self.guest_client.get(edit_page)
         error_name = f'Error -> dont use  {edit_page}'
         self.assertEqual(response.status_code, 301, error_name)
+
+    def test_redirect_non_auth_user(self):
+        url_one = '/login/?next=/'
+        url_two = '/login/?next=/'
+        pages = {'': url_one, 
+        '': url_two}
+        for page, value in pages.items():
+            response = self.guest_client.get(page)
+            self.assertRedirects(response, value)
