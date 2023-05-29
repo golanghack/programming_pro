@@ -15,6 +15,7 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         """Remove."""
 
+        button_login = self.browser.find_elements()
         self.browser.quit()
 
     def test_can_start_a_list_and_retrieve_it_later(self):
@@ -24,7 +25,7 @@ class NewVisitorTest(unittest.TestCase):
         """
 
         self.browser.get('http://localhost:8000')
-        self.assertIn('Dashboard', self.browser.title)
+        self.assertIn('Log-in', self.browser.title)
 
 
 if __name__ == '__main__':

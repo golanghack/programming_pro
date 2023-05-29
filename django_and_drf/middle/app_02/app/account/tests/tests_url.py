@@ -1,8 +1,10 @@
 from django.test import TestCase, Client
 
 class TestStaticURL(TestCase):
-    
+    def setUp(self):
+        self.client = Client()
+
     def test_home(self):
-        client = Client()
-        response = client.get('/account/login')
-        self.assertEqual(response.status_code, 301)
+        
+        response = self.client.get('')
+        self.assertEqual(response.status_code, 302)
