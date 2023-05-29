@@ -12,6 +12,7 @@ requests = "*"
 easy-thumbnails = "*"
 django-debug-toolbar = "*"
 redis = "*"
+coverage = "*"
 
 [dev-packages]
 
