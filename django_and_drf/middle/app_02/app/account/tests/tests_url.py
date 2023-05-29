@@ -8,3 +8,7 @@ class TestStaticURL(TestCase):
         
         response = self.client.get('')
         self.assertEqual(response.status_code, 302)
+
+    def test_register(self):
+        response = self.client.get('')
+        self.assertEqual(response.status_code, 302)
