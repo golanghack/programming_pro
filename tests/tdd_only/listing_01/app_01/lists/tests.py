@@ -21,6 +21,6 @@ class HomeTest(TestCase):
         member = '<title>To-do</title>'
         container = html
 
-        self.assertTrue(html.startswith('<html>'))
+        self.assertTrue(html.startswith('<!DOCTYPE html>'))
         self.assertIn(member, container)
-        self.assertTrue(html.endswith('</html>'))
+        self.assertTrue(html.strip().endswith('</html>'))

@@ -25,19 +25,21 @@ class NewTest(unittest.TestCase):
         
         member = 'The install worked'
         container = self.browser.title
+
         header_text = self.browser.find_elements('h1').text 
+        self.assertIn('To-do', header_text)
+
         input_box = self.browser.find_element('id_new_item')
+        self.assertEqual(input_box.get_attribute('placeholder'), 'Enter a to-do')
+
         input_box.send_keys('one')
         input_box.send_keys(Keys.ENTER)
         time.sleep(4)
 
         table = self.browser.find_element(By.ID, 'id_list_table')
         rows = table.find_elements(By.TAG_NAME, 'tr')
-
         self.assertTrue(any(row.text == '1 -> one' for row in rows))
-        self.assertEqual(input_box.get_attribute('placeholder'), 'Enter a to-do')
         self.assertIn(member, container)
-        self.assertIn('To-do', header_text)
         self.fail('ENDED -> ')
 
 if __name__ == '__main__':
