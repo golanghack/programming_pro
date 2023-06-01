@@ -12,14 +12,14 @@ class HomeTest(TestCase):
         found = resolve('/')
         self.assertEqual(found.func, home)
 
-    def test_home_page_returns_corect_html_template(self):
+    def test_home_page_returns_corect_html(self):
         """Correct html template""" 
 
         request = HttpRequest()
         response = home(request)
-        html_template = response.content.decode('UTF-8')
+        html = response.content.decode('UTF-8')
         member = '<title>To-do</title>'
-        container = self.browser.title
+        container = html
 
         self.assertTrue(html.startswith('<html>'))
         self.assertIn(member, container)
