@@ -25,4 +25,4 @@ class NewTest(unittest.TestCase):
         self.fail('ENDED -> ')
 
 if __name__ == '__main__':
-    unittest.main(warnings='ignore')
+    unittest.main()
