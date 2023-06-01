@@ -26,10 +26,10 @@ class NewTest(unittest.TestCase):
         member = 'The install worked'
         container = self.browser.title
 
-        header_text = self.browser.find_elements('h1').text 
+        header_text = self.browser.find_element(By.TAG_NAME, 'h1').text 
         self.assertIn('To-do', header_text)
 
-        input_box = self.browser.find_element('id_new_item')
+        input_box = self.browser.find_element(By.ID, 'id_new_item')
         self.assertEqual(input_box.get_attribute('placeholder'), 'Enter a to-do')
 
         input_box.send_keys('one')
