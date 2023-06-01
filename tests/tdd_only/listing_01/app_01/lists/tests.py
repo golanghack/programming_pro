@@ -17,7 +17,7 @@ class HomeTest(TestCase):
         """Correct html template""" 
 
         request = HttpRequest()
-        response = home(request)
+        response = self.client.get('/')
         html = response.content.decode('UTF-8')
         member = '<title>To-do</title>'
         container = html
@@ -28,3 +28,4 @@ class HomeTest(TestCase):
         self.assertTrue(html.startswith('<!DOCTYPE html>'))
         self.assertIn(member, container)
         self.assertTrue(html.strip().endswith('</html>'))
+        self.assertTemplateUsed(response, 'home.html')
