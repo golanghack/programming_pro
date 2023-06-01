@@ -166,3 +166,5 @@ cython_debug/
 # geckodriver
 geckodriver.log
 Pipfile.lock
+__pycache__
+*.pyc
