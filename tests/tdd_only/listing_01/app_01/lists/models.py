@@ -2,4 +2,6 @@ from django.db import models
 
 
 class Item(models.Model):
-    pass
+    """ELement of list""" 
+
+    text = models.TextField(default='')
