@@ -28,6 +28,12 @@ class HomeTest(TestCase):
         self.assertIn(member, container)
         self.assertTemplateUsed(response, 'home.html')
 
+    def test_only_saves_items_when_necessary(self):
+        """-> save of items with needes""" 
+
+        self.client.get('/')
+        self.assertEqual(Item.objects.count(), 0)
+
 
 class TestModelItem(TestCase):
     """-> model item of list""" 
