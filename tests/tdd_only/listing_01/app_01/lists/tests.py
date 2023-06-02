@@ -14,20 +14,11 @@ class HomeTest(TestCase):
     def test_can_save_a_POST_request(self):
         """-> may be save post-request?""" 
         
-        member = 'A new list item'
-        response = self.client.post('/', data={'item_text': member})
-        container = response.content.decode()
-
-        self.assertIn(member, container)
-        self.assertTemplateUsed(response, 'home.html')
-
+        response = self.client.post('/', data={'item_text': 'A new list item'})
         new_item = Item.objects.first()
-
         self.assertEqual(Item.objects.count(), 1)
-        self.assertEqual(new_item.text, member)
-        self.assertIn(member, container)
-        self.assertTemplateUsed(response, 'home.html')
-
+        self.assertEqual(new_item.text, 'A new list item')
+        
         # redirecting 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['location'], '/')
