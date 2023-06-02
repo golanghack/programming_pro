@@ -5,3 +5,5 @@ class Item(models.Model):
     """ELement of list""" 
 
     text = models.TextField(default='')
+
+    
