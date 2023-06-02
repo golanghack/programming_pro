@@ -28,6 +28,10 @@ class HomeTest(TestCase):
         self.assertIn(member, container)
         self.assertTemplateUsed(response, 'home.html')
 
+        # redirecting 
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['location'], '/')
+
     def test_only_saves_items_when_necessary(self):
         """-> save of items with needes""" 
 
