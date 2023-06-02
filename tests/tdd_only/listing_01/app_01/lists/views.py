@@ -4,5 +4,5 @@ from django.http import HttpResponse
 def home(request):
     
     return render(request, 'home.html', {
-        'new_item_text': request.POST['item_text'],
+        'new_item_text': request.POST.get('item_text', ''),
     })
