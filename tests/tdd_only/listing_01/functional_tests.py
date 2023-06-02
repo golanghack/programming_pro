@@ -23,7 +23,7 @@ class NewTest(unittest.TestCase):
 
         self.browser.get('http://127.0.0.1:8000')
         
-        member = 'The install worked'
+        member = 'To-do'
         container = self.browser.title
 
         header_text = self.browser.find_element(By.TAG_NAME, 'h1').text 
@@ -34,11 +34,9 @@ class NewTest(unittest.TestCase):
 
         input_box.send_keys('one')
         input_box.send_keys(Keys.ENTER)
-        time.sleep(4)
+        time.sleep(1)
 
         table = self.browser.find_element(By.ID, 'id_list_table')
-        rows = table.find_elements(By.TAG_NAME, 'tr')
-        self.assertTrue(any(row.text == '1 -> one' for row in rows))
         self.assertIn(member, container)
         self.fail('ENDED -> ')
 

@@ -8,7 +8,12 @@
 </head>
 <body>
     <h1>To-do</h1>
-    <input type="text" id="id_new_item" placeholder="Enter a to-do">
-    <table id="id_list_table"></table>
+    <form action="" method="post">
+        <input type="text" id="id_new_item" placeholder="Enter a to-do">
+        {% csrf_token %} 
+    </form>
+    <table id="id_list_table">
+        
+    </table>
 </body>
 </html>

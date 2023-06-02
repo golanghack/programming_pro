@@ -9,3 +9,12 @@ class HomeTest(TestCase):
 
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
+
+    def test_can_save_a_POST_request(self):
+        """-> may be save post-request?""" 
+        
+        member = 'A new list item'
+        response = self.client.post('/', data={'item_text': 'A new list item'})
+        container = response.content.decode()
+        
+        self.assertIn(member, container)
