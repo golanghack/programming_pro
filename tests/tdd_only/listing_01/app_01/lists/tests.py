@@ -15,9 +15,16 @@ class HomeTest(TestCase):
         """-> may be save post-request?""" 
         
         member = 'A new list item'
-        response = self.client.post('/', data={'item_text': 'A new list item'})
+        response = self.client.post('/', data={'item_text': member})
         container = response.content.decode()
 
+        self.assertIn(member, container)
+        self.assertTemplateUsed(response, 'home.html')
+
+        new_item = Item.objects.first()
+
+        self.assertEqual(Item.objects.count(), 1)
+        self.assertEqual(new_item.text, member)
         self.assertIn(member, container)
         self.assertTemplateUsed(response, 'home.html')
 
