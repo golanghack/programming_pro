@@ -16,5 +16,6 @@ class HomeTest(TestCase):
         member = 'A new list item'
         response = self.client.post('/', data={'item_text': 'A new list item'})
         container = response.content.decode()
-        
+
         self.assertIn(member, container)
+        self.assertTemplateUsed(response, 'home.html')
