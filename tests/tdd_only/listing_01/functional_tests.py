@@ -17,13 +17,22 @@ class NewTest(unittest.TestCase):
         """Unset""" 
 
         self.browser.quit() 
+    
+    def check_for_row_in_list_table(self, member: str):
+        """String in table of list""" 
+
+        table = self.browser.find_element(By.ID, 'id_list_table')
+        rows = table.find_elements(By.TAG_NAME, 'tr')
+        container = [row.text for row in rows]
+
+        self.assertIn(member, container)
 
     def test_can_start_and_retrieve_it_later(self):
         """May by will start a list app and get his later""" 
 
         self.browser.get('http://127.0.0.1:8000')
         
-        member = 'To-do'
+        member = 'The install worked'
         container = self.browser.title
 
         header_text = self.browser.find_element(By.TAG_NAME, 'h1').text 
@@ -35,10 +44,14 @@ class NewTest(unittest.TestCase):
         input_box.send_keys('one')
         input_box.send_keys(Keys.ENTER)
         time.sleep(1)
+        self.check_for_row_in_list_table('1 -> one')
 
-        table = self.browser.find_element(By.ID, 'id_list_table')
-        self.assertIn(member, container)
-        self.fail('ENDED -> ')
-
+        input_box = self.browser.find_element(By.ID, 'id_new_item')
+        input_box.send_keys('2 -> two')
+        input_box.send_keys(Keys.ENTER)
+        time.sleep(1)
+        self.check_for_row_in_list_table('1 -> one')
+        self.check_for_row_in_list_table('2 -> two')
+        
 if __name__ == '__main__':
     unittest.main()
