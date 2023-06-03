@@ -1,8 +1,7 @@
-{% extends 'base.html' %} 
+{% extends 'shop/base.html' %} 
 {% load static %} 
 
-{% block title %} {{ category.name }}{% else %}Одежда{% endif %} 
-{% endblock %} 
+{% block title %} {% if category.name %}{% else %}Одежда{% endif %}{% endblock %} 
 
 {% block content %} 
     <div id="sidebar">
@@ -11,9 +10,9 @@
             <li {% if not category %} class="selected" {% endif %}>
                 <a href="{% url 'shop:product_list' %}">Все</a>
             </li>
-            {% for cat in categories %} 
-                <li {% if category.slug == cat.slug %} class="selected" {% endif %}>
-                    <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+            {% for c in categories %} 
+                <li {% if category.slug == c.slug %} class="selected" {% endif %}>
+                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
                 </li>
             {% endfor %} 
         </ul>
@@ -32,3 +31,4 @@
         {% endfor %} 
     </div>
 {% endblock %} 
+
