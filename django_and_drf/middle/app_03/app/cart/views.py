@@ -16,3 +16,12 @@ def cart_add(request: str, product_id: int) -> redirect:
         cart.add(product=product, quantity=cd['quantity'], override_quantity=cd['override'])
     
     return redirect('cart:cart_detail')
+
+
+@require_POST
+def cart_remove(request: str, product_id: int) -> redirect:
+    cart = Cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    cart.remove(product)
+
+    return redirect('cart:cart_detail')
