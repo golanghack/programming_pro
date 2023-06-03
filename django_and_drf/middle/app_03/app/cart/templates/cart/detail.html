@@ -1,0 +1,53 @@
+{% extends 'shop/base.html' %} 
+{% load static %} 
+{% block title %} 
+Ваша корзина
+{% endblock %} 
+
+{% block content %} 
+    <h1>Ваша корзина</h1>
+    <table class="cart">
+        <thead>
+            <tr>
+        <th>Фото</th>
+        <th>Изделие</th>
+        <th>Кол-во</th>
+        <th>Удалить</th>
+        <th>Общая цена</th>
+        <th>Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %} 
+                {% with product=item.product %} 
+                    <tr>
+                        <td>
+                            <a href="{{ product.get_absolute_url }}">
+                                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                            </a>
+                        </td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>
+                            <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                                <input type="submit" name="" id="" value="удалить">
+                                {% csrf_token %} 
+                            </form>
+                        </td>
+                        <td class="num">{{ item.price }}.руб</td>
+                        <td class="num">{{ item.total_price }}.руб</td>
+                    </tr>
+                {% endwith %} 
+            {% endfor %} 
+            <tr class="total">
+                <td>Общее</td>
+                <td colspan="4"></td>
+                <td class="num">{{ cart.get_total_price }}.руб</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url 'shop:product_list' %}" class="button-light">Продолжить покупки</a>
+        <a href="#" class="button">Завершить</a>
+    </p>
+{% endblock %} 
