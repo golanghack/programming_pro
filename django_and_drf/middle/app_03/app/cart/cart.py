@@ -61,4 +61,8 @@ class Cart:
         """Len of product in cart"""
 
         return sum(item['quantity'] for item in self.cart.values())
-        
+
+    def get_total_price(self) -> Decimal:
+        """Full summ all products in cart""" 
+
+        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
