@@ -25,3 +25,8 @@ def cart_remove(request: str, product_id: int) -> redirect:
     cart.remove(product)
 
     return redirect('cart:cart_detail')
+
+def cart_detail(request: str) -> render:
+    cart = Cart(request)
+
+    return render(request, 'cart/detail.html', {'cart': cart})
