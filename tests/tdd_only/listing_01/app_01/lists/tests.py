@@ -21,6 +21,21 @@ class HomeTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['location'], '/')
 
+    def test_displays_all_list_items(self):
+        """Show all elements of list""" 
+
+        Item.objects.create(text='item 1')
+        Item.objects.create(text='item 2')
+
+        response = self.client.get('/')
+        
+        member_one = 'item 1'
+        member_two = 'item 2'
+        container = response.content.decode()
+
+        self.assertIn(member_one, container)
+        self.assertIn(member_two, container)
+
 
 class TestModelItem(TestCase):
     """-> model item of list""" 
