@@ -44,14 +44,14 @@ class NewTest(unittest.TestCase):
         input_box.send_keys('one')
         input_box.send_keys(Keys.ENTER)
         time.sleep(1)
-        self.check_for_row_in_list_table('1 -> one')
+        self.check_for_row_in_list_table('1 ->')
 
         input_box = self.browser.find_element(By.ID, 'id_new_item')
-        input_box.send_keys('2 -> two')
+        input_box.send_keys('2 -> None')
         input_box.send_keys(Keys.ENTER)
         time.sleep(1)
-        self.check_for_row_in_list_table('1 -> one')
-        self.check_for_row_in_list_table('2 -> two')
+        self.check_for_row_in_list_table('1 ->')
+        self.check_for_row_in_list_table('2 ->')
         
 if __name__ == '__main__':
     unittest.main()

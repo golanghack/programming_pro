@@ -9,13 +9,13 @@
 <body>
     <h1>To-do</h1>
     <form action="" method="post">
-        <input type="text" id="id_new_item" placeholder="Enter a to-do">
+        <input type="item_text" id="id_new_item" placeholder="Enter a to-do">
         {% csrf_token %} 
     </form>
     <table id="id_list_table">
         {% for item in items %} 
         <tr>
-            <td>1 -> {{ item.text }}</td>
+            <td>{{ forloop.counter }} -> {{ items.text }}</td>
         </tr>
         {% endfor %} 
     </table>
