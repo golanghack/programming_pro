@@ -1,11 +1,11 @@
 import unittest
+from django.test import LiveServerTestCase
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.keys import Keys 
 from selenium.webdriver.common.by import By
 import time 
-import unittest
 
-class NewTest(unittest.TestCase):
+class TestNewVisiter(LiveServerTestCase):
     """Test for New Visiter""" 
 
     def setUp(self):
@@ -30,7 +30,7 @@ class NewTest(unittest.TestCase):
     def test_can_start_and_retrieve_it_later(self):
         """May by will start a list app and get his later""" 
 
-        self.browser.get('http://127.0.0.1:8000')
+        self.browser.get(self.live_server_url)
         
         member = 'The install worked'
         container = self.browser.title
@@ -44,14 +44,12 @@ class NewTest(unittest.TestCase):
         input_box.send_keys('one')
         input_box.send_keys(Keys.ENTER)
         time.sleep(1)
-        self.check_for_row_in_list_table('1 ->')
+        self.check_for_row_in_list_table('1 -> one')
 
         input_box = self.browser.find_element(By.ID, 'id_new_item')
-        input_box.send_keys('2 -> None')
+        input_box.send_keys('two')
         input_box.send_keys(Keys.ENTER)
         time.sleep(1)
-        self.check_for_row_in_list_table('1 ->')
-        self.check_for_row_in_list_table('2 ->')
+        self.check_for_row_in_list_table('1 -> one')
+        self.check_for_row_in_list_table('2 -> two')
         
-if __name__ == '__main__':
-    unittest.main()
