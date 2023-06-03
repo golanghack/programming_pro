@@ -66,3 +66,10 @@ class Cart:
         """Full summ all products in cart""" 
 
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+    
+
+    def clear(self) -> None:
+        """Delete car from session"""
+
+        del self.session[settings.CART_SESSION_ID]
+        self.save()
