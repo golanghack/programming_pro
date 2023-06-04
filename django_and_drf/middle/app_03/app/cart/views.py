@@ -29,4 +29,11 @@ def cart_remove(request: str, product_id: int) -> redirect:
 def cart_detail(request: str) -> render:
     cart = Cart(request)
 
+    # posible for user show and upgrade cart
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(initial={
+            'auantity': item['quantity'],
+            'override': True
+        })
+
     return render(request, 'cart/detail.html', {'cart': cart})
