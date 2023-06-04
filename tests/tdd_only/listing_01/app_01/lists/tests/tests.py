@@ -19,7 +19,7 @@ class HomeTest(TestCase):
 
         response = self.client.post('/', data={'item_text': 'A new list item'})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/')
+        self.assertEqual(response['location'], '/lists/one/')
 
     def test_displays_all_list_items(self):
         """Show all elements of list""" 
