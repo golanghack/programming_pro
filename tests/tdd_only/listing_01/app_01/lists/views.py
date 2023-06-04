@@ -15,6 +15,6 @@ def view_list(request):
     """View of list"""
 
     items = Item.objects.all()
-    return render(request, 'home.html', {
+    return render(request, 'list.html', {
         'items': items,
     })
