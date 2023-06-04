@@ -10,3 +10,8 @@ def home(request):
     return render(request, 'home.html', {
         'items': items,
     })
+
+def view_list(request):
+    """View of list"""
+
+    pass
