@@ -84,7 +84,7 @@ class TestNewVisiter(LiveServerTestCase):
         self.browser = Firefox()
         self.browser.get(self.live_server_url)
         # not seeing before users in browser
-        page_text = self.browser.find_element(BY.TAG_NAME, 'body').text
+        page_text = self.browser.find_element(By.TAG_NAME, 'body').text
         self.assertNotIn('One from another user', page_text)
         self.assertNotIn('Two', page_text)
 
