@@ -61,3 +61,9 @@ class ListViewTest(TestCase):
         
         self.assertContains(response, member_one)
         self.assertContains(response, member_two)
+
+    def tests_uses_list_template(self):
+        """-> use template of list""" 
+
+        response = self.client.get('/lists/one/')
+        self.assertTemplateUsed(response, 'list.html')
