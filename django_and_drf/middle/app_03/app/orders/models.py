@@ -3,9 +3,9 @@ from shop.models import Product
 
 class Order(models.Model):
 
-    first_name = models.CharField(max_length=50, verbose_name='first_name', help_text='Enter first name')
-    last_name = models.CharField(max_length=50, verbose_name='last_name', help_text='Enter last name')
-    email = models.EmailField(help_text='Enter email')
+    first_name = models.CharField(max_length=50, verbose_name='first_name')
+    last_name = models.CharField(max_length=50, verbose_name='last_name')
+    email = models.EmailField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)

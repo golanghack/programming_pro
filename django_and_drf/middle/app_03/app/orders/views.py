@@ -15,11 +15,11 @@ def order_create(request):
                                     price=item['price'],
                                     quantity=item['quantity'],)
             cart.clear()
-            return render(request, 'orders//order/created.html',{
+            return render(request, 'orders/created.html',{
                 'order': order,
             })
     else:
         form = OrderCreateForm()
-    return render(request, 'orders/order/create.html', {
+    return render(request, 'orders/create.html', {
         'cart': cart, 'form': form,
     })
