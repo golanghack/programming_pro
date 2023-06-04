@@ -14,4 +14,7 @@ def home(request):
 def view_list(request):
     """View of list"""
 
-    pass
+    items = Item.objects.all()
+    return render(request, 'home.html', {
+        'items': items,
+    })
