@@ -21,7 +21,7 @@
                     <a href="{% url 'cart:cart_detail' %}">
                         {{ total_items }} шт.{{ total_items|pluralize }}, {{ cart.get_total_price }}руб.
                     </a>
-                {% else %} 
+                {% elif not order %}    
                     Ваша корзина пуста
                 {% endif %} 
             {% endwith %} 
