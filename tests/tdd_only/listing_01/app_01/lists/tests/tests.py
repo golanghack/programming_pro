@@ -60,3 +60,20 @@ class TestModelItem(TestCase):
         self.assertEqual(second_saved_item.text, 'Two')
 
 
+
+class ListViewTest(TestCase):
+    """Testing views of list"""
+
+    def test_displays_all_list_items(self):
+        """Show all elements of list""" 
+
+        Item.objects.create(text='item 1')
+        Item.objects.create(text='item 2')
+
+        response = self.client.get('/lists/one/')
+        
+        member_one = 'item 1'
+        member_two = 'item 2'
+        
+        self.assertContains(response, member_one)
+        self.assertContains(response, member_two)
