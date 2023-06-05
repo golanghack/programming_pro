@@ -135,5 +135,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # cart 
 CART_SESSION_ID = 'cart'
 
+
+# smtp server 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'testuser@gmail.com'
+EMAIL_HOST_PASSWORD = '123pass123'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 # local email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

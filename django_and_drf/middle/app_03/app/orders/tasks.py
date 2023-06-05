@@ -11,7 +11,7 @@ def order_created(order_id: int) -> tuple:
     message = f'Уважаемый {order.first_name}, \n\n'\
                 f'Ваш заказ успешно создан.'\
                     f'ID вашего заказа {order.id}.'
-    mail_sent = send_mail(subject, message, 'admin@zoechkamag.com', [order.email])
+    mail_sent = send_mail(subject, message, 'admin@admin.com', [order.email])
 
     return mail_sent
 
