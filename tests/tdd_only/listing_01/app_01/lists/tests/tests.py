@@ -73,7 +73,7 @@ class ListViewTest(TestCase):
         self.assertNotContains(response, 'another item 1 list')
         self.assertNotContains(response, 'another item 2 list')
 
-        response = self.client.get('/lists/one/')
+        response = self.client.get(f'/lists/{my_list.id}/')
         
         member_one = 'item 1'
         member_two = 'item 2'

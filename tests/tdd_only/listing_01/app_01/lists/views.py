@@ -18,4 +18,4 @@ def new_list(request):
 
     my_list = List.objects.create()
     Item.objects.create(text=request.POST['item_text'], my_list=my_list)
-    return redirect('/lists/one/')
+    return redirect(f'/lists/{my_list.id}/')
