@@ -67,3 +67,23 @@ class ListViewTest(TestCase):
 
         response = self.client.get('/lists/one/')
         self.assertTemplateUsed(response, 'list.html')
+
+
+class NewListTest(TestCase):
+    """-> new list""" 
+
+    def test_can_save_a_POST_request(self):
+        """-> may save post"""
+
+        self.client.post('/lists/new', data={'item_text': 'A new list item'})
+        self.assertEqual(Item.objects.count(), 1)
+        
+        new_item = Item.objects.first()
+        self.assertEqual(new_item.text, 'A new list item')
+
+    def test_redirects_after_POST(self):
+        """-> redirect after POST""" 
+
+        response = self.client.post('/lists/new', data={'item_text': 'A new list item'})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['location'], '/lists/one/')
