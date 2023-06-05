@@ -47,12 +47,31 @@ class TestListAndItemModel(TestCase):
 class ListViewTest(TestCase):
     """Testing views of list"""
 
-    def test_displays_all_list_items(self):
-        """Show all elements of list""" 
+    def test_uses_list_template(self):
+        """Use template for list""" 
+
+        my_list = List.objects.create()
+        response = self.client.get(f'/lists/{my_list.id}/')
+        self.assertTemplateUsed(response, 'list.html')
+
+    def test_displays_only_items_for_that_list(self):
+        """Show all elements only this list""" 
 
         my_list = List.objects.create()
         Item.objects.create(text='item 1', my_list=my_list)
         Item.objects.create(text='item 2', my_list=my_list)
+
+        another_my_list = List.objects.create()
+        Item.objects.create(text='another item 1 list', my_list=another_my_list)
+        Item.objects.create(text='another item 2 list', my_list=another_my_list)
+
+        response = self.client.get(f'/lists/{my_list.id}/')
+
+        self.assertContains(response, 'item 1')
+        self.assertContains(response, 'item 2')
+
+        self.assertNotContains(response, 'another item 1 list')
+        self.assertNotContains(response, 'another item 2 list')
 
         response = self.client.get('/lists/one/')
         
