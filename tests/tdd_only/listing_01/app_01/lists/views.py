@@ -15,3 +15,8 @@ def view_list(request):
     return render(request, 'list.html', {
         'items': items,
     })
+
+def new_list(request):
+    """-> new list""" 
+
+    return redirect('/lists/one/')
