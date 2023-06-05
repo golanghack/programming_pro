@@ -6,4 +6,7 @@ class Item(models.Model):
 
     text = models.TextField(default='', null=True)
 
-    
+class List(models.Model):
+    """model for list""" 
+
+    pass
