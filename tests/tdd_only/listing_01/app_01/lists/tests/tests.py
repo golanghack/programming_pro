@@ -20,13 +20,13 @@ class TestListAndItemModel(TestCase):
         my_list.save()
 
         first_item = Item() 
-        first_item.list = my_list
+        first_item.my_list = my_list
         first_item.text = 'One'
         first_item.save()
 
         second_item = Item()
         second_item.text = 'Two'
-        second_item.list = my_list
+        second_item.my_list = my_list
         second_item.save()
 
         saved_items = Item.objects.all()
@@ -39,8 +39,8 @@ class TestListAndItemModel(TestCase):
         second_saved_item = saved_items[1]
         self.assertEqual(first_saved_item.text, 'One')
         self.assertEqual(second_saved_item.text, 'Two')
-        self.assertEqual(first_saved_item.list, my_list)
-        self.assertEqual(second_saved_item.list, my_list)
+        self.assertEqual(first_saved_item.my_list, my_list)
+        self.assertEqual(second_saved_item.my_list, my_list)
 
 
 
@@ -50,8 +50,9 @@ class ListViewTest(TestCase):
     def test_displays_all_list_items(self):
         """Show all elements of list""" 
 
-        Item.objects.create(text='item 1')
-        Item.objects.create(text='item 2')
+        my_list = List.objects.create()
+        Item.objects.create(text='item 1', my_list=my_list)
+        Item.objects.create(text='item 2', my_list=my_list)
 
         response = self.client.get('/lists/one/')
         
