@@ -5,7 +5,7 @@ def home(request):
     
     return render(request, 'home.html')
 
-def view_list(request):
+def view_list(request, my_list_id):
     """View of list"""
 
     items = Item.objects.all()
