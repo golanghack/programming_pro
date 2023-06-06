@@ -9,7 +9,6 @@
 <body>
     <h1>To-do</h1>
     <form action="/lists/new" method="post">
-        <p style="text-align: center;"></p>
         <input name="item_text" type="text" id="id_new_item" placeholder="Enter a to-do">
         {% csrf_token %} 
     </form>
