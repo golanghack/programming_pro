@@ -8,12 +8,12 @@
 </head>
 <body>
     <h1>Start a To-do list</h1>
-    <form method="post" action="/lists/new">
+    <form method="post" action="/lists/{{ my_list.id }}/add_item">
         <input name="item_text" type="text" id="id_new_item" placeholder="Enter a to-do">
         {% csrf_token %} 
     </form>
     <table id="id_list_table">
-        {% for item in items %} 
+        {% for item in my_list.item_set.all %} 
         <tr>
             <td>{{ forloop.counter }} -> {{ item.text }}</td>
         </tr>

@@ -8,9 +8,8 @@ def home(request):
 def view_list(request, my_list_id):
     """View of list"""
     my_list = List.objects.get(id=my_list_id)
-    items = Item.objects.filter(my_list=my_list)
     return render(request, 'list.html', {
-        'items': items,
+        'my_list': my_list,
     })
 
 def new_list(request):
@@ -24,4 +23,5 @@ def add_item(request, list_id):
     """Add new item in list"""
 
     my_list = List.objects.get(id=list_id)
-    return render(request, 'list.html', {'list': my_list})
+    Item.objects.create(text=request.POST['item_text'], my_list=my_list)
+    return redirect(f'/lists/{my_list.id}/')
