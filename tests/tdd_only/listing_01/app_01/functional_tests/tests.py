@@ -5,6 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import WebDriverException
 import time 
+import math
 
 MAX_WAIT = 10 
 class TestNewVisiter(LiveServerTestCase):
@@ -110,4 +111,4 @@ class TestNewVisiter(LiveServerTestCase):
         self.browser.set_window_size(1024, 768)
 
         input_box = self.browser.find_element(By.ID, 'id_new_item')
-        self.assertAlmostEqual(input_box.location['x'] + input_box.size['width'] / 2, 512, delta=10)
+        self.assertAlmostEqual(math.floor(input_box.location['x'] + input_box.size['width']) / 2, 512, delta=10)
