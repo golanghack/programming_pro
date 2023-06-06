@@ -24,5 +24,4 @@ def add_item(request, list_id):
     """Add new item in list"""
 
     my_list = List.objects.get(id=list_id)
-    Item.objects.create(text=request.POST['item_text'], my_list=my_list)
-    return redirect(f'/lists/{my_list.id}/')
+    return render(request, 'list.html', {'list': my_list})
