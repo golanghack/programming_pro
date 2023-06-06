@@ -103,3 +103,11 @@ class TestNewVisiter(LiveServerTestCase):
         self.assertIn('Two from another user', page_text)
 
 
+    def test_layout_and_styling(self):
+        """-> style"""
+
+        self.browser.get(self.live_server_url)
+        self.browser.set_window_size(1024, 768)
+
+        input_box = self.browser.find_element(By.ID, 'id_new_item')
+        self.assertAlmostEqual(input_box.location['x'] + input_box.size['width'] / 2, 512, delta=10)
