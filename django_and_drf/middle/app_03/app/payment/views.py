@@ -25,7 +25,18 @@ def payment_process(request):
             'cancel_url': cancel_url, 
             'line_items': [],
         }
-
+        
+        # added products positions in seanse
+        for item in order.items.all():
+            session_data['line_items'].append({
+                'price_data': {
+                    'unit_amount': int(item.price * Decimal('100')),
+                    'currency': 'usd', 
+                    'product_data': {
+                        'name': item.product.name,
+                    },
+                }, 'quantity': item.quantity,
+            })
         # create seance for pay Stripe 
         session = stripe.checkout.Session.create(**session_data)
         # redirect to pay of Stripe
