@@ -114,7 +114,7 @@ class TestNewItem(TestCase):
 
         self.client.post(
             f'/lists/{correct_list.id}/add_item', 
-            data={'item_text': 'A new item for an existing'}
+            data={'item_text': 'A new item for an existing list'}
         )
         self.assertEqual(Item.objects.count(), 1)
 
