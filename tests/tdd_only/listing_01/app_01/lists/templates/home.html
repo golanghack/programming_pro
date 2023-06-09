@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-do</title>
-</head>
-<body>
-    <h1>To-do</h1>
-    <form action="/lists/new" method="post">
-        <input name="item_text" type="text" id="id_new_item" placeholder="Enter a to-do">
-        {% csrf_token %} 
-    </form>
-    <table id="id_list_table">
-        {% for item in items %} 
-        <tr>
-            <td>{{ forloop.counter }} -> {{ item.text }}</td>
-        </tr>
-        {% endfor %} 
-    </table>
-</body>
-</html>
+{% extends 'base.html' %} 
+{% block header_text %}New To-Do{% endblock %} 
+{% block form_action %}/lists/new{% endblock %} 
