@@ -1,5 +1,5 @@
 import unittest
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.keys import Keys 
 from selenium.webdriver.common.by import By
@@ -8,7 +8,7 @@ import time
 import math
 
 MAX_WAIT = 10 
-class TestNewVisiter(LiveServerTestCase):
+class TestNewVisiter(StaticLiveServerTestCase):
     """Test for New Visiter""" 
 
     def setUp(self):
