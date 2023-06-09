@@ -7,6 +7,7 @@ def home(request):
 
 def view_list(request, my_list_id):
     """View of list"""
+    
     my_list = List.objects.get(id=my_list_id)
     return render(request, 'list.html', {
         'my_list': my_list,

@@ -9,5 +9,5 @@ class Item(models.Model):
     """ELement of list""" 
 
     text = models.TextField(default='', null=True)
-    my_list = models.ForeignKey(List, null=True, on_delete=models.CASCADE)
+    my_list = models.ForeignKey(List, null=True, on_delete=models.CASCADE, default=None)
 
