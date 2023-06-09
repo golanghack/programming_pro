@@ -45,7 +45,7 @@ class TestNewVisiter(StaticLiveServerTestCase):
         container = self.browser.title
 
         header_text = self.browser.find_element(By.TAG_NAME, 'h1').text 
-        self.assertIn('To-do', header_text)
+        self.assertIn('Start To-do list', header_text)
 
         input_box = self.browser.find_element(By.ID, 'id_new_item')
         self.assertEqual(input_box.get_attribute('placeholder'), 'Enter a to-do')
