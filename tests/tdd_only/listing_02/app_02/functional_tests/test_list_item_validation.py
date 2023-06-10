@@ -22,7 +22,7 @@ class TestItemValidation(FunctionalTest):
 
         self.wait_for(lambda: self.assertEqual(
             self.browser.find_element(By.CSS_SELECTOR, '.has_error').text,
-            'List item dint empty!'
+            'List item dont empty!'
         ))
 
         self.browser.find_element(By.ID, 'id_new_item').send_keys('Two')

@@ -79,6 +79,16 @@ class NewListTest(TestCase):
         new_my_list = List.objects.first()
         self.assertRedirects(response, f'/lists/{new_my_list.id}/')
 
+    def test_validation_errors_are_sent_back_to_home_page(self):
+        """-> error of validation return back in template""" 
+
+        response = self.client.post('/lists/new', data={'item_text': ''})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'home.html')
+        expected_error = 'List item dont empty!'
+        self.assertContains(response, expected_error)
+
 
 class TestNewItem(TestCase):
     """-> new element of list""" 
