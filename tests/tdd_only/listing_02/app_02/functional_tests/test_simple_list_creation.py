@@ -1,42 +1,11 @@
-import unittest
-from unittest import skip
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from .base import FunctionalTest
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.keys import Keys 
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import WebDriverException
-import time 
-import math
 
-MAX_WAIT = 10 
-class TestNewVisiter(StaticLiveServerTestCase):
-    """Test for New Visiter""" 
 
-    def setUp(self):
-        """set"""
-
-        self.browser = Firefox()
-
-    def tearDown(self):
-        """Unset""" 
-
-        self.browser.quit() 
-    
-    def wait_for_row_in_list_table(self, member: str):
-        """Waiting string in table of list""" 
-
-        start_time = time.time()
-        while True:
-            try:
-                table = self.browser.find_element(By.ID, 'id_list_table')
-                rows = table.find_elements(By.TAG_NAME, 'tr')
-                self.assertIn(member, [row.text for row in rows])
-                return 
-            except (AssertionError, WebDriverException) as err:
-                if time.time() - start_time > MAX_WAIT:
-                    raise err 
-                time.sleep(0.5)
-
+class NewWisiterTest(FunctionalTest):
     def test_can_start_a_list_for_one_user(self):
         """May by will start a list app and get his later""" 
 
@@ -103,24 +72,3 @@ class TestNewVisiter(StaticLiveServerTestCase):
         page_text = self.browser.find_element(By.TAG_NAME, 'body').text
         self.assertNotIn('One from another user', page_text)
         self.assertIn('Two from another user', page_text)
-
-
-    def test_layout_and_styling(self):
-        """-> style"""
-
-        self.browser.get(self.live_server_url)
-        self.browser.set_window_size(1024, 768)
-        input_box = self.browser.find_element(By.ID, 'id_new_item')
-        input_box.send_keys('test')
-        input_box.send_keys(Keys.ENTER)
-        self.wait_for_row_in_list_table('1 -> test')
-
-        input_box = self.browser.find_element(By.ID, 'id_new_item')
-
-        self.assertAlmostEqual(math.floor(input_box.location['x'] + input_box.size['width']) / 2, 490, delta=10)
-
-@skip
-def test_cannot_add_empty_list_items(self):
-    """-> not added empty item""" 
-
-    self.fail('Not empty!')
