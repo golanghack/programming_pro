@@ -17,7 +17,8 @@ def new_list(request):
     """-> new list""" 
 
     my_list = List.objects.create()
-    Item.objects.create(text=request.POST['item_text'], my_list=my_list)
+    item =Item.objects.create(text=request.POST['item_text'], my_list=my_list)
+    item.full_clean()
     return redirect(f'/lists/{my_list.id}/')
 
 def add_item(request, list_id):
