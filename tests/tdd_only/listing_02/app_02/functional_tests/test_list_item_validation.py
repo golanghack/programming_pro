@@ -16,7 +16,7 @@ class TestItemValidation(FunctionalTest):
         
         self.browser.find_element(By.ID, 'id_new_item').send_keys('One')
         self.browser.find_element(By.ID, 'id_new_item').send_keys(Keys.ENTER)
-        self.wait_for('1 -> One')
+        self.wait_for_row_in_list_table('1 -> One')
 
         self.browser.find_element(By.ID, 'id_new_item').send_keys(Keys.ENTER)
 

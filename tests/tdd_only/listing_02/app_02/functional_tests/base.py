@@ -36,7 +36,7 @@ class FunctionalTest(StaticLiveServerTestCase):
                     raise err 
                 time.sleep(0.5)
 
-    def wait_for(self, member: str):
+    def wait_for(self, member):
         """Waiting string in table of list""" 
 
         start_time = time.time()
