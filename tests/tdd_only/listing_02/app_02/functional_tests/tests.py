@@ -1,4 +1,5 @@
 import unittest
+from unittest import skip
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.keys import Keys 
@@ -117,3 +118,9 @@ class TestNewVisiter(StaticLiveServerTestCase):
         input_box = self.browser.find_element(By.ID, 'id_new_item')
 
         self.assertAlmostEqual(math.floor(input_box.location['x'] + input_box.size['width']) / 2, 490, delta=10)
+
+@skip
+def test_cannot_add_empty_list_items(self):
+    """-> not added empty item""" 
+
+    self.fail('Not empty!')
