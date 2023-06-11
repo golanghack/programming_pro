@@ -10,6 +10,9 @@ def view_list(request, my_list_id):
     """View of list"""
     
     my_list = List.objects.get(id=my_list_id)
+    if request.method == 'POST':
+        Item.objects.create(text=request.POST['item_text'], my_list=my_list)
+        return redirect(f'lists/{my_list.id}/')
     return render(request, 'list.html', {
         'my_list': my_list,
     })

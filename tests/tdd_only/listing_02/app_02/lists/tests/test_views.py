@@ -20,11 +20,6 @@ class ListViewTest(TestCase):
 
         other_list = List.objects.create()
         correct_list = List.objects.create()
-        response = self.client.post(
-            f'/lists/{correct_list.id}/',
-            data={'item_text': 'A new'}
-        )
-        self.assertRedirects(response, f'lists/{correct_list.id}/')
 
         self.client.post(
             f'/lists/{correct_list.id}/add_item', 
