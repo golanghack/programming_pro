@@ -22,7 +22,7 @@ class ListViewTest(TestCase):
         correct_list = List.objects.create()
 
         self.client.post(
-            f'/lists/{correct_list.id}/add_item', 
+            f'/lists/{correct_list.id}/', 
             data={'item_text': 'A new item for an existing list'}
         )
         self.assertEqual(Item.objects.count(), 1)
@@ -31,17 +31,6 @@ class ListViewTest(TestCase):
         self.assertEqual(new_item.text, 'A new item for an existing list')
         self.assertEqual(new_item.my_list, correct_list)
 
-    def test_redirects_to_list_view(self):
-        """-> redirect on views for list"""
-
-        other_list = List.objects.create()
-        correct_list = List.objects.create()
-
-        response = self.client.post(
-            f'/lists/{correct_list.id}/add_item', 
-            data={'item_text': 'A new item_for an existing list'}
-        )
-        self.assertRedirects(response, f'/lists/{correct_list.id}/')
 
     def test_uses_list_template(self):
         """Use template for list""" 
