@@ -15,6 +15,19 @@ class HomeTest(TestCase):
 class ListViewTest(TestCase):
     """Testing views of list"""
 
+    def test_validation_errors_end_up_on_lists_page(self):
+        """-> errors validation to lists page"""
+
+        my_list = List.objects.create()
+        response = self.client.post(
+            f'/lists/{my_list.id}/',
+            data={'item_text': ''}
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'list.html')
+        
+
     def test_can_save_a_POST_request_to_an_exiting_list(self):
         """-> can post request in existing list""" 
 
