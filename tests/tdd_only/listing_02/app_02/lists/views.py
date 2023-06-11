@@ -10,9 +10,16 @@ def view_list(request, my_list_id):
     """View of list"""
     
     my_list = List.objects.get(id=my_list_id)
+    error = None
     if request.method == 'POST':
-        Item.objects.create(text=request.POST['item_text'], my_list=my_list)
-        return redirect(f'/lists/{my_list.id}/')
+        try:
+            item = Item.objects.create(text=request.POST['item_text'], my_list=my_list)
+            item.full_clean()
+            item.save()
+            return redirect(f'/lists/{my_list.id}/')
+        except ValidationError:
+            error = 'You can`t have an empty list item'
+    
     return render(request, 'list.html', {
         'my_list': my_list,
     })
