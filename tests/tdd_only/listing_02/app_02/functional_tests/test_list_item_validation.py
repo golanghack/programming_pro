@@ -10,7 +10,7 @@ class TestItemValidation(FunctionalTest):
         self.browser.get(self.live_server_url)
         self.browser.find_element(By.ID, 'id_new_item').send_keys(Keys.ENTER)
         self.wait_for(lambda: self.assertEqual(
-            self.browser.find_element(By.CSS_SELECTOR, '.has-error').text, 
+            self.browser.find_element(By.CSS_SELECTOR, '.has_error').text, 
             'List item dont empty!')
             )
         
