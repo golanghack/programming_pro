@@ -1,9 +1,13 @@
 from django.contrib import admin
+from django.urls import reverse
 from django.http import HttpResponse
 from .models import Order, OrderItem
 import csv
 import datetime
 
+def order_detail(object):
+    url = reverse('orders:admin_order_detail', args=[object.id])
+    return mark_safe(f'<a href="{url}">Представление</a>')
 
 def export_to_csv(modeladmin, request, queryset):
     opts = modeladmin.model._meta
