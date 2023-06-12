@@ -1,5 +1,5 @@
 from django.test import TestCase
-from lists.models import ItemForm
+from lists.forms import ItemForm
 
 class ItemFormTest(TestCase):
     """-> form test for element of list"""
