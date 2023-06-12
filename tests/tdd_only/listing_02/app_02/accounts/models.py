@@ -5,7 +5,7 @@ class Token(models.Model):
     """-> our Token""" 
 
     email = models.EmailField()
-    uid = models.CharField(max_length=255)
+    uid = models.CharField(max_length=255, unique=True)
 
 class ListUserManager(BaseUserManager):
     """-> manage user list"""
@@ -35,3 +35,6 @@ class ListUser(AbstractBaseUser, PermissionsMixin):
     @property
     def is_active(self):
         return True
+
+    class Meta:
+        abstract = True
