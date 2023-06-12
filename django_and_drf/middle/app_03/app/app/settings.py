@@ -150,3 +150,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Stripe
 STRIPE_API_VERSION = ''
 STRIPE_SECRET_KEY = ''
+
+# static 
+STATIC_ROOT = BASE_DIR / 'static'
