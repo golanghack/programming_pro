@@ -13,16 +13,15 @@ program should display the reduced fraction.
 """ 
 
 from util_for_tasks.get_number import get_number
+import math
+
 
 def fractions(nominator: int, denominator: int) -> tuple:
     """Return maximum possible fraction reduce"""
-
-    switcher = True
-    while switcher:
-        if (nominator / denominator) == 1:
-            switcher = False
-            return '1/1'
-
+    
+    minimal_unit = math.gcd(nominator, denominator)
+    return (nominator // minimal_unit, denominator // minimal_unit)
+    
 def main():
     nominator = get_number('Enter nominator -> ')
     denominator = get_number('Enter denominator -> ')
