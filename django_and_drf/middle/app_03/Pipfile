@@ -9,6 +9,7 @@ pillow = "*"
 celery = "*"
 flower = "*"
 stripe = "*"
+weasyprint = "*"
 
 [dev-packages]
 
