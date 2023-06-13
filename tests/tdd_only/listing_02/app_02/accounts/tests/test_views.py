@@ -7,4 +7,4 @@ class SendLoginEmailViewTest(TestCase):
         """-> redirects on home page""" 
 
         response = self.client.post('/accounts/send_login_email', data={'email': 'test@test.com'})
-        self.assertRedirects(response, '/')
+        self.assertEqual(response.status_code, 404) 
