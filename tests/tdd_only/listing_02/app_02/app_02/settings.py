@@ -132,3 +132,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTHENTICATION_BACKENDS = [
     'accounts.authentication.PasswordLessAuthenticationBackend',
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
