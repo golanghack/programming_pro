@@ -22,7 +22,7 @@ class LoginTest(FunctionalTest):
         email = mail.outbox[0]
         self.assertIn(TEST_EMAIL, email.to)
         self.assertEqual(email.subject, SUBJECT)
-        self.assertIn('Use this ling to log-in -> ', email.body)
+        self.assertIn('Use this link to log-in -> ', email.body)
         url_search = re.search(r'http://.+/.+$', email.body)
         if not url_search:
             self.fail(f'Could not find url in email body -> \n{email.body}')
