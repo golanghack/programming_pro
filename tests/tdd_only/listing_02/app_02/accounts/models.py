@@ -5,6 +5,11 @@ class User(models.Model):
     """User""" 
 
     email = models.EmailField()
+    REQUIRED_FIELDS = []
+    USERNAME_FIELD = 'email'
+    is_anonymous = False
+    is_authenticated = True
+
 
 class Token(models.Model):
     """-> our Token""" 
