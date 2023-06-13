@@ -15,7 +15,7 @@ class Token(models.Model):
     """-> our Token""" 
 
     email = models.EmailField()
-    uid = models.CharField(max_length=255, unique=True)
+    uid = models.CharField(max_length=255)
 
 class ListUserManager(BaseUserManager):
     """-> manage user list"""
