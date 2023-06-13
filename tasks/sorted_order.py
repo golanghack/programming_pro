@@ -12,7 +12,7 @@ to sort the list.
 
 from util_for_tasks.get_number import get_number
 
-def parsing_stdin(message: str, list_for_numbers: list) -> int:
+def parsing_stdin(message: str, list_for_numbers: list, reversing: bool=False) -> int:
     """Return number if number != 0""" 
 
     switcher = True
@@ -22,7 +22,12 @@ def parsing_stdin(message: str, list_for_numbers: list) -> int:
             list_for_numbers.append(number)
         else:
             switcher = False
-    return sorted(list_for_numbers)
+    if reversing:
+        reversing_list_numbers = sorted(list_for_numbers)
+        reversing_list_numbers_slice = reversing_list_numbers[::-1]
+        return reversing_list_numbers_slice
+    else:
+        return sorted(list_for_numbers)
 
 def main():
     list_numbers = parsing_stdin('Enter number or 0 for exit ', [])
