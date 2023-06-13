@@ -1,6 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
+class User(models.Model):
+    """User""" 
+
+    email = models.EmailField()
+
 class Token(models.Model):
     """-> our Token""" 
 
