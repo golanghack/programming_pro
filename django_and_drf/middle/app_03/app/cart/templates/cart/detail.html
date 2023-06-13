@@ -72,6 +72,12 @@
                 </tr>   
         </tbody>
     </table>
+    <p>Введите купон на скидку</p>
+        <form action="{% url 'coupons:apply' %}" method="post">
+            {{ coupon_apply_form }}
+            <input type="submit" name="" id="" value="Добавить">
+            {% csrf_token %} 
+        </form>
     <p class="text-right">
         <a href="{% url 'shop:product_list' %}" class="button-light">Продолжить покупки</a>
         <a href="{% url 'orders:order_create' %}" class="button">Завершить заказ</a>
