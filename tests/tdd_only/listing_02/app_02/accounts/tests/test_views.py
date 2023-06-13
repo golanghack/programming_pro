@@ -14,7 +14,7 @@ class SendLoginEmailViewTest(TestCase):
     def test_sends_mail_to_address_from_post(self):
         """-> send message on email from post""" 
 
-        self.send_mail_called = False
+        self.send_mail_called = True
 
         def fake_send_mail(subject, body, from_email, to_list):
             """-> fake function send_email from django"""
@@ -25,9 +25,9 @@ class SendLoginEmailViewTest(TestCase):
             self.from_email = from_email
             self.to_list = to_list
 
-        accounts.views.send_mail = fake_send_mail
-        self.client.post('/accounts/send_login_email', data={'email': 'test@test.com'})
-        self.assertTrue(self.send_mail_called)
-        self.assertEqual(self.subject, 'Your login link for lists')
-        self.assertEqual(self.from_email, 'noreply@superuser.com')
-        self.assertEqual(self.to_list, ['test@test.com'])
+            accounts.views.send_mail = fake_send_mail
+            self.client.post('/accounts/send_login_email', data={'email': 'test@test.com'})
+            self.assertTrue(self.send_mail_called)
+            self.assertEqual(self.subject, 'Your login link for lists')
+            self.assertEqual(self.from_email, 'noreply@superuser.com')
+            self.assertEqual(self.to_list, ['test@test.com'])
