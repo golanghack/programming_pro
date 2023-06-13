@@ -11,3 +11,9 @@ class UserModelTest(TestCase):
 
         user = User(email='test@test.com')
         user.full_clean()
+
+    def test_email_is_primary_key(self):
+        """-> email is primary key"""
+
+        user = User(email='test@test.com')
+        self.assertEqual(user.pk, 'test@test.com')

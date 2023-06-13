@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 class User(models.Model):
     """User""" 
 
-    email = models.EmailField()
+    email = models.EmailField(primary_key=True)
     REQUIRED_FIELDS = []
     USERNAME_FIELD = 'email'
     is_anonymous = False
