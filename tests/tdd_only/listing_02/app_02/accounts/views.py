@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate
+from django.contrib import messages
 from django.contrib.auth import login as auth_login, logout as auth_logout
 import uuid
 import sys 
@@ -19,6 +20,7 @@ def send_login_email(request):
     from_email = 'noreply@superuser'
     to_list = [email,]
     send_mail(subject, body, from_email, to_list)
+    messages.success(request, 'Link to enter send')
     return render(request, 'login_email_sent.html')
 
 
