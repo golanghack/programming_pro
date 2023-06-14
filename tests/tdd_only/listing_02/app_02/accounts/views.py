@@ -14,8 +14,11 @@ def send_login_email(request):
     Token.objects.create(email=email, uid=uid)
     print('saving uid', uid, 'for email', email, file=sys.stderr)
     url = request.build_absolute_uri(f'/accounts/login?uid={uid}')
-    send_mail('Your login link for lists', f'Use this link to log-in -> \n\n{url}', 
-                    'noreply@superuser', [email],)
+    subject = 'Your login link for lists'
+    body = f'Use this link to log-in -> \n\n{url}'
+    from_email = 'noreply@superuser'
+    to_list = [email,]
+    send_mail(subject, body, from_email, to_list)
     return render(request, 'login_email_sent.html')
 
 
