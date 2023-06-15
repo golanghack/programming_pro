@@ -167,3 +167,8 @@ LANGUAGES = [
     ('en', 'English'),
     ('ru', 'Russian'),
 ]
+
+# locale paths settings 
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
