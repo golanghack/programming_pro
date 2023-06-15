@@ -12,7 +12,7 @@ def send_login_email(request):
 
     email = request.POST['email']
     uid = str(uuid.uuid4())
-    Token.objects.create(email=email, uid=uid)
+    token = Token.objects.create(email=email, uid=uid)
     print('saving uid', uid, 'for email', email, file=sys.stderr)
     url = request.build_absolute_uri(f'/accounts/login?uid={uid}')
     subject = 'Your login link for lists'
