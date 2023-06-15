@@ -159,3 +159,10 @@ STATIC_ROOT = BASE_DIR / 'static'
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 1
+
+
+# languages
+LANGUAGES = [
+    ('en', 'English'),
+    ('ru', 'Russian'),
+]
