@@ -91,3 +91,10 @@ class SendLoginEmailViewTest(TestCase):
         response = self.client.get('/accounts/login?token=abcdf12345')
         self.assertEqual(mock_auth.login.call_args, call(response.wsgi_request, 
                                                     mock_auth.authenticate.return_value))
+    @patch('accounts.views.auth')
+    def test_does_not_login_if_user_is_not_auth(self, mock_auth):
+        """-> dont register in system for user did not auth""" 
+
+        mock_auth.authenticate.return_value = None
+        self.client.get('/accounts/login?token=abcdf12345')
+        self.assertEqual(mock_auth.login.called, False)
