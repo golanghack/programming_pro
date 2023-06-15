@@ -28,7 +28,8 @@ def send_login_email(request):
 def login(request):
     """-> register in system""" 
 
-    auth.authenticate(uid=request.GET.get('token'))
+    user = auth.authenticate(uid=request.GET.get('token'))
+    auth.login(request, user)
     return redirect('/')
 
 def logout(request):

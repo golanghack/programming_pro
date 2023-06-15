@@ -82,3 +82,12 @@ class SendLoginEmailViewTest(TestCase):
 
         self.client.get('/accounts/login?token=abcdf12345')
         self.assertEqual(mock_auth.authenticate.call_args, call(uid='abcdf12345'))
+
+    
+    @patch('accounts.views.auth')
+    def test_calls_auth_login_with_user_if_there_is_one(self, mock_auth):
+        """-> call auth_login with user if exists""" 
+
+        response = self.client.get('/accounts/login?token=abcdf12345')
+        self.assertEqual(mock_auth.login.call_args, call(response.wsgi_request, 
+                                                    mock_auth.authenticate.return_value))
