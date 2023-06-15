@@ -29,7 +29,8 @@ def login(request):
     """-> register in system""" 
 
     user = auth.authenticate(uid=request.GET.get('token'))
-    auth.login(request, user)
+    if user:
+        auth.login(request, user)
     return redirect('/')
 
 def logout(request):
