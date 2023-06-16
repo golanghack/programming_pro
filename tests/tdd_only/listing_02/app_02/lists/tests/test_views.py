@@ -125,3 +125,12 @@ class NewListTest(TestCase):
         self.client.post('/lists/new', data={'item_text': ''})
         self.assertEqual(List.objects.count(), 0)
         self.assertEqual(Item.objects.count(), 0)
+
+    def test_list_owner_is_saved_if_user_is_auth(self):
+        """-> owner save if user is authenticated""" 
+
+        user = User.objects.create(email='test@test.com')
+        self.client.force_login(user)
+        self.client.post('/lists/new', data={'text': 'new item'})
+        my_list = List.objects.first()
+        self.assertEqual(my_list.owner, user)
