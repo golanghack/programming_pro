@@ -36,11 +36,11 @@ def new_list(request):
         my_list.delete()
         error = 'List item dont empty!'
         return render(request, 'home.html', {'error': error})
-    return redirect(my_list)
+    return redirect(f'/lists/{my_list.id}/')
 
 def add_item(request, list_id):
     """Add new item in list"""
 
     my_list = List.objects.get(id=list_id)
-    Item.objects.create(text=request.POST['item_text'], my_list=my_list)
+    Item.objects.create(text=request.POST['item_text'], my_list=my_list, item_text=True)
     return redirect(f'/lists/{my_list.id}/')

@@ -1,7 +1,10 @@
 
 from django.test import TestCase
+from django.contrib.auth import get_user_model
 from lists.models import Item, List
 
+
+User = get_user_model()
 class HomeTest(TestCase):
     """Home page test"""
 
@@ -106,8 +109,8 @@ class NewListTest(TestCase):
         """-> redirect after POST""" 
 
         response = self.client.post('/lists/new', data={'item_text': 'A new list item'})
-        new_my_list = List.objects.first()
-        self.assertRedirects(response, f'/lists/{new_my_list.id}/')
+        my_list = List.objects.first()
+        self.assertRedirects(response, f'/lists/{my_list.id}/')
 
     def test_validation_errors_are_sent_back_to_home_page(self):
         """-> error of validation return back in template""" 
