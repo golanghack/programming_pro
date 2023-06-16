@@ -56,3 +56,8 @@ class TestListAndItemModel(TestCase):
         user = User.objects.create(email='test@test.com')
         my_list = List.objects.create(owner=user)
         self.assertIn(my_list, user.list_set.all())
+
+    def test_list_owner_is_optional(self):
+        """-> owner list is optional""" 
+
+        List.objects.create()
