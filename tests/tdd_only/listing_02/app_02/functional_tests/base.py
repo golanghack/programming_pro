@@ -42,17 +42,11 @@ class FunctionalTest(StaticLiveServerTestCase):
         rows = table.find_element(By.TAG_NAME, 'rt')
         self.assertIn(row_text, [row.text for row in rows])
 
+    @wait
     def wait_for(self, member):
         """Waiting string in table of list""" 
 
-        start_time = time.time()
-        while True:
-            try:
-                return member()
-            except (AssertionError, WebDriverException) as err:
-                if time.time() - start_time > MAX_WAIT:
-                    raise err 
-                time.sleep(0.5)
+        return member()
 
     @wait
     def wait_to_be_logged_in(self, email):
