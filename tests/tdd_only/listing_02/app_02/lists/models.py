@@ -5,8 +5,8 @@ from django.conf import settings
 class List(models.Model):
     """model for list""" 
 
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL)
-    
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
     def get_absolute_url(self):
         return reverse('view_list', args=[self.id])
 
