@@ -21,20 +21,26 @@ class FunctionalTest(StaticLiveServerTestCase):
 
         self.browser.quit() 
     
-    def wait_for_row_in_list_table(self, member: str):
-        """Waiting string in table of list""" 
+    def wait(fn):
+        """ -> decorator""" 
+        def modified_function(*args, **kwargs):
+            start_time = time.time()
+            while True:
+                try:
+                    return fn(*args, **kwargs)
+                except (AssertionError, WebDriverException) as err:
+                    if time.time() - start_time > MAX_WAIT:
+                        raise err 
+                    time.sleep(.5)
+        return  modified_function
+    
+    @wait
+    def wait_for_row_in_list_table(self, row_text):
+        """-> wait string in table"""
 
-        start_time = time.time()
-        while True:
-            try:
-                table = self.browser.find_element(By.ID, 'id_list_table')
-                rows = table.find_elements(By.TAG_NAME, 'tr')
-                self.assertIn(member, [row.text for row in rows])
-                return 
-            except (AssertionError, WebDriverException) as err:
-                if time.time() - start_time > MAX_WAIT:
-                    raise err 
-                time.sleep(0.5)
+        table = self.browser.find_element(By.ID, 'id_list_table')
+        rows = table.find_element(By.TAG_NAME, 'rt')
+        self.assertIn(row_text, [row.text for row in rows])
 
     def wait_for(self, member):
         """Waiting string in table of list""" 
@@ -48,17 +54,18 @@ class FunctionalTest(StaticLiveServerTestCase):
                     raise err 
                 time.sleep(0.5)
 
+    @wait
     def wait_to_be_logged_in(self, email):
         """-> wait for log in"""
 
-        self.wait_for(lambda: self.browser.find_element(By.CLASS_NAME, 'log out'))
+        self.browser.find_element(By.CLASS_NAME, 'log out')
         navbar = self.browser.find_element(By.CLASS_NAME, 'navbar')
         self.assertIn(email, navbar.text)
 
-
+    @wait
     def wait_to_be_logged_out(self, email):
         """-> wait for log out""" 
 
-        self.wait_for(lambda: self.browser.find_element(By.NAME, 'email'))
+        self.browser.find_element(By.NAME, 'email')
         navbar = self.browser.find_element(By.CLASS_NAME, 'navbar')
         self.assertNotIn(email, navbar.text)
