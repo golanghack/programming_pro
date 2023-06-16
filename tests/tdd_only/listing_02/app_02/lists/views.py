@@ -25,18 +25,17 @@ def view_list(request, my_list_id):
     })
 
 def new_list(request):
-    """-> new list""" 
+    """-> new list"""
 
-    my_list = List.objects.create()
-    item =Item.objects.create(text=request.POST['item_text'], my_list=my_list)
-    try:
-        item.full_clean()
-        item.save()
-    except ValidationError:
-        my_list.delete()
-        error = 'List item dont empty!'
-        return render(request, 'home.html', {'error': error})
-    return redirect(f'/lists/{my_list.id}/')
+    form = ItemForm(data=request.POST)
+    if form.is_valid():
+        my_list = List()
+        my_list.owner = request.user
+        my_list.save()
+        form.save(for_my_list=my_list)
+        return redirect(my_list)
+    else:
+        return render(request, 'home.html', {'form': form})
 
 def add_item(request, list_id):
     """Add new item in list"""
