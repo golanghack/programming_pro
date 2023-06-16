@@ -61,4 +61,4 @@ class FunctionalTest(StaticLiveServerTestCase):
 
         self.wait_for(lambda: self.browser.find_element(By.NAME, 'email'))
         navbar = self.browser.find_element(By.CSS_SELECTOR, '.navbar')
-        self.asserNotIn(email, navbar.text)
+        self.assertNotIn(email, navbar.text)
