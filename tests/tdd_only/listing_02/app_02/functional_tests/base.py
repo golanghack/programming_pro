@@ -51,8 +51,8 @@ class FunctionalTest(StaticLiveServerTestCase):
     def wait_to_be_logged_in(self, email):
         """-> wait for log in"""
 
-        self.wait_for(lambda: self.browser.find_element(By.LINK_TEXT, 'Log out'))
-        navbar = self.browser.find_element(By.CSS_SELECTOR, '.navbar')
+        self.wait_for(lambda: self.browser.find_element(By.CLASS_NAME, 'log out'))
+        navbar = self.browser.find_element(By.CLASS_NAME, 'navbar')
         self.assertIn(email, navbar.text)
 
 
@@ -60,5 +60,5 @@ class FunctionalTest(StaticLiveServerTestCase):
         """-> wait for log out""" 
 
         self.wait_for(lambda: self.browser.find_element(By.NAME, 'email'))
-        navbar = self.browser.find_element(By.CSS_SELECTOR, '.navbar')
+        navbar = self.browser.find_element(By.CLASS_NAME, 'navbar')
         self.assertNotIn(email, navbar.text)

@@ -17,7 +17,7 @@ class LoginTest(FunctionalTest):
         self.browser.find_element(By.NAME, 'email').send_keys(TEST_EMAIL)
         self.browser.find_element(By.NAME, 'email').send_keys(Keys.ENTER)
 
-        self.wait_for(lambda: self.assertIn('Check your email', self.browser.find_element(By.TAG_NAME, 'body').text))
+        self.wait_for(lambda: self.assertIn('Enter email to log in', self.browser.find_element(By.TAG_NAME, 'body').text))
 
         email = mail.outbox[0]
         self.assertIn(TEST_EMAIL, email.to)
@@ -28,5 +28,9 @@ class LoginTest(FunctionalTest):
             self.fail(f'Could not find url in email body -> \n{email.body}')
         url = url_search.group(0)
         self.assertIn(self.live_server_url, url)
+
+        self.wait_to_be_logged_in(email=TEST_EMAIL)
+        self.browser.find_element(By.CLASS_NAME, 'log out').click()
+        self.wait_to_be_logged_out(email=TEST_EMAIL)
 
         
