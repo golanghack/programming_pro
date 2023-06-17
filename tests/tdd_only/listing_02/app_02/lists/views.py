@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.core.exceptions import ValidationError
 from lists.models import Item, List
+from lists.forms import ItemForm
 
 def home(request):
     
@@ -30,7 +31,8 @@ def new_list(request):
     form = ItemForm(data=request.POST)
     if form.is_valid():
         my_list = List()
-        my_list.owner = request.user
+        if request.user.is_authenticated:
+            my_list.owner = request.user
         my_list.save()
         form.save(for_my_list=my_list)
         return redirect(my_list)

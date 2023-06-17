@@ -61,3 +61,11 @@ class TestListAndItemModel(TestCase):
         """-> owner list is optional""" 
 
         List.objects.create()
+
+    def test_list_name_is_first_item_text(self):
+        """-> name of list is text first item"""
+
+        my_list = List.objects.create()
+        Item.objects.create(my_list=my_list, text='first')
+        Item.objects.create(my_list=my_list, text='second')
+        self.assertEqual(my_list.name, 'first')
