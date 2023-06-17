@@ -15,3 +15,8 @@ class Item(models.Model):
     text = models.TextField(default='', null=True)
     my_list = models.ForeignKey(List, null=True, on_delete=models.CASCADE, default=None)
     item_text = models.BooleanField(default=False)
+
+
+@property
+def name(self):
+    return self.item_set.first().text
