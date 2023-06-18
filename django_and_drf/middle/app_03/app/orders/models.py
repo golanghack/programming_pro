@@ -7,8 +7,8 @@ from coupons.models import Coupon
 
 class Order(models.Model):
 
-    first_name = models.CharField(_('first_name'), max_length=50, verbose_name='first_name')
-    last_name = models.CharField(_('last_name'), max_length=50, verbose_name='last_name')
+    first_name = models.CharField(_('first_name'), max_length=50)
+    last_name = models.CharField(_('last_name'), max_length=50)
     email = models.EmailField(_('email'))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

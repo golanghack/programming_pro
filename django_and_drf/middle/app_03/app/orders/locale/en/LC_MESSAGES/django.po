@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-15 21:36+0300\n"
+"POT-Creation-Date: 2023-06-18 17:15+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: orders/models.py:10
 msgid "first_name"
 msgstr ""
@@ -27,4 +28,28 @@ msgstr ""
 
 #: orders/models.py:12
 msgid "email"
+msgstr ""
+
+#: orders/templates/orders/create.html:5 orders/templates/orders/create.html:8
+msgid "Завершение заказа"
+msgstr ""
+
+#: orders/templates/orders/create.html:10
+msgid "Ваш заказ"
+msgstr ""
+
+#: orders/templates/orders/create.html:20
+#, python-format
+msgid ""
+" \n"
+"                            '%(code)s' (%(discount)s%% скидка)\n"
+"                        "
+msgstr ""
+
+#: orders/templates/orders/create.html:28
+msgid ".руб"
+msgstr ""
+
+#: orders/templates/orders/create.html:32
+msgid "Place order"
 msgstr ""
