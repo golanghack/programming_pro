@@ -8,50 +8,81 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-18 17:15+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2023-06-18 17:56+0300\n"
+"PO-Revision-Date: 2023-06-18 14:57+0000\n"
+"Last-Translator:   <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: app/settings.py:168
+#: app/settings.py:170
 msgid "English"
 msgstr "Английский"
 
-#: app/settings.py:169
+#: app/settings.py:171
 msgid "Russian"
 msgstr "Русский"
 
+#: app/urls.py:31
+msgid "cart/"
+msgstr "корзина/"
+
+#: app/urls.py:32
+msgid "orders/"
+msgstr "заказы/"
+
+#: app/urls.py:33
+msgid "payment/"
+msgstr "оплата/"
+
+#: app/urls.py:34
+msgid "coupons/"
+msgstr "скидочные_купоны/"
+
+#: payment/urls.py:8
+msgid "process/"
+msgstr "процесс_оплаты/"
+
+#: payment/urls.py:9
+msgid "completed/"
+msgstr "завершение/"
+
+#: payment/urls.py:10
+msgid "canceled/"
+msgstr "отмена/"
+
 #: shop/templates/shop/base.html:21
 msgid "Your cart"
-msgstr ""
+msgstr "Ваша корзина"
 
 #: shop/templates/shop/base.html:24
 #, python-format
 msgid ""
 " \n"
-"                        %(total_items)s шт.%(total_items|pluralize)s, "
-"%(cart.get_total_price)sруб.\n"
+"                        %(total_items)s шт.%(total_items|pluralize)s, %(cart.get_total_price)sруб.\n"
 "                        "
 msgid_plural ""
 " \n"
 "                        %(items)s items $%(total / 100)s\n"
 "                        "
 msgstr[0] ""
-msgstr[1] ""
+"%(total_items)s .%(total_items|pluralize)s, %(cart.get_total_price)s $."
+msgstr[1] "%(items)s штук $%(total / 100)s"
 msgstr[2] ""
 msgstr[3] ""
 
+#: shop/templates/shop/base.html:32
+msgid "Ваша корзина пуста"
+msgstr "Ваша корзина пуста"
+
 #: shop/templates/shop/product/detail.html:24
 msgid "Добавить в корзину"
-msgstr ""
+msgstr "Add to cart"
 
 #: shop/templates/shop/product/detail.html:29
 msgid "Еще с этим приобретают:"
-msgstr ""
+msgstr "And with bought"

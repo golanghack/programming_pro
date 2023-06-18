@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-18 17:15+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2023-06-18 17:48+0300\n"
+"PO-Revision-Date: 2023-06-18 14:35+0000\n"
+"Last-Translator:   <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,39 +19,51 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
 
 #: orders/models.py:10
+#, fuzzy
 msgid "first_name"
 msgstr "Имя"
 
 #: orders/models.py:11
+#, fuzzy
 msgid "last_name"
 msgstr "Фамилия"
 
 #: orders/models.py:12
+#, fuzzy
 msgid "email"
-msgstr "Элуктронная почта"
+msgstr "Электронная почта"
 
 #: orders/templates/orders/create.html:5 orders/templates/orders/create.html:8
+#, fuzzy
 msgid "Завершение заказа"
-msgstr ""
+msgstr "Checkout"
 
 #: orders/templates/orders/create.html:10
+#, fuzzy
 msgid "Ваш заказ"
-msgstr ""
+msgstr "Your order"
 
 #: orders/templates/orders/create.html:20
-#, python-format
+#, fuzzy, python-format
 msgid ""
 " \n"
 "                            '%(code)s' (%(discount)s%% скидка)\n"
 "                        "
-msgstr ""
+msgstr "off"
 
 #: orders/templates/orders/create.html:28
+#, fuzzy
 msgid ".руб"
-msgstr ""
+msgstr "$"
 
 #: orders/templates/orders/create.html:32
+#, fuzzy
 msgid "Place order"
+msgstr "Ваш заказ"
+
+#: orders/urls.py:8
+msgid "create/"
 msgstr ""

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # downloaded 
     "rosetta",
+    "parler",
     # local
     "shop.apps.ShopConfig",
     "cart.apps.CartConfig",
@@ -47,6 +48,17 @@ INSTALLED_APPS = [
     "payment.apps.PaymentConfig",
     "coupons.apps.CouponsConfig",
 ]
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en'},
+        {'code': 'ru'},
+    ),
+    'default': {
+        'fallback': 'ru',
+        'hide_untranslated': False,
+    }
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
