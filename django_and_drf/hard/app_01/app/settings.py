@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    #downloaded
+    "rest_framework",
     # local 
     "core.apps.CoreConfig",
     "core.user.apps.UserConfig",
