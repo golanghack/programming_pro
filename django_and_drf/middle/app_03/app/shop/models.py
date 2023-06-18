@@ -25,19 +25,18 @@ class Category(TranslatableModel):
     
 class Product(TranslatableModel):
     translations = TranslatedFields(
-    category = models.ForeignKey(Category, 
-                                on_delete=models.CASCADE, 
-                                related_name='products'),
     name = models.CharField(max_length=200, help_text='Enter product name '),
     slug = models.SlugField(max_length=200),
-    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True),
-    description = models.TextField(blank=True, help_text='Enter description of product'),
-    price = models.DecimalField(max_digits=10, decimal_places=2),
-    available = models.BooleanField(default=True),
-    created = models.DateTimeField(auto_now_add=True),
-    updated = models.DateTimeField(auto_now=True),
+    description = models.TextField(blank=True, help_text='Enter description of product')
     )
-
+    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    available = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    category = models.ForeignKey(Category, 
+                                on_delete=models.CASCADE, 
+                                related_name='products')
     class Meta:
         indexes = [
             models.Index(fields=['-created']),
