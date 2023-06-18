@@ -1,3 +1,4 @@
+{% load i18n %} 
 {% load static %} 
 
 <!DOCTYPE html>
@@ -17,12 +18,18 @@
         <div class="cart">
             {% with total_items=cart|length %} 
                 {% if total_items > 0 %} 
+                {% trans 'Your cart' %} 
                     Ваша корзина -> 
                     <a href="{% url 'cart:cart_detail' %}">
+                        {% blocktrans with total=cart.total_price count items=total_items %} 
                         {{ total_items }} шт.{{ total_items|pluralize }}, {{ cart.get_total_price }}руб.
+                        {% plural %} 
+                        {{ items }} items ${{ total / 100 }}
+                        {% endblocktrans %} 
                     </a>
                 {% elif not order %}    
-                    Ваша корзина пуста
+                    
+                    {% trans 'Ваша корзина пуста'}
                 {% endif %} 
             {% endwith %} 
         </div>
