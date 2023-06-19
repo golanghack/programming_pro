@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # local 
     "core.apps.CoreConfig",
     "core.user.apps.UserConfig",
+    "core.auth.apps.AuthConfig",
 ]
 
 REST_FRAMEWORK = {
