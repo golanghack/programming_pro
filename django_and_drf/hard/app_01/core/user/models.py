@@ -60,6 +60,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
+    bio = models.TextField(max_length=300, default='')
+    avatar = models.ImageField(upload_to='images/%Y/%m/%d/', default='')
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     objects = UserManager()
