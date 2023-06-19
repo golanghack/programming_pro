@@ -39,10 +39,19 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     #downloaded
     "rest_framework",
+    "rest_framework_simplejwt",
     # local 
     "core.apps.CoreConfig",
     "core.user.apps.UserConfig",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': 
+            ['django_filters.rest_framework.DjangoFilterBackend'],
+}
 
 AUTH_USER_MODEL = 'core_user.User'
 
