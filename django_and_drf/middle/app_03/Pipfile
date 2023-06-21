@@ -13,6 +13,8 @@ weasyprint = "*"
 redis = "*"
 django-rosetta = "*"
 django-parler = "*"
+selenium = "*"
+coverage = "*"
 
 [dev-packages]
 
