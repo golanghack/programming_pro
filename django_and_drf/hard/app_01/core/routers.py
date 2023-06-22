@@ -17,7 +17,7 @@ router.register(r'auth/refresh', RefreshViewSet, basename='auth-refresh')
 router.register(r'api/user', UserViewSet, basename='user')
 
 # Post
-router.register(r'post', PostViewSet, basename='post')
+router.register(r'api/post', PostViewSet, basename='post')
 
 urlpatterns = [
     *router.urls,

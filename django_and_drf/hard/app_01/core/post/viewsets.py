@@ -8,7 +8,7 @@ from core.post.serializers import PostSerializer
 class PostViewSet(AbstractViewSet):
     """-> create post view set"""
 
-    http_method_names = ('post', 'get', )
+    http_method_names = ['post', 'get', ]
     permission_classes = (IsAuthenticated,)
     serializer_class = PostSerializer
 
