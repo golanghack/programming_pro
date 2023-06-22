@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "core.user.apps.UserConfig",
     "core.auth.apps.AuthConfig",
+    "core.post.apps.PostConfig",
 ]
 
 REST_FRAMEWORK = {
