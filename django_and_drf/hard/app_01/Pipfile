@@ -10,6 +10,7 @@ djangorestframework = "*"
 django-filter = "*"
 pillow = "*"
 djangorestframework-simplejwt = "*"
+django-shell-plus = "*"
 
 [dev-packages]
 
