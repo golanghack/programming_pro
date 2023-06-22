@@ -12,11 +12,11 @@ class RefreshViewSet(viewsets.ViewSet, TokenRefreshView):
     http_method_names = ['post',]
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serialiser(data=request.data)
-
+        serializer = self.get_serializer(data=request.data)
+        print(serializer)
         try:
             serializer.is_valid(raise_exception=True)
         except TokenError as err:
-            raise InvalidToken(e.args[0]) # BAD PRACTIC!!! Reraise
+            raise InvalidToken(err.args[0]) # BAD PRACTIC!!! Reraise
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
-    
+        
