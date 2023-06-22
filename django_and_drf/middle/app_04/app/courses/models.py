@@ -30,3 +30,13 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title 
+
+class Module(models.Model):
+    """-> module for education cms platform"""
+
+    course = models.ForeignKey(Course, related_name='modules', on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return f'{self.order}. {self.title}'
