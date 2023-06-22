@@ -3,9 +3,10 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.http import Http404
+from core.abstract.models import AbstractManager, AbstractModel
 
 
-class UserManager(BaseUserManager):
+class UserManager(BaseUserManager, AbstractManager):
     """-> custom managing users""" 
 
     def get_object_by_public_id(self, public_id: int):
@@ -48,7 +49,7 @@ class UserManager(BaseUserManager):
 
 
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
     """Model for user"""
 
     public_id = models.UUIDField(db_index=True, unique=True, default=uuid.uuid4, editable=False)
