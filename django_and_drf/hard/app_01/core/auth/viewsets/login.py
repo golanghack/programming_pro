@@ -16,7 +16,7 @@ class LoginViewSet(ViewSet):
         """-> return response with validation function""" 
 
         serializer = self.serializer_class(data=request.data)
-
+    
         try:
             serializer.is_valid(raise_exception=True)
         except TokenError as err:

@@ -54,6 +54,8 @@ REST_FRAMEWORK = {
             ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
+
+
 AUTH_USER_MODEL = 'core_user.User'
 
 MIDDLEWARE = [
