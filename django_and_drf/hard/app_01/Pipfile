@@ -11,6 +11,7 @@ django-filter = "*"
 pillow = "*"
 djangorestframework-simplejwt = "*"
 django-shell-plus = "*"
+drf-nested-routers = "*"
 
 [dev-packages]
 
