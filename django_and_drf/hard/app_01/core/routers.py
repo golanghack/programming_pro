@@ -1,5 +1,4 @@
-from rest_framework_nested import nested_routers
-from rest_framework.routers import routers
+from rest_framework_nested import routers
 from core.user.viewsets import UserViewSet
 from core.auth.viewsets.register import RegisterViewSet
 from core.auth.viewsets.login import LoginViewSet
@@ -19,10 +18,10 @@ router.register(r'api/user', UserViewSet, basename='user')
 
 # Post
 router.register(r'api/post', PostViewSet, basename='post')
-post_router = nested_routers.NestedSimpleRouter(router, r'post', lookup='post')
-post_router.register(r'comment', CommentViewSet, basename='post-comment')
+posts_router = routers.NestedSimpleRouter(router, r'api/post', lookup='post')
+posts_router.register(r'comment', CommentViewSet, basename='post-comment')
 
 urlpatterns = [
     *router.urls,
-    *post_router.urls,
+    *posts_router.urls,
 ]
