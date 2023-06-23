@@ -48,20 +48,3 @@ class PostViewSet(AbstractViewSet):
         user.remove_like(post)
         serializer = self.serializer_class(post)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-class UserPermission(BasePermission):
-    """-> user permission"""
-
-    def has_object_permission(self, request, view, obj):
-        if request.user.is_annonymous:
-            return request.method in SAFE_METHODS
-        if view.basename in ['post']:
-            return bool(request.user and request.user.is_authenticated)
-        return False
-
-    def has_permission(self, request, view):
-        if view.basename in ['post']:
-            if request.user.is_annonymous:
-                return request.method in SAFE_METHODS
-            return bool(request.user and request.user.is_authenticated)
-        return False
