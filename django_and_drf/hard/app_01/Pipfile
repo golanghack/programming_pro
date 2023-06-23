@@ -12,6 +12,7 @@ pillow = "*"
 djangorestframework-simplejwt = "*"
 django-shell-plus = "*"
 drf-nested-routers = "*"
+pytest-django = "*"
 
 [dev-packages]
 
