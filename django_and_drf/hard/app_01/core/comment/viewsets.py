@@ -28,3 +28,10 @@ class CommentViewSet(AbstractViewSet):
         self.check_object_permissions(self.request, obj)
 
         return obj 
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
