@@ -1,7 +1,5 @@
 #! /usr/bin/env python3 
 
-import re 
-import imaplib
 from imaplib_list_parse import parse_list_response
 from imaplib_connect import open_connecttion
 
