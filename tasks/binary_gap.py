@@ -36,7 +36,7 @@ def find_longest_indent_with_zeros(N: int) -> int:
     else:
         return 0
 
-print(find_longest_indent_with_zeros(32))
+print(find_longest_indent_with_zeros(6))
 
 
         
