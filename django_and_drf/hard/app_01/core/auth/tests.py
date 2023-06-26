@@ -1,13 +1,11 @@
 import pytest
 from rest_framework import status
-from core.fixtures.user import user as local_user
+from core.fixtures.user import user 
 
 class TestAuthViewSet:
 
-    user = local_user
     endpoint = '/api/auth/'
 
-    @pytest.mark.django_db
     def test_login(self, client, user):
         """-> test login endpoint"""
 
@@ -22,7 +20,7 @@ class TestAuthViewSet:
         assert response.data['user']['username'] == user.username
         assert response.data['user']['email'] == user.email
 
-    @pytest.mark.db
+    @pytest.mark.django_db
     def test_register(self, client):
         """-> test register endpoint"""
 
