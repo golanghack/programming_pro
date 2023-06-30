@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     #<--LOCAL-->
-    "core.apps.CoreConfig",
+    "core",
+    "core.user",
 ]
+
+AUTH_USER_MODEL = 'core_user.User'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -79,9 +82,9 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         #"PORT": "5342",
-        "NAME": "core",
-        "USER": "core", 
-        "PASSWORD": "x326y457z",
+        "NAME": "coredb",
+        "USER": "coredb", 
+        "PASSWORD": "wCh29&HE&T83",
         "HOST": "127.0.0.1",
     }
 }
