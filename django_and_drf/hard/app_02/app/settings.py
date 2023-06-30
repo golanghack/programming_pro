@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "core.user",
     #<--DOWNLOADED-->
     "rest_framework",
+    "rest_framework_simplejwt",
 ]
 
 AUTH_USER_MODEL = 'core_user.User'
