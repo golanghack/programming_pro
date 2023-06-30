@@ -8,7 +8,7 @@ class RegisterSerializer(UserSerializer):
     password -> 8 symbols
     """ 
 
-    password = serializers.CharField(max_lenght=128, min_lenght=8, write_only=True, required=True)
+    password = serializers.CharField(max_length=128, min_length=8, write_only=True, required=True)
 
     class Meta:
         model = User
