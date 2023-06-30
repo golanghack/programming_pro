@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     #<--LOCAL-->
     "core",
     "core.user",
+    #<--DOWNLOADED-->
+    "rest_framework",
 ]
 
 AUTH_USER_MODEL = 'core_user.User'
