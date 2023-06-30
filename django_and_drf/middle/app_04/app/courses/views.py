@@ -8,7 +8,7 @@ class OwnerMixin:
     """Mixin class for owner course""" 
 
     def get_queryset(self):
-        qs = super.get_queryset()
+        qs = super().get_queryset()
         return qs.filter(owner=self.request.user)
 
 class OwnerEditMixin:

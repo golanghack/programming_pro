@@ -1,5 +1,5 @@
 {% extends 'base.html' %} 
-{% blcok title %}Мои курсы{% endblock %} 
+{% block title %}Мои курсы{% endblock %} 
 {% block content %}
     <h1>Мои курсы</h1>
     <div class="module">
@@ -7,7 +7,7 @@
             <div class="course-info">
                 <h3>{{ course.title }}</h3>
                 <p>
-                    <a href="{% ur; 'course_edit' course.id %}">Редактировать</a>
+                    <a href="{% url 'course_edit' course.id %}">Редактировать</a>
                     <a href="{% url 'course_delete' course.id %}">Удалить</a>
                 </p>
             </div>
@@ -15,7 +15,7 @@
             <p>Вы еще не создали никаких курсов</p>
         {% endfor %} 
         <p>
-            <a href="{% 'course_create' %}" class="button">Создать курс</a>
+            <a href="{% url 'course_create' %}" class="button">Создать курс</a>
         </p>
     </div>
 {% endblock %} 
