@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from django.conf import settings
-
+from core.abstract.serializers import AbstractSerializer
 from core.user.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(AbstractSerializer):
     """User serializer class""" 
 
     id = serializers.UUIDField(source='public_id', read_only=True, format='hex')
