@@ -6,6 +6,8 @@ The orbital period of planets in Solar System
 
 import math 
 import numpy as np 
+import matplotlib.pyplot as plt
+
 from scipy.constants import year, hour, au, G 
 from astropy.constants import M_sun 
 
@@ -32,3 +34,11 @@ for val_1, val_2 in zip(T_test_mass, T_two_body):
     else:
         format_line = '{0:6.2f}  {1:7.4f}  {2:.1e}'
     print(format_line.format(val_2/year, dev/hour, dev/val_1)) 
+
+# visualisation with plt
+plt.loglog(a / au, T_test_mass / year, 'blue', linestyle='--', label='test mass')
+plt.loglog(a / au, T_two_body / year, 'ro', label='planets')
+plt.legend(loc='lower right')
+plt.xlabel('semy-majot axis [AU]')
+plt.ylabel('orbital period [year]')
+plt.savefig('third_kepler_low.pdf')
