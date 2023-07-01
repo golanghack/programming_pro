@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
+from core.abstract.models import AbstractManager, AbstractModel
 import uuid
 
 
@@ -47,7 +48,7 @@ class UserManager(BaseUserManager):
         user.is_staff = True
         user.save(using=self._db)
         return user 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
     """Create user model""" 
 
     public_id = models.UUIDField(db_index=True, unique=True, default=uuid.uuid4, editable=False)
