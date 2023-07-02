@@ -1,0 +1,73 @@
+{% extends 'base.html' %} 
+{% block title %} 
+    Модуль {{ module.order|add:1 }}: {{ module.title }}
+{% endblock %} 
+{% block content %} 
+{% with course=module.course %} 
+    <h1>Курс {{ course.title }}</h1>
+    <div class="contents">
+        <h3>Модули</h3>
+        <ul id="modules">
+            {% for m in course.modules.all %} 
+                <li data-id="{{ m.id }}" {% if m == module %} class="selected" {% endif %}>
+                    <a href="{% url 'module_content_list' m.id %}">
+                        <span>
+                            Модуль <span class="order">{{ m.order|add:1 }}</span>
+                        </span>
+                        <br>
+                        {{ m.title }} 
+                    </a>
+                </li>
+            {% empty %} 
+                <li>Пока нет модулей</li>
+            {% endfor %} 
+        </ul>
+        <p><a href="{% url 'course_module_update' course.id %}">
+            Редактировать модули
+        </a></p>
+    </div>
+    <div class="module">
+        <h2>Модуль {{ module.order|add:1 }}: {{ module.title }}</h2>
+        <h3>Содержимое</h3>
+        <div id="module-contents">
+            {% for content in module.contents.all %} 
+                <div data-id="{{ content.id }}">
+                    {% with item=content.item %} 
+                        <p>{{ item }}</p>
+                        <a href="#">Редактировать</a>
+                        <form action="{% url 'module_content_delete' content.idf %}" method="post">
+                            <input type="submit" name="" id="" value="Удалить">
+                            {% csrf_token %} 
+                        </form>
+                    {% endwith %} 
+                </div>
+            {% empty %} 
+                <p>В этом модуле пока нет содержимого</p>
+            {% endfor %} 
+        </div>
+        <h3>Добавтьб новый контент</h3>
+        <ul class="content-types">
+            <li>
+                <a href="{% url 'module_content_create' module.id 'text' %}">
+                    Текст
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'module_content_create' module.id 'image' %}">
+                    Изображение
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'module_content_create' module.id 'video' %}">
+                    Видео
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'module_content_create' module.id 'file' %}">
+                    Файл(например, Pdf)
+                </a>
+            </li>
+        </ul>
+    </div>
+    {% endwith %} 
+{% endblock %} 
