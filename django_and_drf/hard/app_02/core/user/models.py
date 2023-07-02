@@ -68,6 +68,21 @@ class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
     post_liked = models.ManyToManyField('core_post.Post', related_name='liked_by')
 
+    def like(self, post):
+        """Like for post""" 
+
+        return self.post_liked.add(post)
+
+    def remove_like(self, post):
+        """Remove like""" 
+
+        return self.post_liked.remove(post)
+
+    def has_liked(self, post):
+        """True if user has liked else False""" 
+
+        return self.post_liked.filter(pk=post.pk).exists()
+
     def __str__(self):
         return f'{self.email}'
 
