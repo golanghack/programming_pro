@@ -35,7 +35,7 @@
                     {% with item=content.item %} 
                         <p>{{ item }}</p>
                         <a href="#">Редактировать</a>
-                        <form action="{% url 'module_content_delete' content.idf %}" method="post">
+                        <form action="{% url 'module_content_delete' content.id %}" method="post">
                             <input type="submit" name="" id="" value="Удалить">
                             {% csrf_token %} 
                         </form>
