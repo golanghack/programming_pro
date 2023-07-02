@@ -20,6 +20,12 @@ class PostSerializer(AbstractSerializer):
         author = User.objects.get_object_by_public_id(rep['author'])
         rep['author'] = UserSerializer(author).data 
         return rep 
+
+    def update(self, instance, validated_data):
+        if not instance.edited:
+            validated_data['edited'] = True
+        instance = super().update(instance, validated_data)
+        return instance
     class Meta:
         model = Post
         # included fields
