@@ -66,6 +66,7 @@ class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     objects = UserManager()
+    post_liked = models.ManyToManyField('core_post.Post', related_name='liked_by')
 
     def __str__(self):
         return f'{self.email}'
