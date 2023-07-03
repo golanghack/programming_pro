@@ -10,6 +10,7 @@ pillow = "*"
 djangorestframework = "*"
 django-filter = "*"
 djangorestframework-simplejwt = "*"
+drf-nested-routers = "*"
 
 [dev-packages]
 
