@@ -11,11 +11,11 @@ class CommentViewSet(AbstractViewSet):
     """Comment view""" 
 
     http_method_names = ('post', 'get', 'put', 'delete')
-    permission_classes = (UserPermission)
+    permission_classes = (UserPermission, )
     serializer_class = CommentSerializer
 
     def get_queryset(self):
-        if self.request.user.is_superuser():
+        if self.request.user.is_superuser:
             return Comment.objects.all()
         post_pk = self.kwargs['post_pk']
 
