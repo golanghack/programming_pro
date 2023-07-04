@@ -20,3 +20,17 @@ class TestAuthViewSet:
         assert response.data['user']['id'] == user.public_id.hex
         assert response.data['user']['username'] == user.username
         assert response.data['user']['email'] == user.email
+
+    @pytest.mark.django_db
+    def test_register(self, client):
+        data = {
+            'username': 'test_test',
+            'email': 'test@test.com',
+            'password': 'test_password',
+            'first_name': 'Test',
+            'last_name': 'Test'
+        }
+        response = client.post(self.endpoint + 'register/', data)
+
+        assert response.status_code == status.HTTP_201_CREATED
+        
