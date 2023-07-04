@@ -4,9 +4,10 @@ from core.fixtures.user import user
 
 class TestAuthViewSet:
     """Test Auth""" 
-
+    user = user
     endpoint = '/api/auth/'
 
+    @pytest.fixture
     def test_login(self, client, user):
         data = {
             'username': user.username,
