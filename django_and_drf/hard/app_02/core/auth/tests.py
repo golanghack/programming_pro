@@ -33,4 +33,22 @@ class TestAuthViewSet:
         response = client.post(self.endpoint + 'register/', data)
 
         assert response.status_code == status.HTTP_201_CREATED
-        
+
+    @pytest.fixture
+    def test_refresh(self, client, user):
+        """test refresh""" 
+
+        data = {
+            'username': user.username,
+            'password': 'test_password'
+        }
+        response = client.post(self.endpoint + 'login/', data)
+
+        assert response.status_code == status.HTTP_200_OK
+        data_refresh = {
+            'refresh': response.data['refresh']
+        }
+        response = client.post(self.endpoint + 'refresh/', data_refresh)
+
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data['access']
