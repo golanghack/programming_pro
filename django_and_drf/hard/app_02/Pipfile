@@ -11,6 +11,7 @@ djangorestframework = "*"
 django-filter = "*"
 djangorestframework-simplejwt = "*"
 drf-nested-routers = "*"
+pytest-django = "*"
 
 [dev-packages]
 
