@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # <--LOCAL-->
     "courses.apps.CoursesConfig",
+    "students.apps.StudentsConfig",
     # <--END LOCAL-->
 ]
 
