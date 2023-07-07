@@ -11,6 +11,15 @@ class UserSerializer(AbstractSerializer):
     created = serializers.DateTimeField(read_only=True)
     updated = serializers.DateTimeField(required=True)
 
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        if not representation['avatar']:
+            representation['avatar'] = settings.DEFAULT_AUTO_FIELD
+            return representation
+        if settings.DEBUG:
+            request = self.context.get('request')
+            representation['avatar'] = request.build_absolute_uri(representation['avatar'])
+        return representation
     class Meta:
         model = User 
         fields = ['created', 'updated', 'id', 'username', 'first_name', 'last_name', 'bio', 'avatar', 'email']
