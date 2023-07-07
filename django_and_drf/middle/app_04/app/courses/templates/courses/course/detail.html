@@ -17,6 +17,17 @@
                 Препод -> {{ object.owner.get_full_name }}
             </p>
             {{ object.overview }}
+            {% if request.user.is_authenticated %}  
+                <form action="{% url 'student_enroll_course' %}" method="post">
+                    {{ enroll_form }}
+                    {% csrf_token %} 
+                    <input type="submit" name="" id="" value="Зачислиться прямо сейчас">
+                </form>
+            {% else %} 
+                <a href="{% url 'student_registration' %}" class="button">
+                    Зарегистрироваться для зачисления
+                </a>
+            {% endif %} 
         </div>
     {% endwith %} 
 {% endblock %} 
