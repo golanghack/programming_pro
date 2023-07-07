@@ -44,22 +44,22 @@ function LoginForm() {
       data-testid="login-form"
     >
       <Form.Group className="mb-3">
-        <Form.Label>Username</Form.Label>
+        <Form.Label>Имя</Form.Label>
         <Form.Control
           value={form.username}
           data-testid="username-field"
           onChange={(e) => setForm({ ...form, username: e.target.value })}
           required
           type="text"
-          placeholder="Enter username"
+          placeholder="Введите имя"
         />
         <Form.Control.Feedback type="invalid">
-          This file is required.
+          Этот файл не отправлен.
         </Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Пароль</Form.Label>
         <Form.Control
           value={form.password}
           data-testid="password-field"
@@ -67,10 +67,10 @@ function LoginForm() {
           onChange={(e) => setForm({ ...form, password: e.target.value })}
           required
           type="password"
-          placeholder="Password"
+          placeholder="Пароль"
         />
         <Form.Control.Feedback type="invalid">
-          Please provide a valid password.
+          Пожалуйста, проверьте правильность пароля.
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -81,7 +81,7 @@ function LoginForm() {
         variant="primary"
         type="submit"
       >
-        Submit
+        Отправить
       </Button>
     </Form>
   );

@@ -16,9 +16,9 @@ function NavigationBar() {
     userActions.logout().catch((e) =>
       setToaster({
         type: "danger",
-        message: "Logout failed",
+        message: "Выход не получился",
         show: true,
-        title: e.data?.detail | "An error occurred.",
+        title: e.data?.detail | "Ошибка.",
       })
     );
   };
@@ -37,9 +37,9 @@ function NavigationBar() {
               }
             >
               <NavDropdown.Item as={Link} to={`/profile/${user.id}/`}>
-                Profile
+                Аккаунт
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+              <NavDropdown.Item onClick={handleLogout}>Выйти</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

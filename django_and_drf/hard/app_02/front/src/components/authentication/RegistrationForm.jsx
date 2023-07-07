@@ -52,64 +52,64 @@ function RegistrationForm() {
       data-testid="register-form"
     >
       <Form.Group className="mb-3">
-        <Form.Label>First Name</Form.Label>
+        <Form.Label>Имя</Form.Label>
         <Form.Control
           value={form.first_name}
           data-testid="first-name-field"
           onChange={(e) => setForm({ ...form, first_name: e.target.value })}
           required
           type="text"
-          placeholder="Enter first name"
+          placeholder="Введите имя"
         />
         <Form.Control.Feedback type="invalid">
-          This file is required.
+          Файл не отправлен.
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Last name</Form.Label>
+        <Form.Label>Фамилия</Form.Label>
         <Form.Control
           value={form.last_name}
           data-testid="last-name-field"
           onChange={(e) => setForm({ ...form, last_name: e.target.value })}
           required
           type="text"
-          placeholder="Enter last name"
+          placeholder="Введите вашу фамилию"
         />
         <Form.Control.Feedback type="invalid">
-          This file is required.
+          Файл не отправлен.
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Username</Form.Label>
+        <Form.Label>Ваш никнейм</Form.Label>
         <Form.Control
           value={form.username}
           data-testid="username-field"
           onChange={(e) => setForm({ ...form, username: e.target.value })}
           required
           type="text"
-          placeholder="Enter username"
+          placeholder="Введите ваш никнейм"
         />
         <Form.Control.Feedback type="invalid">
-          This file is required.
+          Файл не отправлен.
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label>Email</Form.Label>
         <Form.Control
           value={form.email}
           data-testid="email-field"
           onChange={(e) => setForm({ ...form, email: e.target.value })}
           required
           type="email"
-          placeholder="Enter email"
+          placeholder="Введите ваш email"
         />
         <Form.Control.Feedback type="invalid">
-          Please provide a valid email.
+          Некорректный адрес электронной почты.
         </Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Пароль</Form.Label>
         <Form.Control
           value={form.password}
           data-testid="password-field"
@@ -117,29 +117,29 @@ function RegistrationForm() {
           onChange={(e) => setForm({ ...form, password: e.target.value })}
           required
           type="password"
-          placeholder="Password"
+          placeholder="Пароль"
         />
         <Form.Control.Feedback type="invalid">
-          Please provide a valid password.
+          Некорректный пароль.
         </Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Bio</Form.Label>
+        <Form.Label>Общая информация</Form.Label>
         <Form.Control
           value={form.bio}
           data-testid="bio-field"
           onChange={(e) => setForm({ ...form, bio: e.target.value })}
           as="textarea"
           rows={3}
-          placeholder="A simple bio ... (Optional)"
+          placeholder="(Не обязятельно) Можете немного рассказать о себе?"
         />
       </Form.Group>
 
       <div className="text-content text-danger">{error && <p>{error}</p>}</div>
 
       <Button data-testid="submit-button" variant="primary" type="submit">
-        Submit
+        Отправить
       </Button>
     </Form>
   );

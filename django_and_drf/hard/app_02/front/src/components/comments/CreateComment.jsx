@@ -40,9 +40,9 @@ function CreateComment(props) {
         setForm({ ...form, body: "" });
         setToaster({
           type: "success",
-          message: "Comment posted successfully🚀",
+          message: "Комментарий добавлен🚀",
           show: true,
-          title: "Comment!",
+          title: "Комментарий добавлен!",
         });
         refresh();
       })
@@ -51,7 +51,7 @@ function CreateComment(props) {
           type: "danger",
           message: "",
           show: true,
-          title: "An error occurred.!",
+          title: "Оппаньки! Ошибочка",
         });
       });
   };
@@ -90,7 +90,7 @@ function CreateComment(props) {
           disabled={!form.body}
           size="small"
         >
-          Comment
+          Комментарий
         </Button>
       </div>
     </Form>

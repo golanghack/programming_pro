@@ -29,18 +29,18 @@ function Comment(props) {
       .then(() => {
         setToaster({
           type: "danger",
-          message: "Comment deleted 🚀",
+          message: "Комментарий удален 🚀",
           show: true,
-          title: "Comment Deleted",
+          title: "Комментарий удален",
         });
         refresh();
       })
       .catch(() => {
         setToaster({
           type: "warning",
-          message: "Comment deleted 🚀",
+          message: "Комментарий удален 🚀",
           show: true,
-          title: "Comment Deleted",
+          title: "Комментарий удален",
         });
       });
   };
@@ -75,7 +75,7 @@ function Comment(props) {
                     postId={postId}
                   />
                   <Dropdown.Item onClick={handleDelete} className="text-danger">
-                    Delete
+                    Удалить
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
@@ -98,7 +98,7 @@ function Comment(props) {
               }}
             />
             <p className="ms-1 fs-6">
-              <small>{comment.likes_count} like</small>
+              <small>{comment.likes_count} нравиться</small>
             </p>
           </div>
         </div>
@@ -122,7 +122,7 @@ function Comment(props) {
             }}
           />
           <p className="ms-1">
-            <small>Like</small>
+            <small>Нравиться</small>
           </p>
         </div>
       </Card.Footer>

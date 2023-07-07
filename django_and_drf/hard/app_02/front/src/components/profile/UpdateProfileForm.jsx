@@ -54,9 +54,9 @@ function UpdateProfileForm(props) {
       .then(() => {
         setToaster({
           type: "success",
-          message: "Profile updated successfully 🚀",
+          message: "Аккаунт успешно обновлен! 🚀",
           show: true,
-          title: "Profile updated",
+          title: "Аккаунт обновлен!",
         });
         navigate(-1);
       })
@@ -75,7 +75,7 @@ function UpdateProfileForm(props) {
       onSubmit={handleSubmit}
     >
       <Form.Group className="mb-3 d-flex flex-column">
-        <Form.Label className="text-center">Avatar</Form.Label>
+        <Form.Label className="text-center">Фото</Form.Label>
         <Image
           src={form.avatar}
           roundedCircle
@@ -90,11 +90,11 @@ function UpdateProfileForm(props) {
           size="sm"
         />
         <Form.Control.Feedback type="invalid">
-          This file is required.
+          Оппа! Ошибочка вышла.
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>First Name</Form.Label>
+        <Form.Label>Имя</Form.Label>
         <Form.Control
           value={form.first_name}
           onChange={(e) => setForm({ ...form, first_name: e.target.value })}
@@ -103,37 +103,37 @@ function UpdateProfileForm(props) {
           placeholder="Enter first name"
         />
         <Form.Control.Feedback type="invalid">
-          This file is required.
+          Оппа!Ошибочка вышла.
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Last name</Form.Label>
+        <Form.Label>Фамилия</Form.Label>
         <Form.Control
           value={form.last_name}
           onChange={(e) => setForm({ ...form, last_name: e.target.value })}
           required
           type="text"
-          placeholder="Enter last name"
+          placeholder="Ввведите фамилию"
         />
         <Form.Control.Feedback type="invalid">
-          This file is required.
+          Оппа! Ошибочка.
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Bio</Form.Label>
+        <Form.Label>Информация</Form.Label>
         <Form.Control
           value={form.bio}
           onChange={(e) => setForm({ ...form, bio: e.target.value })}
           as="textarea"
           rows={3}
-          placeholder="A simple bio ... (Optional)"
+          placeholder="(Немного со себе)"
         />
       </Form.Group>
 
       <div className="text-content text-danger">{error && <p>{error}</p>}</div>
 
       <Button variant="primary" type="submit">
-        Save changes
+        Изменить сохранение(то есть сохранить изменения)
       </Button>
     </Form>
   );

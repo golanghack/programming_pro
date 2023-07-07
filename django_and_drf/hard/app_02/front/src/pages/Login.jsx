@@ -10,8 +10,8 @@ function Login() {
           <div className="content text-center px-4">
             <h1 className="text-primary">Welcome to Postagram!</h1>
             <p className="content">
-              Login now and start enjoying! <br />
-              Or if you don't have an account, please{" "}
+              Введите верный логин для начала путешествия! <br />
+              Или же войдите в аккаунт с помощью ссылки{" "}
               <Link to="/register/">register</Link>.
             </p>
           </div>

@@ -20,7 +20,7 @@ function EditProfile() {
           </Col>
         </Row>
       ) : (
-        <div>Loading...</div>
+        <div>Грузим...</div>
       )}
     </Layout>
   );
