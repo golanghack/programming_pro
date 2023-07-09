@@ -18,9 +18,9 @@ class StudentsRegistrationView(CreateView):
 
 
     def form_valid(self, form):
-        result = super().form_valid(form)
-        cd = form.cleaned_data 
-        user = authenticate(username=cd['username'], password=cd['password'])
+        result = super(StudentsRegistrationView, self).form_valid(form)
+        cd = form.cleaned_data
+        user = authenticate(username=cd['username'], password=cd['password1'])
         login(self.request, user)
         return result
 
@@ -55,13 +55,13 @@ class StudentCourseDetailView(DetailView):
         return qs.filter(students__in=[self.request.user])
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(StudentCourseDetailView, self).get_context_data(**kwargs)
         course = self.get_object()
         if 'module_id' in self.kwargs:
             context['module'] = course.modules.get(id=self.kwargs['module_id'])
         else:
             # take first module
-            context['module'] = course.modules.all()[0]
+            context['module'] = course.modules.all()
         return context
 
         
