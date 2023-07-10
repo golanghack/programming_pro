@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     "courses.apps.CoursesConfig",
     "students.apps.StudentsConfig",
     # <--END LOCAL-->
+    # <--DOWNLOADED-->
+    "embed_video",
+    # <--END DOWNLOADED-->
 ]
 
 MIDDLEWARE = [
