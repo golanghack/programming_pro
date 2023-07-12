@@ -8,6 +8,7 @@ django = "*"
 pillow = "*"
 django-braces = "*"
 django-embed-video = "*"
+pymemcache = "*"
 
 [dev-packages]
 
