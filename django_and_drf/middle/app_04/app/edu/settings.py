@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # <--DOWNLOADED-->
     "embed_video",
     "debug_toolbar",
+    "redisboard",
     # <--END DOWNLOADED-->
 ]
 
@@ -150,7 +151,7 @@ CACHES = {
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "127.0.0.1:6379",
+        "LOCATION": "redis://127.0.0.1:6379",
     }
 }
 

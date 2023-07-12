@@ -11,6 +11,8 @@ django-embed-video = "*"
 pymemcache = "*"
 django-debug-toolbar = "*"
 redis = "*"
+django-redisboard = "*"
+attrs = "*"
 
 [dev-packages]
 
