@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "aa783d6d8c823069e9dce11d2256cbaba40a1e2b53a597cd70895b53871c5135"
+            "sha256": "9eb3c022b7e35c018562dce3acf06e70222ce63d0bd6df738da2828c1a6a7b53"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -191,6 +191,14 @@
             "index": "pypi",
             "version": "==8.4.0"
         },
+        "djangorestframework": {
+            "hashes": [
+                "sha256:579a333e6256b09489cbe0a067e66abe55c6595d8926be6b99423786334350c8",
+                "sha256:eb63f58c9f218e1a7d064d17a70751f528ed4e1d35547fdade9aaf4cd103fd08"
+            ],
+            "index": "pypi",
+            "version": "==3.14.0"
+        },
         "idna": {
             "hashes": [
                 "sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4",
@@ -268,6 +276,13 @@
             ],
             "index": "pypi",
             "version": "==4.0.0"
+        },
+        "pytz": {
+            "hashes": [
+                "sha256:1d8ce29db189191fb55338ee6d0387d82ab59f3d00eac103412d64e0ebd0c588",
+                "sha256:a151b3abb88eda1d4e34a9814df37de2a80e301e68ba0fd856fb9b46bfbbbffb"
+            ],
+            "version": "==2023.3"
         },
         "redis": {
             "hashes": [

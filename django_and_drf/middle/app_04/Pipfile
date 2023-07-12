@@ -13,6 +13,7 @@ django-debug-toolbar = "*"
 redis = "*"
 django-redisboard = "*"
 attrs = "*"
+djangorestframework = "*"
 
 [dev-packages]
 
