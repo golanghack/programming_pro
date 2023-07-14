@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+{% block title %}Чат {{ course.title }}{% endblock %} 
+{% block content %} 
+    <div id="chat">
+
+    </div>
+    <div id="chat-input">
+        <input type="text" id="chat-message-input">
+        <input type="text" id="chat-message-submit" value="Отправить">
+    </div>
+{% endblock %} 
+{% block include_js %} 
+{% endblock %} 
+
+{% block domready %} 
+{% endblock %} 
