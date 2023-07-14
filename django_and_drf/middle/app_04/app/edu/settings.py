@@ -86,9 +86,9 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = "edu.wsgi.application"
 ASGI_APPLICATION = "edu.routing.application"
+WSGI_APPLICATION = "edu.wsgi.application"
+
 
 
 # Database
