@@ -14,6 +14,7 @@ redis = "*"
 django-redisboard = "*"
 attrs = "*"
 djangorestframework = "*"
+requests = "*"
 
 [dev-packages]
 
