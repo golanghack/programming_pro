@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "redisboard",
     "rest_framework",
+    "channels",
     # <--END DOWNLOADED-->
 ]
 
