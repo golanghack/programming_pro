@@ -3,8 +3,9 @@ from rest_framework.decorators import action
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from courses.api.serializers import CourseSerializer
+from courses.api.serializers import CourseSerializer, CourseWithContentsSerializer
 from courses.models import Course
+from courses.api.permissions import IsEnrolled
 
 class CourseViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Course.objects.all()
@@ -20,3 +21,11 @@ class CourseViewSet(viewsets.ReadOnlyModelViewSet):
         return Response({
             'enrolled': True
         })
+
+    @action(detail=True, 
+            methods=['get',],
+            serializer_class=CourseWithContentsSerializer,
+            authentication_classes=[BasicAuthentication],
+            permission_classes=[IsAuthenticated, IsEnrolled])
+    def contents(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
