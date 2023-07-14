@@ -23,7 +23,7 @@ class CourseViewSet(viewsets.ReadOnlyModelViewSet):
         })
 
     @action(detail=True, 
-            methods=['get',],
+            methods=['get'],
             serializer_class=CourseWithContentsSerializer,
             authentication_classes=[BasicAuthentication],
             permission_classes=[IsAuthenticated, IsEnrolled])
