@@ -88,6 +88,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "edu.wsgi.application"
+ASGI_APPLICATION = "edu.routing.application"
 
 
 # Database
