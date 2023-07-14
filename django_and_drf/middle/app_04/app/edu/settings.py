@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # <--LOCAL-->
     "courses.apps.CoursesConfig",
     "students.apps.StudentsConfig",
+    "chat.apps.ChatConfig",
     # <--END LOCAL-->
     # <--DOWNLOADED-->
     "embed_video",
