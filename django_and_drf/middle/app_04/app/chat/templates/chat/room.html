@@ -11,6 +11,7 @@
 {% endblock %} 
 {% block include_js %} 
     {{ course.id|json_script:'course-id' }}
+    {{ request.user.username|json_script:'request-user' }}
 {% endblock %} 
 
 {% block domready %} 
