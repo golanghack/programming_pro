@@ -29,6 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+ASGI_APPLICATION = "edu.asgi.application"
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "daphne",
     "django.contrib.staticfiles",
     # <--LOCAL-->
     "courses.apps.CoursesConfig",
@@ -71,6 +74,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "edu.urls"
 
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -86,7 +90,6 @@ TEMPLATES = [
         },
     },
 ]
-ASGI_APPLICATION = "edu.routing.application"
 WSGI_APPLICATION = "edu.wsgi.application"
 
 
