@@ -33,7 +33,7 @@ class ChatConsumer(WebsocketConsumer):
                 'type': 'chat_message',
                 'message': message,
                 'user': self.user.username,
-                'datime': timezone.now().isoformat(),
+                'datetime': timezone.now().isoformat(),
             }
         )
         self.send(text_data=json.dumps({'message': message}))
