@@ -45,4 +45,14 @@
             input.focus();
         }
     });
+    
+    input.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            // braek down standart motion
+            event.preventDefault();
+            // start key submits 
+            submitButton.click();
+        }
+    });
+    input.focus();
 {% endblock %} 
