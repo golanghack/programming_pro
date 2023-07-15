@@ -35,6 +35,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'datetime': timezone.now().isoformat(),
             }
         )
-    async def char_message(self, event):
+    async def chat_message(self, event):
         # send message in ws 
         await self.send(text_data=json.dumps(event))

@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:500,300,400);
+@import url(//fonts.googleapis.com/css?family=Roboto:500,300,400);
 
 body {
     margin:0;
@@ -10,6 +10,10 @@ body {
 a {
     color:#3fad37;
     text-decoration:none;
+}
+
+ul {
+    float:left;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,11 +30,13 @@ h1 {
 }
 
 .module {
-    overflow:auto;
+    padding:10px 20px;
+    float:left;
+    width:600px;
 }
 
 .module h3 {
-    margin:30px 0 0;
+    margin:20px 0 0;
     padding:0;
     width:100%;
 }
@@ -82,12 +88,14 @@ h1 {
     list-style:none;
     margin:0;
     padding:0;
+    width:100%;
 }
 
 .contents ul li {
     margin:0 0 10px 0;
     padding:4px 10px 10px;
     overflow:auto;
+    cursor:move;
 }
 
 .contents ul li.selected {
@@ -96,7 +104,13 @@ h1 {
 
 .contents ul li:hover {
     background:#3f3f3f;
-    cursor:move;
+}
+
+.contents ul li.placeholder {
+  background: #333;
+  border:1px dashed #ccc;
+  padding:0;
+  margin:10px 0;
 }
 
 .contents ul span {
@@ -113,11 +127,7 @@ h1 {
 
 .contents ul a:hover {
     color:#4dcc43;
-}
-
-.module {
-    padding:10px 20px;
-    float:left;
+    cursor:move;
 }
 
 ul.content-types li {
@@ -183,7 +193,7 @@ a.secondary-button {
     margin:10px 0;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover, a.button:hover {
     background:#3fad37;
 }
 
@@ -200,6 +210,8 @@ ul#course-modules textarea {
 ul#course-modules li {
     padding:20px;
     overflow:auto;
+    cursor:move;
+    user-select:none;
 }
 
 ul#course-modules li:nth-child(even) {
@@ -208,45 +220,42 @@ ul#course-modules li:nth-child(even) {
 
 ul#course-modules li:hover {
     background:#ccc;
-    cursor:move;
 }
 
 #module-contents div {
-    padding:20px 20px 4px 20px;
+    padding:10px 20px;
     border:1px solid #ccc;
-    background:#fff;
-    overflow:auto;
+    background:#fff
+}
+
+#module-contents div.placeholder {
+  border:1px dashed #ccc;
+}
+
+#module-contents form {
+    margin:0;
+    padding:0;
+}
+
+#module-contents input[type=submit] {
+    color:#3fad37;
+    background:none;
+    margin:-20px 0 0;
+    padding:0;
+    float:left;
+    text-transform:none;
 }
 
 #module-contents div:hover {
     cursor:move;
 }
 
-#module-contents a {
-    float:left;
-}
-
-#module-contents form {
-    margin:0;
-    padding:0;
-    float:left;
-}
-
-#module-contents input[type="submit"] {
-    width:auto;
-    background:none;
-    color:#3fad37;
-    margin:0 0 10px 10px;
-    padding:0;
-    text-transform:none;
-}
-
 .course-info {
     border:1px solid #ccc;
-    padding:10px 20px 20px;
+    padding:0 20px;
+    margin-bottom:10px;
     width:400px;
     overflow:auto;
-    margin-bottom:20px;
 }
 
 .course-info a {
@@ -256,4 +265,57 @@ ul#course-modules li:hover {
 .helptext {
     color:#ccc;
     padding-left:20px;
+}
+
+#chat {
+    top: 64px;
+    bottom:0;
+    position:fixed;
+    width:100%;
+    overflow-y:scroll;
+    padding-bottom:150px;
+}
+
+#chat .message {
+    background:#efefef;
+    padding:10px 20px;
+    border-radius:4px;
+    width:auto;
+    display:inline;
+    float:left;
+    margin:10px 10px 0;
+    min-width:440px;
+    clear:both;
+}
+
+#chat .message.me {
+    display:inline;
+    float:right;
+    background:#DCEDE0;
+    color:#56A668;
+}
+
+#chat .message.date {
+    color: gold;
+    font-style:italic;
+    font-size:12px;
+}
+
+#chat-input {
+    position:absolute;
+    bottom:0;
+    background:#efefef;
+    width:100%;
+    padding-top:20px;
+}
+
+#chat-input input {
+    width:96%;
+    position:left;
+    float:left;
+    display:inline;
+    margin-left:2%;
+    margin-right:2%;
+    padding-left:0;
+    padding-right:0;
 }
