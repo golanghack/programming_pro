@@ -26,9 +26,17 @@
     const chatSocket = new WebSocket(url);
 
     chatSocket.onmessage = function(event) {
-        const data = JSON.parse(event.data);
+        const data = JSON.parse(e.data);
         const chat = document.getElementById('chat');
-        chat.innerHTML += '<div class="message">' + data.message + '</div>';
+        const dateOptions = {hour: 'numeric', minute: 'numeric', hour12: true};
+        const datetime = new Date(data.datetime).toLocaleString('en', dateOptions);
+        const isMe = data.user === requestUser;
+        const source = isMe ? 'я' : 'не я';
+        const name = isMe ? 'Я' : data.user;
+        chat.innerHTML += '<div class="message ' + source + '">' 
+                                    '<strong>' + name + '</strong>'
+                                    + '<span class="date">' + datetime +
+                                        '</span><br>' + data.message + '</div>';
         chat.scrollTop = chat.scrollHeight;
     };
 
