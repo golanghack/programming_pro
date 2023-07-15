@@ -31,4 +31,18 @@
     chatSocket.onclose = function(event) {
         console.error('Чат закрыт');
     };
+
+    const input = document.getElementById('chat-message-input');
+    const submitButton = document.getElementById('chat-message-submit');
+
+    submitButton.addEventListener('click', function(event) {
+        const message = input.value;
+        if (message) {
+            // send message JSON
+            chatSocket.send(JSON.stringify({'message': message}));
+            // clear input field 
+            input.innerHTML = '';
+            input.focus();
+        }
+    });
 {% endblock %} 
