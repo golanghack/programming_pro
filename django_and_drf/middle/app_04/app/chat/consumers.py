@@ -33,3 +33,7 @@ class ChatConsumer(WebsocketConsumer):
             }
         )
         self.send(text_data=json.dumps({'message': message}))
+
+    def chat_message(self, event):
+        # send message in ws 
+        self.send(text_data=json.dumps(event))
