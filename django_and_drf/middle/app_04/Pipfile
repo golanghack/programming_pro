@@ -16,6 +16,7 @@ attrs = "*"
 djangorestframework = "*"
 requests = "*"
 channels = {extras = ["daphne"], version = "*"}
+channels-redis = "*"
 
 [dev-packages]
 
