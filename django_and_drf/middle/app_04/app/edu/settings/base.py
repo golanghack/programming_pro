@@ -23,9 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-i64e--7$pp8y_fo2p@v1049y$=a5&^xiv*4cn5ulxq#n=_t+(t"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -93,16 +90,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "edu.wsgi.application"
 
 
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 CHANNEL_LAYERS = {
