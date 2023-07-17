@@ -1,8 +1,9 @@
 from django.http import HttpResponse
+from django.template import loader
 from bboard.models import Bb
 
 def index(request: str) -> HttpResponse:
-    list_board = 'List of boards\r\n\r\n\r\n'
-    for bb in Bb.objects.order_by('-published'):
-        list_board += bb.title + '\r\n' + bb.content + '\r\n\r\n'
-    return HttpResponse(list_board, content_type='text/plain; charset=utf-8')
+    template = loader.get_template('bboard/base.html')
+    bbs = Bb.objects.order_by('-published')
+    context = {'bbs': bbs}
+    return HttpResponse(template.render(context, request))
