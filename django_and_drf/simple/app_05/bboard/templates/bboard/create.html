@@ -1,10 +1,7 @@
-{% extends 'base.html' %} 
-{% block title %}Boards -> Added Board {% endblock %}
-{% block content %} 
+<title>Added board</title>
 <h1>Added Board</h1>
 <form action="" method="post">
     {% csrf_token %} 
     {{ form.as_p }}
     <input type="submit" name="" id="" value="Add">
 </form>
-{% endblock %}

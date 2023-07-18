@@ -21,7 +21,7 @@ def index(request: str):
 class BbCreateView(CreateView):
     template_name = 'bboard/create.html'
     form_class = BbForm
-    success_url = '/bboard/'
+    success_url = '/bb/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

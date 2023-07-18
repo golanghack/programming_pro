@@ -10,11 +10,4 @@
             <a href="{% url 'by_rubric' rubric.pk %}">{{ rubric.name }}</a>
         {% endfor %} 
 </div>
-{% for bb in bbs %} 
-    <div class="one">
-        <h2>{{ bb.title }}</h2>
-        <p>{{ bb.content }}</p>
-        <p>{{ bb.published|date:"d.m.Y H:i:s" }}</p>
-    </div>
-{% endfor %} 
 {% endblock %} 

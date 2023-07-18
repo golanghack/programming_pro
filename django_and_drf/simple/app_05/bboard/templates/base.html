@@ -8,9 +8,10 @@
 <body>
     <h1>BOARDS</h1>
     <div class="one">
-        <a href="/bboard/">Main</a>
+        <a href="/bb/">Main</a>
         {% for rubric in rubrics %} 
             <a href="{% url 'by_rubric' rubric.pk}">{{ rubric.name }}</a>
+            <a href="{% url 'add' %}">Add board</a>
         {% endfor %} 
     </div>
     {% for bb in bbs %}
