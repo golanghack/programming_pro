@@ -1,7 +1,10 @@
-<title>Added board</title>
-<h1>Added Board</h1>
-<form action="" method="post">
-    {% csrf_token %} 
-    {{ form.as_p }}
-    <input type="submit" name="" id="" value="Add">
-</form>
+ {% extends 'layout/base.html' %}
+ {% block title %}Add board{% endblock %} 
+ {% block content %} 
+    <h2>Add board</h2>
+    <form action="" method="post">
+        {% csrf_token %} 
+        {{ form.as_p }}
+        <input type="submit" name="" id="" value="Add">
+    </form>
+{% endblock %} 
