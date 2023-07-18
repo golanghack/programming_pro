@@ -17,7 +17,7 @@ def index(request: str):
     bbs = Bb.objects.all()
     rubrics = Rubric.objects.all()
     context = {'bbs': bbs, 'rubrics': rubrics}
-    return render(request, 'base.html', context)
+    return render(request, 'bboard/index.html', context)
 
 class BbCreateView(CreateView):
     template_name = 'bboard/create.html'
