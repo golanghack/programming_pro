@@ -21,3 +21,6 @@ class Rubric(models.Model):
         verbose_name_plural = 'Rubrics'
         verbose_name = 'Rubric'
         ordering = ['name']
+
+    def __str__(self):
+        return self.name
