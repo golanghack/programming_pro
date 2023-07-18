@@ -2,7 +2,7 @@ header h1 {
     font-size: 40pt;
     text-transform: uppercase;
     text-align: center;
-    background: url('bg.jpg') left / auto 100% no-repeat;
+    background: url('../images/header.jpg') left / auto 100% no-repeat;
 }
 
 nav {
@@ -13,10 +13,14 @@ nav {
 
 nav a {
     display: block;
-    margin: 10px 0px;
+    margin: 10px 10px;
+
 }
 
 section {
     margin-left: 170px;
 }
 
+body {
+    background-image: url('../images/bb.avif');
+}
