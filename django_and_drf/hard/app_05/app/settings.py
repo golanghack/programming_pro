@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     # <--DOWNLOADS-->
     "rest_framework",
     "rest_framework_simplejwt",
-    "restframework_simplejwt.token_blacklist",
+    "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
     # <-LOCAL-->
+    "app",
+    
 ]
 
 
@@ -94,8 +96,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv("DATABASE_NAME", "app_05db"),
         "USER": os.getenv("DATABASE_USER", "app"),
-        "PASSWORD": os.getenv("DATABASE_PASSWORD", "1691"),
-        "HOST": os.getenv("DATABASE_HOST", "127.0.0.1"), 
+        "PASSWORD": os.getenv("DATABASE_PASSWORD", "x326y457z628a45B"),
+        "HOST": os.getenv("DATABASE_HOST", "localhost"), 
     }
 }
 
@@ -142,7 +144,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "").split(".")
+#CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "").split(".")
 
 #files
 MEDIA_URL = "/media/"
