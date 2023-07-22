@@ -51,6 +51,10 @@ INSTALLED_APPS = [
     "corsheaders",
     # <-LOCAL-->
     "app",
+    "core.user", 
+    "core.auth", 
+    "core.post", 
+    "core.comment",
     
 ]
 
