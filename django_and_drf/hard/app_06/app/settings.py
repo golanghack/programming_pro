@@ -10,22 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os 
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+# .env 
+load_dotenv()
+ENV = os.environ.get('ENV')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7ufj)mkw0-^@=x59m#ndry)rcqyo_is1%ce-_=(r6b(7^!j=aq'
+SECRET_KEY = os.environ.get('SECRET_KEY',
+                            default='django-insecure-7ufj)mkw0-^@=x59m#ndry)rcqyo_is1%ce-_=(r6b(7^!j=aq')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False if ENV == 'PROD' else True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '*').split('.')
 
 
 # Application definition
@@ -37,6 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # <--DOWNLOADS-->
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework_simpljwt.token_blacklist',
+    'corsheaders',
+
+    # <--LOCAL-->
 ]
 
 MIDDLEWARE = [
@@ -76,10 +89,10 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'app_06',
-        'USER': 'app_06',
-        'PASSWORD': 'x326y457z628a45B',
-        'HOST': 'localhost',
+        'NAME': os.getenv('DATABASE_NAME', 'app_06'),
+        'USER': os.getenv('DATABASE_USER', 'app_06'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'x326y457z628a45B'),
+        'HOST': os.getenv('DATABASE_HOST', 'localhost'),
     }
 }
 
@@ -102,13 +115,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#AUTH_USER_MODEL = 'core_user.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -124,3 +138,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#files
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "uploads"
+
+DEFAULT_AVATAR_URL = "https://avatars.dicebear.com/api/identicon/.svg"
