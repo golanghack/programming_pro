@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # <--LOCAL-->
+    'core', 
 ]
 
 MIDDLEWARE = [
