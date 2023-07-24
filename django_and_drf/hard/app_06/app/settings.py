@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     # <--DOWNLOADS-->
     'rest_framework',
     'rest_framework_simplejwt',
-    'rest_framework_simpljwt.token_blacklist',
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
 
     # <--LOCAL-->
