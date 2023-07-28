@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os 
+import os
+
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 from django.urls import reverse_lazy
 
@@ -28,28 +29,28 @@ SECRET_KEY = "django-insecure-gu21cto(*8+3=2v(bh4w!n#2)(^5pl*s84j%!8phhl=3(!z7yo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['matrix.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ["matrix.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    #local
-    'account',
+    # local
+    "account",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    #downloaded 
-    'easy_thumbnails',
-    'social_django',
-    'django_extensions',
-    'debug_toolbar',
-    # local 
-    'images.apps.ImagesConfig',
-    'actions.apps.ActionsConfig',
+    # downloaded
+    "easy_thumbnails",
+    "social_django",
+    "django_extensions",
+    "debug_toolbar",
+    # local
+    "images.apps.ImagesConfig",
+    "actions.apps.ActionsConfig",
 ]
 
 MIDDLEWARE = [
@@ -68,7 +69,7 @@ ROOT_URLCONF = "app.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(SETTINGS_PATH, 'account', 'templates', 'account')],
+        "DIRS": [os.path.join(SETTINGS_PATH, "account", "templates", "account")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -81,9 +82,9 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = 'dashboard'
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = "dashboard"
+LOGIN_URL = "login"
+LOGOUT_URL = "logout"
 
 WSGI_APPLICATION = "app.wsgi.application"
 
@@ -140,48 +141,50 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-#local email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# local email
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # media
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # custom auth
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'account.authentication.EmailAuthBackend',
-    'social_core.backends.google.GoogleOAuth2',
+    "django.contrib.auth.backends.ModelBackend",
+    "account.authentication.EmailAuthBackend",
+    "social_core.backends.google.GoogleOAuth2",
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '286579809115-eeoc6dpmn108e9r43mg8gn9rbps9n27k.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = (
+    "286579809115-eeoc6dpmn108e9r43mg8gn9rbps9n27k.apps.googleusercontent.com"
+)
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
 
 # auth pipeline
 # docs -> https://python-social-auth.readthedocs.io/en/latest/pipeline.html
 SOCIAL_AUTH_PIPELINE = [
-'social_core.pipeline.social_auth.social_details',
-'social_core.pipeline.social_auth.social_uid',
-'social_core.pipeline.social_auth.auth_allowed',
-'social_core.pipeline.social_auth.social_user',
-'social_core.pipeline.user.get_username',
-'social_core.pipeline.user.create_user',
-'account.authentication.create_profile',
-'social_core.pipeline.social_auth.associate_user',
-'social_core.pipeline.social_auth.load_extra_data',
-'social_core.pipeline.user.user_details',
+    "social_core.pipeline.social_auth.social_details",
+    "social_core.pipeline.social_auth.social_uid",
+    "social_core.pipeline.social_auth.auth_allowed",
+    "social_core.pipeline.social_auth.social_user",
+    "social_core.pipeline.user.get_username",
+    "social_core.pipeline.user.create_user",
+    "account.authentication.create_profile",
+    "social_core.pipeline.social_auth.associate_user",
+    "social_core.pipeline.social_auth.load_extra_data",
+    "social_core.pipeline.user.user_details",
 ]
 
 THUMBNAIL_DEBUG = True
 
 ABSOLUTE_URL_OVERRIDES = {
-    'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
+    "auth.user": lambda u: reverse_lazy("user_detail", args=[u.username])
 }
 
 INTERNAL_IPS = [
-    '127.0.0.1',
+    "127.0.0.1",
 ]
 
-REDIS_HOST = 'localhost'
+REDIS_HOST = "localhost"
 REDIS_PORT = 6379
 REDIS_DB = 0

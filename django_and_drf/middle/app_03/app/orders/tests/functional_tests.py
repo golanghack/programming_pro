@@ -17,13 +17,13 @@ class NewVisitorTest(unittest.TestCase):
 
     def test_home_page(self):
         """Test
-        
+
         -> may begin list and get his later.
         """
 
-        self.browser.get('http://localhost:8000/en/cart')
-        self.assertIn('Ваша корзина', self.browser.title)
+        self.browser.get("http://localhost:8000/en/cart")
+        self.assertIn("Ваша корзина", self.browser.title)
 
 
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
+if __name__ == "__main__":
+    unittest.main(warnings="ignore")

@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 
+
 class StaticUrlTest(TestCase):
     """-> test for static urls"""
 
@@ -7,16 +8,16 @@ class StaticUrlTest(TestCase):
         """-> test cart page"""
 
         client = Client()
-        response = client.get('/en/cart/')
+        response = client.get("/en/cart/")
         self.assertEqual(response.status_code, 200)
 
 
 class TestTemplateUsed(TestCase):
-    """-> test used correct template""" 
+    """-> test used correct template"""
 
     def test_correct_template_for_cart(self):
-        """-> test correct template for cart""" 
+        """-> test correct template for cart"""
 
         client = Client()
-        response = client.get('/en/cart/')
-        self.assertTemplateUsed(response, 'cart/detail.html')
+        response = client.get("/en/cart/")
+        self.assertTemplateUsed(response, "cart/detail.html")

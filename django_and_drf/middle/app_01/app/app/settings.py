@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os 
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,14 +41,14 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # sitemaps
-    'django.contrib.sites', 
-    'django.contrib.sitemaps',
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
     # local
-    'blog.apps.BlogConfig',
+    "blog.apps.BlogConfig",
     # downloaded '
-    'taggit',
-    #database
-    'django.contrib.postgres',
+    "taggit",
+    # database
+    "django.contrib.postgres",
 ]
 
 MIDDLEWARE = [
@@ -88,13 +88,13 @@ WSGI_APPLICATION = "app.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        'PORT': '5432',
-        "NAME": 'blog_a', 
-        'USER': 'blog_a', 
-        'PASSWORD': '1691',
-        'HOST': 'localhost',
-        'TEST': {
-            'NAME': 'test_name',
+        "PORT": "5432",
+        "NAME": "blog_a",
+        "USER": "blog_a",
+        "PASSWORD": "1691",
+        "HOST": "localhost",
+        "TEST": {
+            "NAME": "test_name",
         },
     }
 }
@@ -141,12 +141,12 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# smtp server 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'testuser@gmail.com'
-EMAIL_HOST_PASSWORD = '123pass123'
+# smtp server
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "testuser@gmail.com"
+EMAIL_HOST_PASSWORD = "123pass123"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-# local 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# local
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

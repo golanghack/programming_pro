@@ -22,20 +22,20 @@ from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
 
 
-if 'rosetta' in settings.INSTALLED_APPS:
-    rosetta_url = ('rosetta/')
-    roseta_includes = 'rosetta.urls'
+if "rosetta" in settings.INSTALLED_APPS:
+    rosetta_url = "rosetta/"
+    roseta_includes = "rosetta.urls"
 
 urlpatterns = i18n_patterns(
     path("admin/", admin.site.urls),
-    path(_('cart/'), include('cart.urls', namespace='cart')),
-    path(_('orders/'), include('orders.urls', namespace='orders')),
-    path(_('payment/'), include('payment.urls', namespace='payment')),
-    path(_('coupons/'), include('coupons.urls', namespace='coupons')),
+    path(_("cart/"), include("cart.urls", namespace="cart")),
+    path(_("orders/"), include("orders.urls", namespace="orders")),
+    path(_("payment/"), include("payment.urls", namespace="payment")),
+    path(_("coupons/"), include("coupons.urls", namespace="coupons")),
     path(rosetta_url, include(roseta_includes)),
-    path('', include('shop.urls', namespace='shop')),
+    path("", include("shop.urls", namespace="shop")),
 )
-    
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

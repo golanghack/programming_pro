@@ -5,6 +5,6 @@ class ImagesConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "images"
 
-    # signals 
+    # signals
     def ready(self):
         import images.signal

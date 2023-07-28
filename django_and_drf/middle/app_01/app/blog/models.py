@@ -2,7 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
-from taggit.managers import TaggableManager 
+from taggit.managers import TaggableManager
+
 
 class PublishedManager(models.Manager):
     """Custom manager."""
@@ -10,61 +11,70 @@ class PublishedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status=Post.Status.PUBLISHED)
 
-class Post(models.Model):
 
+class Post(models.Model):
     class Status(models.TextChoices):
         """Class status blog writing.
-        
-            option status -> Post.Status.choices
-            repr -> Post.Status.labels
-            row -> Post.Status.values
+
+        option status -> Post.Status.choices
+        repr -> Post.Status.labels
+        row -> Post.Status.values
         """
 
-        DRAFT = 'DF', 'Draft'
-        PUBLISHED = 'PB', 'Published'
+        DRAFT = "DF", "Draft"
+        PUBLISHED = "PB", "Published"
 
     # VARCHAR in BD
-    title: str = models.CharField(max_length=300, verbose_name='Title', help_text='Enter short title')
+    title: str = models.CharField(
+        max_length=300, verbose_name="Title", help_text="Enter short title"
+    )
     # VARCHAR in DB
-    slug: str = models.SlugField(max_length=300, unique_for_date='publish')
-    author: str = models.ForeignKey(User, 
-                                    on_delete=models.CASCADE, 
-                                    related_name='blog_posts')
+    slug: str = models.SlugField(max_length=300, unique_for_date="publish")
+    author: str = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="blog_posts"
+    )
     # TEXT in DB
-    body = models.TextField(verbose_name='Enter text')
+    body = models.TextField(verbose_name="Enter text")
     # DATETIME in DB
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True, max_length=400)
     updated = models.DateTimeField(auto_now=True, max_length=400)
-    status = models.CharField(max_length=12, 
-                                choices=Status.choices, 
-                                default=Status.DRAFT)
+    status = models.CharField(
+        max_length=12, choices=Status.choices, default=Status.DRAFT
+    )
 
     objects = models.Manager()
     published = PublishedManager()
 
     class Meta:
-        ordering = ['-publish']
-        indexes = [models.Index(fields=['-publish']),]
+        ordering = ["-publish"]
+        indexes = [
+            models.Index(fields=["-publish"]),
+        ]
 
     def __str__(self) -> str:
         return self.title
 
     def get_absolute_url(self):
-        return reverse('blog:post_detail', args=[
-            self.publish.year, 
-            self.publish.month,
-            self.publish.day, 
-            self.slug,
-        ])
+        return reverse(
+            "blog:post_detail",
+            args=[
+                self.publish.year,
+                self.publish.month,
+                self.publish.day,
+                self.slug,
+            ],
+        )
 
     tags = TaggableManager()
 
 
 class Comment(models.Model):
 
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    name = models.CharField(max_length=80, verbose_name='Enter name', help_text='Enter name')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    name = models.CharField(
+        max_length=80, verbose_name="Enter name", help_text="Enter name"
+    )
     email = models.EmailField()
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
@@ -72,10 +82,16 @@ class Comment(models.Model):
     active = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ['created',]
+        ordering = [
+            "created",
+        ]
         indexes = [
-            models.Index(fields=['created',]),
+            models.Index(
+                fields=[
+                    "created",
+                ]
+            ),
         ]
 
     def __str__(self):
-        return f'Comment by {self.name} on {self.post}'
+        return f"Comment by {self.name} on {self.post}"

@@ -3,10 +3,9 @@ from .models import Profile
 
 
 class EmailAuthBackend:
-
-    def authenticate(self, request: str, username: str=None, password: str=None):
+    def authenticate(self, request: str, username: str = None, password: str = None):
         """Return user or None
-        
+
         from db get user with this email and testing with check_password
         get user from db for id -> primary key(pk)
         """
@@ -25,6 +24,7 @@ class EmailAuthBackend:
                 return User.objects.get(pk=user_id)
             except User.DoesNotExist:
                 return None
+
 
 def create_profile(backend, user, *args, **kwargs):
     """Create profile user for social auth"""
