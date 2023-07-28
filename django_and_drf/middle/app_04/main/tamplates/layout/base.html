@@ -1,0 +1,67 @@
+{% load bootstrap5 %} 
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Главная{% endblock %} AstroNews</title>
+    {% bootstrap_css %} 
+    <link rel="stylesheet" href="{% static 'main/main.css' %}">
+    {% bootstrap_javascript jquery='slim' %}
+</head>
+<body class="container-fluid">
+    <header class="mb-4">
+        <h1 class="display-1 text-center">
+            Новости
+        </h1>
+    </header>
+    <div class="row">
+        <ul class="col nav justify-content-end border">
+            <li class="nav-item">
+                <a href="#" class="nav-link">Регистрация</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                role="button" aria-haspopup="true" aria-expanded="false">Ваш профиль</a>
+                <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item">Мои новости</a>
+                    <a href="#" class="dropdown-item">Изменить личные данные</a>
+                    <a href="#" class="dropdown-item">Изменить пароль</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Выйти</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Удалить</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Вход</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <nav class="col-md-auto flex-column border">
+            <a href="{% url 'main:index' %}" class="nav-link root">Главная</a>
+            <a class="nav-link root font-weight-bold" href="#">
+                 Вселенная
+            </span>
+            <a href="#" class="nav-link">Галактики</a>
+            <a href="#" class="nav-link">Звезды</a>
+            <a href="#" class="nav-link">Жизнь</a>
+            <a class="nav-link root font-weight-bold" href="#">Солнечная система</a>
+            <a href="#" class="nav-link">Внутренняя система(Меркурий, Венера, Марс)</a>
+            <a href="#" class="nav-link">Внешная система(планеты-гиганты, кометы)</a>
+        </nav>
+        <section class="col border py-2">
+            {% bootstrap_messages %} 
+            {% block content %} 
+            {% endblock %} 
+        </section>
+    </div>
+    <footer class="mt-5">
+        <p class="text-right font-italic">$copy; Golanghack 2023.</p>
+    </footer>
+    
+</body>
+</html>
