@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # <--LOADED-->
+    "bootstrap5",
     # <--END-->
     # <--MINE-->
     "main.apps.MainConfig",
