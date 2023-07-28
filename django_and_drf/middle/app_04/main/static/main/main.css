@@ -1,7 +1,17 @@
 header h1 {
     color: wheat;
-    background: url("images/") left / auto 100% no-repeat, url("images/bg.jpg") right / auto no-repeat;
 }
 .root {
     font-size: larger;
+}
+
+.container-fluid {
+    background: url('images/bg.jpg');
+    color:  gold;
+}
+section {
+    color:  goldenrod;
+}
+.row a {
+    color: burlywood;
 }
