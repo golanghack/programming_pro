@@ -1,10 +1,10 @@
-# syntax=docker/dockerfile:1
+
 
 FROM golang:1.17-alpine
 
 RUN apk add curl
 
-WORKDIR /app
+WORKDIR /task_manager
 
 COPY go.mod ./
 COPY go.sum ./
@@ -15,7 +15,6 @@ COPY *.go ./
 
 RUN go build -o /task_manager
 
-EXPOSE 8080
-
+EXPOSE 8082
 
 CMD [ "/task_manager" ]

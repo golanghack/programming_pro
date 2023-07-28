@@ -187,4 +187,5 @@ func getStrEnv(key string, defaultValue string) string {
 func main() {
 	r := setupRouter()
 	r.Run(getStrEnv("TASK_MANAGER_HOST", ":8082"))
+
 }
