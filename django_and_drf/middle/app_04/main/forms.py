@@ -8,4 +8,5 @@ class ChangeUserInfoForm(forms.ModelForm):
                             label='Адрес электронной почты')
     class Meta:
         model = AdvUser
+        # dont changes parameters ->
         fields = ('username', 'email', 'first_name', 'last_name', 'send_messages')

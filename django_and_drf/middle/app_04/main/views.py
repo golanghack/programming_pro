@@ -3,10 +3,16 @@ from django.http import HttpResponse, Http404
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
 from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic.edit import UpdateView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from typing import Union
+from typing import Union, Callable
 
+from main.models import AdvUser
+from main.forms import ChangeUserInfoForm
 
 def index(request: str) -> render:
     return render(request, 'main/index.html')
@@ -33,3 +39,22 @@ class AppLogoutView(LoginRequiredMixin, LogoutView):
     """App logout view""" 
 
     template_name = 'main/logout.html'
+
+
+class ChangeUserInfoView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    """Change user data class""" 
+
+    model = AdvUser
+    template_name = 'main/change_user_info.html'
+    form_class = ChangeUserInfoForm
+    success_url = reverse_lazy('main:profile')
+    success_message = 'Данные успешно изменены'
+
+    def setup(self, request: str, *args, **kwargs) -> Callable:
+        self.user_id = request.user.pk 
+        return super().setup(request, *args, **kwargs)
+
+    def get_object(self, queryset: str=None) -> get_object_or_404:
+        if not queryset:
+            queryset = self.get_queryset()
+        return get_object_or_404(queryset, pk=self.user_id)
