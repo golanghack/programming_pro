@@ -1,10 +1,15 @@
 from django.urls import path
 from main.views import (index, other_page, AppLoginView,
                         profile, AppLogoutView, ChangeUserInfoView,
-                        AppPasswordChangeView)
+                        AppPasswordChangeView, RegisterUserView,
+                        RegisterDoneView)
 
 app_name = 'main'
 urlpatterns = [
+    path('accounts/register/done/', RegisterDoneView.as_view(),
+                                            name='register_done'),
+    path('accounts/register/', RegisterUserView.as_view(), 
+                                            name='register'),
     path('accounts/profile/change/', ChangeUserInfoView.as_view(), 
                                             name='change_user_info'),
     path('accounts/logout/', AppLogoutView.as_view(), name='logout'),
