@@ -9,7 +9,7 @@
     <form action="" method="post">
         {% csrf_token %} 
         {% bootstrap_form form layout='horizontal' %} 
-        <input type="hiddent" name="next" id="" value="{{ next }}">
+        <input type="hidden" name="next" id="" value="{{ next }}">
         {% buttons submit='Войти' %}{% endbuttons %} 
     </form>
 {% endif %} 
