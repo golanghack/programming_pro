@@ -8,7 +8,7 @@ from typing import Union
 def index(request: str) -> render:
     return render(request, 'main/index.html')
 
-def other_page(request: str, page: str) -> Union(HttpResponse, Http404):
+def other_page(request: str, page: str) -> Union[HttpResponse, Http404]:
     try:
         template = get_template('main/' + page + '.html')
     except TemplateDoesNotExist:
