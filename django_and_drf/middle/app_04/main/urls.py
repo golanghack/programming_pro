@@ -4,7 +4,7 @@ from main.views import (index, other_page, AppLoginView,
 
 app_name = 'main'
 urlpatterns = [
-    path('accounts/profile/change/', ChangeUserInfoView.as_view(), name='profile_change'),
+    path('accounts/profile/change/', ChangeUserInfoView.as_view(), name='change_user_info'),
     path('accounts/logout/', AppLogoutView.as_view(), name='logout'),
     path('accounts/profile/', profile, name='profile'),
     path('accounts/login/', AppLoginView.as_view(), name='login'),
