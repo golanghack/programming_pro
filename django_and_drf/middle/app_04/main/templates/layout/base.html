@@ -19,7 +19,7 @@
     <div class="row">
         <ul class="col nav justify-content-end">
             <li class="nav-item">
-                <a href="#" class="nav-link">Регистрация</a>
+                <a href="{% url 'main:register' %}" class="nav-link">Регистрация</a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
