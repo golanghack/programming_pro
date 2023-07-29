@@ -4,7 +4,7 @@ from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
 from django.contrib.auth.views import (LoginView, LogoutView, 
                                         PasswordChangeView)
-from django.views.generic.edit import (UpdateView, CreateView)
+from django.views.generic.edit import (UpdateView, CreateView, DeleteView)
 from django.views.generic.base import TemplateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -12,6 +12,8 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.core.signing import BadSignature
+from django.contrib.auth import logout
+from django.contrib import messages
 from typing import Union, Callable
 
 from main.models import AdvUser
@@ -99,3 +101,26 @@ def user_activate(request: str, sign: str) -> render:
         user.is_activated = True
         user.save()
     return render(request, template)
+
+
+class DeleteUserView(LoginRequiredMixin, DeleteView):
+    """Delete user view""" 
+
+    model = AdvUser
+    template_name = 'main/delete_user.html'
+    success_url = reverse_lazy('main:index')
+
+    def setup(self, request: str, *args, **kwargs) -> Callable:
+        self.user_id = request.user.pk 
+        return super().setup(request, *args, **kwargs)
+
+    def post(self, request: str, *args, **kwargs) -> Callable:
+        logout(request)
+        messages.add_message(request, messages.SUCCESS, 
+                                'Пользователь  успешно удален')
+        return super().post(request, *args, **kwargs)
+
+    def get_object(self, queryset: str=None) -> get_object_or_404:
+        if not queryset:
+            queryset = self.get_queryset()
+        return get_object_or_404(queryset, pk=self.user_id)
