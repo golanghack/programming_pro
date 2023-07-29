@@ -1,0 +1,11 @@
+{% extends 'layout/base.html' %} 
+{% load bootstrap5 %}
+{% block title %}Изменение личных данных{% endblock %} 
+{% block content %} 
+<h2>Изменение личных данных пользователя -> {{ user.username }}</h2>
+<form action="" method="post">
+    {% csrf_token %} 
+    {% bootstrap_form form layout='horizontal' %}
+    {% buttons submit='Сохранить' %}{% endbuttons %} 
+</form>
+{% endblock %} 
