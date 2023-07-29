@@ -6,10 +6,10 @@ from app.settings import ALLOWED_HOSTS
 signer = Signer()
 
 def send_activation_notification(user: str) -> None:
-    if ALLOWED_HOSTS:
-        host = 'https://' + ALLOWED_HOSTS[0]
-    else:
-        host = 'http://localhost:8000'
+    '''if ALLOWED_HOSTS:
+        host = 'http://' + ALLOWED_HOSTS[0]
+    else:'''
+    host = 'http://localhost:8000'
     context = {'user': user, 
                     'host': host,
                     'sign': signer.sign(user.username)}

@@ -32,9 +32,11 @@ DEBUG = False if ENV == "PROD" else True
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
+# test email
+# local email
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",

@@ -8,7 +8,7 @@ class AdvUser(AbstractUser):
     send_messages -> user send messages?
     """ 
 
-    is_activeted = models.BooleanField(default=True,
+    is_activated = models.BooleanField(default=True,
                                     db_index=True, 
                                     verbose_name='Активирован?')
     send_messages = models.BooleanField(default=True,
