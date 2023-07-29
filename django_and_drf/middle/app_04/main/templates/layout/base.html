@@ -21,6 +21,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">Регистрация</a>
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item">
 
                 <div class="dropdown">
@@ -39,9 +40,11 @@
                 </div>
    
             </li>
+            {% else %} 
             <li class="nav-item">
                 <a href="#" class="nav-link">Вход</a>
             </li>
+            {% endif %} 
         </ul>
     </div>
     <div class="row">
