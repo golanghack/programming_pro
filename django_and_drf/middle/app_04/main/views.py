@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
-from django.views.generic.edit import UpdateView
+from django.contrib.auth.views import (LoginView, LogoutView, 
+                                        PasswordChangeView)
+from django.views.generic.edit import (UpdateView, CreateView)
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
@@ -12,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from typing import Union, Callable
 
 from main.models import AdvUser
-from main.forms import ChangeUserInfoForm
+from main.forms import ChangeUserInfoForm, RegisterUserForm
 
 def index(request: str) -> render:
     return render(request, 'main/index.html')
@@ -65,3 +66,11 @@ class AppPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, PasswordCha
     template_name = 'main/password_change.html'
     success_url = reverse_lazy('main:profile')
     success_message = 'Пароль успешно изменен'
+
+class RegisterUserView(CreateView):
+    """Registration new user"""
+
+    model = AdvUser
+    template_name = 'main/register_user.html'
+    form_class = RegisterUserForm
+    success_url = reverse_lazy('main:register_done')
