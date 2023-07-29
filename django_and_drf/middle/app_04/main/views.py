@@ -11,10 +11,12 @@ from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.core.signing import BadSignature
 from typing import Union, Callable
 
 from main.models import AdvUser
 from main.forms import ChangeUserInfoForm, RegisterUserForm
+from main.utils import signer
 
 def index(request: str) -> render:
     return render(request, 'main/index.html')
@@ -80,3 +82,20 @@ class RegisterDoneView(TemplateView):
     """Register done view""" 
 
     template_name = 'main/register_done.html'
+
+
+def user_activate(request: str, sign: str) -> render:
+    try:
+        username = signer.unsign(sign)
+    except BadSignature:
+        return render(request, 'main/bad_signature.html')
+    
+    user = get_object_or_404(AdvUser, username=username)
+    if user.is_activated:
+        template = 'main/user_is_activated.html'
+    else:
+        template = 'main/activation_done.html'
+        user.is_active = True
+        user.is_activated = True
+        user.save()
+    return render(request, template)
