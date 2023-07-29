@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 from typing import Union
 
 
@@ -21,3 +22,8 @@ class AppLoginView(LoginView):
     """App Login View""" 
 
     template_name = 'main/login.html'
+
+@login_required
+def profile(request: str) -> render:
+    """profile user"""
+    return render(request, 'main/profile.html')
