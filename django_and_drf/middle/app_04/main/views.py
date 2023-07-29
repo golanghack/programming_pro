@@ -5,6 +5,7 @@ from django.template.loader import get_template
 from django.contrib.auth.views import (LoginView, LogoutView, 
                                         PasswordChangeView)
 from django.views.generic.edit import (UpdateView, CreateView)
+from django.views.generic.base import TemplateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
@@ -74,3 +75,8 @@ class RegisterUserView(CreateView):
     template_name = 'main/register_user.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('main:register_done')
+
+class RegisterDoneView(TemplateView):
+    """Register done view""" 
+
+    template_name = 'main/register_done.html'
