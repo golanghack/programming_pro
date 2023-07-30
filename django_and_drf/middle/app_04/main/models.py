@@ -52,3 +52,28 @@ class SuperRubric(Rubric):
         ordering = ('order', 'name')
         verbose_name = 'Родительская рубрика'
         verbose_name_plural = 'Надрубрики'
+
+class SubRubricManager(models.Manager):
+    """Sub rubric manager""" 
+
+    def get_queryset(self) -> typing.Callable:
+        return super().get_queryset().filter(super_rubric__isnull=False)
+
+class SubRubric(Rubric):
+    """Subrubric -> child rubric from SuperRubric""" 
+
+    objects = SubRubricManager()
+
+    def __str__(self) -> str:
+        return f'{self.super_rubric.name} -> {self.name}'
+
+    class Meta:
+        proxy = True
+        ordering = ('super_rubric__order', 
+                    'super_rubric__name', 
+                    'order',
+                    'name')
+        verbose_name = 'Подрубрика'
+        verbose_name_plural = 'Подрубрики'
+
+        
