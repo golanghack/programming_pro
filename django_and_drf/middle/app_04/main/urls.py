@@ -3,7 +3,10 @@ from main.views import (index, other_page, AppLoginView,
                         profile, AppLogoutView, ChangeUserInfoView,
                         AppPasswordChangeView, RegisterUserView,
                         RegisterDoneView, user_activate, 
-                        DeleteUserView)
+                        DeleteUserView, AppPasswordResetCompleteView,
+                        AppPasswordResetConfirmView,
+                        AppPasswordResetDoneView,
+                        AppPasswordResetView)
 
 app_name = 'main'
 urlpatterns = [
@@ -25,7 +28,7 @@ urlpatterns = [
     path('accounts/password/reset/', AppPasswordResetView.as_view(), name='password_reset'),
     path('accounts/password/confirm/complete/', AppPasswordResetCompleteView.as_view(),
                                        name='password_reset_complete'),
-    path('accounts/password/confirm/<uidb64>/<token>/', BBPasswordResetConfirmView.as_view(),
+    path('accounts/password/confirm/<uidb64>/<token>/', AppPasswordResetConfirmView.as_view(),
                                        name='password_reset_confirm'),
     path('accounts/profile/', profile, name='profile'),
     path('accounts/login/', AppLoginView.as_view(), name='login'),
