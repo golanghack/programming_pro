@@ -6,6 +6,10 @@ from django.contrib.auth.views import (LoginView, LogoutView,
                                         PasswordChangeView)
 from django.views.generic.edit import (UpdateView, CreateView, DeleteView)
 from django.views.generic.base import TemplateView
+from django.contrib.auth.views import (PasswordResetView,
+                                       PasswordResetCompleteView,
+                                       PasswordResetConfirmView,
+                                       PasswordResetDoneView)
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
@@ -124,3 +128,19 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
         if not queryset:
             queryset = self.get_queryset()
         return get_object_or_404(queryset, pk=self.user_id)
+
+class AppPasswordResetView(PasswordResetView):
+    template_name = 'main/password_reset.html'
+    subject_template_name = 'email/reset_letter_subject.txt'
+    email_template_name = 'email/reset_letter_body.txt'
+    success_url = reverse_lazy('main:password_reset_done')
+
+class AppPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'main/password_reset_done.html'
+
+class AppPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'main/password_confirm.html'
+    success_url = reverse_lazy('main:password_reset_complete')
+
+class AppPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'main/password_complete.html'
