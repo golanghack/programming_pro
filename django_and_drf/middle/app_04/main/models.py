@@ -1,4 +1,5 @@
 from django.db import models
+import typing
 
 from django.contrib.auth.models import AbstractUser
 
@@ -32,3 +33,22 @@ class Rubric(models.Model):
                             blank=True, 
                             verbose_name='Родительская рубрика')
     
+class SuperRubricManager(models.Manager):
+    """Super rubric manager""" 
+
+    def get_queryset(self) -> typing.Callable:
+        return super().get_queryset().filter(super_rubric__isnull=True)
+
+
+class SuperRubric(Rubric):
+    """Super rubric -> parrent rubric for rubrics children""" 
+
+    objects = SuperRubricManager()
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        proxy = True 
+        ordering = ('order', 'name')
+        verbose_name = 'Родительская рубрика'
+        verbose_name_plural = 'Надрубрики'
