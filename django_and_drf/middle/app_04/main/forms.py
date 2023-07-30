@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from typing import Callable
 
 from main.apps import user_registered 
-from main.models import AdvUser
+from main.models import (AdvUser, SuperRubric, SubRubric)
 
 class ChangeUserInfoForm(forms.ModelForm):
     """Change`s forms for email""" 
@@ -60,3 +60,17 @@ class RegisterUserForm(forms.ModelForm):
         model = AdvUser
         fields = ('username', 'email', 'password1', 'password2', 
                     'first_name', 'last_name', 'send_messages')
+
+
+class SubRubricForm(forms.ModelForm):
+    super_rubric = forms.ModelChoiceField(
+        queryset=SuperRubric.objects.all(),
+        empty_label=None,
+        label='Родительская рубрика',
+        required=True
+    )
+
+    class Meta:
+        model = SubRubric
+        fields = '__all__'
+        
