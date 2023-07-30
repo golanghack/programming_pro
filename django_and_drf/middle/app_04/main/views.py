@@ -144,3 +144,7 @@ class AppPasswordResetConfirmView(PasswordResetConfirmView):
 
 class AppPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'main/password_complete.html'
+
+
+def by_rubric(request: str, pk: int) -> None:
+    pass
