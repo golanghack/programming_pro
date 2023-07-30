@@ -51,15 +51,16 @@
     <div class="row">
         <nav class="col-md-auto flex-column">
             <a href="{% url 'main:index' %}" class="nav-link root">Главная</a>
-            <a class="nav-link root font-weight-bold" href="#">
-                 Вселенная
-            </span>
-            <a href="#" class="nav-link">Галактики</a>
-            <a href="#" class="nav-link">Звезды</a>
-            <a href="#" class="nav-link">Жизнь</a>
-            <a class="nav-link root font-weight-bold" href="#">Солнечная система</a>
-            <a href="#" class="nav-link">Внутренняя система</a>
-            <a href="#" class="nav-link">Внешная система</a>
+           {% for rubric in rubrics %} 
+                {% ifchanged rubric.super_rubric.pk %} 
+                    <span class="nav-link root font-weight-bold">
+                        {{ rubric.super_rubric.name }}
+                    </span>
+                {% endifchanged %} 
+                <a href="{% url 'main:by_rubric' pk=rubric.pk %}" class="nav-link">
+                    {{ rubric.name }}
+                </a>
+            {% endfor %} 
             <a href="{% url 'main:other' page='about' %}" class="nav-link root">О сайте</a>
         </nav>
         <section class="col py-4">
