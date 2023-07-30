@@ -6,7 +6,7 @@ from main.views import (index, other_page, AppLoginView,
                         DeleteUserView, AppPasswordResetCompleteView,
                         AppPasswordResetConfirmView,
                         AppPasswordResetDoneView,
-                        AppPasswordResetView)
+                        AppPasswordResetView, by_rubric)
 
 app_name = 'main'
 urlpatterns = [
@@ -32,6 +32,7 @@ urlpatterns = [
                                        name='password_reset_confirm'),
     path('accounts/profile/', profile, name='profile'),
     path('accounts/login/', AppLoginView.as_view(), name='login'),
+    path('<int:pk>/', by_rubric, name='by_rubric'),
     path('<str:page>/', other_page, name='other'),
     path('', index, name='index'),
 ]
