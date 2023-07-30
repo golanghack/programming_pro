@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth import views
 from main.views import (index, other_page, AppLoginView,
                         profile, AppLogoutView, ChangeUserInfoView,
                         AppPasswordChangeView, RegisterUserView,
@@ -7,6 +8,14 @@ from main.views import (index, other_page, AppLoginView,
 
 app_name = 'main'
 urlpatterns = [
+    path('accounts/password_reset/', views.PasswordResetView.as_view(), 
+                                                    name='password_reset'),
+    path('accounts/password_reset/done', views.PasswordResetDoneView.as_view(), 
+                                                    name='password_reset_done'),
+    path('accounts/reset/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(),
+                                                    name='password_reset_confirm'),
+    path('accounts/reset/done/', views.PasswordResetCompleteView.as_view(), 
+                                                    name='password_reset_complete'),
     path('accounts/register/activate/<str:sign>/', user_activate, 
                                     name='register_activate'),
     path('accounts/register/done/', RegisterDoneView.as_view(),
