@@ -179,3 +179,14 @@ def by_rubric(request: str, pk: int) -> render:
     }
     return render(request, 'main/by_rubric.html', context)
     
+
+def detail(request: str, rubric_pk: int, pk: int) -> render:
+    """Render detail for rubric pk""" 
+
+    new = get_object_or_404(News, pk=pk)
+    ais = new.additionalimage_set.all()
+    context = {
+        'new': new, 
+        'ais': ais
+    }
+    return render(request, 'main/detail.html', context)
