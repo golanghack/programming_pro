@@ -8,6 +8,8 @@ django = "*"
 python-dotenv = "*"
 django-bootstrap5 = "*"
 django-bootstrap-v5 = "*"
+easy-thumbnails = "*"
+django-cleanup = "*"
 
 [dev-packages]
 

@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # <--LOADED-->
     "bootstrap5",
+    "django_cleanup",
+    "easy_thumbnails",
     # <--END-->
     # <--MINE-->
     "main.apps.MainConfig",
