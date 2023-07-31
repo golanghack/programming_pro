@@ -143,3 +143,13 @@ AUTH_USER_MODEL = 'main.AdvUser'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+THUMBNAILS_ALIASES = {
+    '': {
+        'default': {
+            'size': (102, 102),
+            'crop': 'scale',
+        },
+    },
+}
+
+THUMBNAILS_BASEDIR = "thumbnails"
