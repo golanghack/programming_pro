@@ -16,6 +16,10 @@ class AdvUser(AbstractUser):
     send_messages = models.BooleanField(default=True,
                                     verbose_name='Отправльять сообщения о комментариях?')
     
+    def delete(self, *args, **kwargs):
+        for news in self.news_set.all():
+            news.delete()
+        super().delete(*args, *kwargs)
     class Meta(AbstractUser.Meta):
         pass
 
