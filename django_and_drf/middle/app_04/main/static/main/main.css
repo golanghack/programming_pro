@@ -6,8 +6,8 @@ header h1 {
 }
 
 .container-fluid {
-    background: url('images/bg.jpg');
-    color:  gold;
+    background: url('images/bg.jpeg');
+    color: gold;
 }
 section {
     color:  goldenrod;
@@ -18,6 +18,7 @@ section {
 
 img.main-image {
     width: 350px;
+    height: 200px;
 }
 img.additional-image {
     width: 200px;

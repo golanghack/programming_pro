@@ -3,7 +3,7 @@
 {% block content %} 
 <div class="container-fluid mt-3">
     <div class="row">
-        {% if now.image %}
+        {% if new.image %}
         <div class="col-md-auto">
             <img src="{{ new.image.url }}" alt="" class="main-image">
         </div>
@@ -15,7 +15,7 @@
                 {{ new.raiting }}
             </p>
             <p>{{ new.source }}</p>
-            <p class="text-right forn-italic">Добавлена {{ new.created_at }}</p>
+            <p class="text-right font-italic">Добавлена {{ new.created_at }}</p>
         </div>
     </div>
 </div>

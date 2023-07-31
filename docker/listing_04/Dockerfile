@@ -15,7 +15,7 @@ COPY *.go ./
 
 RUN go build -o /task_manager
 
-EXPOSE 8080
+EXPOSE 8082
 
 
 CMD [ "/task_manager" ]
