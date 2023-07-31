@@ -15,3 +15,10 @@ section {
 .row a {
     color: burlywood;
 }
+
+img.main-image {
+    width: 350px;
+}
+img.additional-image {
+    width: 200px;
+}
