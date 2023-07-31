@@ -1,7 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 import typing
 
-from django.contrib.auth.models import AbstractUser
+from main.utils import get_timestamp_path
 
 class AdvUser(AbstractUser):
     """AdvUser 
@@ -76,4 +77,35 @@ class SubRubric(Rubric):
         verbose_name = 'Подрубрика'
         verbose_name_plural = 'Подрубрики'
 
-        
+
+class News(models.Model):
+    rubric = models.ForeignKey(SubRubric, 
+                                on_delete=models.PROTECT,
+                                verbose_name='Рубрика')
+    title = models.CharField(max_length=60, 
+                                verbose_name='Заголовок новости')
+    content = models.TextField(verbose_name='Новость')
+    weight = models.FloatField(default=0, verbose_name='Рейтинг сложности')
+    source = models.TextField(verbose_name='Источник новости')
+    image = models.ImageField(blank=True,
+                                upload_to=get_timestamp_path, 
+                                verbose_name='Изображение')
+    author = models.ForeignKey(AdvUser, 
+                                on_delete=models.CASCADE,
+                                verbose_name='Автор новости на сайте')
+    is_active = models.BooleanField(default=True,
+                                db_index=True,
+                                verbose_name='Выводить как список?')
+    created_at = models.DateTimeField(auto_now_add=True,
+                                db_index=True, 
+                                verbose_name='Опубликована')
+
+    def delete(self, *args, **kwargs):
+        for ai in self.additionalimage_set.all():
+            ai.delete()
+        super().delete(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'Новости'
+        verbose_name = 'Новость'
+        ordering = ['-created_at']
