@@ -109,3 +109,16 @@ class News(models.Model):
         verbose_name_plural = 'Новости'
         verbose_name = 'Новость'
         ordering = ['-created_at']
+
+class AdditionalImage(models.Model):
+    """Model adding the images""" 
+
+    new = models.ForeignKey(News,
+                            on_delete=models.CASCADE,
+                            verbose_name='Новость')
+    image = models.ImageField(upload_to=get_timestamp_path,
+                            verbose_name='Изображение')
+
+    class Meta:
+        verbose_name_plural = 'Иллюстрации к новости'
+        verbose_name = 'Иллюстрация к новости'
