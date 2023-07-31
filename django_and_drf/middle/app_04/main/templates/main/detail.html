@@ -1,0 +1,30 @@
+{% extends 'layout/base.html' %} 
+{% block title %}{{ new.title }} -> {{ new.rubric.name }}{% endblock %} 
+{% block content %} 
+<div class="container-fluid mt-3">
+    <div class="row">
+        {% if now.image %}
+        <div class="col-md-auto">
+            <img src="{{ new.image.url }}" alt="" class="main-image">
+        </div>
+        {% endif %} 
+        <div class="col">
+            <h2>{{ new.title }}</h2>
+            <p>{{ new.content }}</p>
+            <p class="font-weight-bold">
+                {{ new.raiting }}
+            </p>
+            <p>{{ new.source }}</p>
+            <p class="text-right forn-italic">Добавлена {{ new.created_at }}</p>
+        </div>
+    </div>
+</div>
+{% if ais %} 
+<div class="d-flex justify-content-between flex-wrap mt-5">
+    {% for ai in ais %}
+        <div><img src="{{ ai.image.url }}" alt="" class="additional-image"></div>
+    {% endfor %}
+</div>
+{% endif %} 
+<p><a href="{% url 'main:by_rubric' pk=new.rubric.pk %}{{ all }}">Назад</a></p>
+{% endblock %} 
