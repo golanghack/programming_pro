@@ -16,12 +16,16 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.core.signing import BadSignature
+from django.core.paginator import Paginator
+from django.db.models import Q 
 from django.contrib.auth import logout
 from django.contrib import messages
 from typing import Union, Callable
 
-from main.models import AdvUser
-from main.forms import ChangeUserInfoForm, RegisterUserForm
+from main.models import (AdvUser, SubRubric, 
+                        News)
+from main.forms import (ChangeUserInfoForm, RegisterUserForm,
+                        SearchForm)
 from main.utils import signer
 
 def index(request: str) -> render:
@@ -146,5 +150,32 @@ class AppPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'main/password_complete.html'
 
 
-def by_rubric(request: str, pk: int) -> None:
-    pass
+def by_rubric(request: str, pk: int) -> render:
+    """Serching news on rubric with keywords argument in GET""" 
+
+    rubric = get_object_or_404(SubRubric, pk=pk)
+    news = News.objects.filter(is_active=True, rubric=pk)
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        q = Q(title__icontains=keyword) | Q(content__icontains=keyword)
+        news = news.filter(q)
+    else:
+        keyword = ''
+    
+    form = SearchForm(initial={
+        'keyword': keyword
+    })
+    paginator = Paginator(news, 2)
+    if 'page' in request.GET:
+        page_num = request.GET['page']
+    else:
+        page_num = 1 
+    page = paginator.get_page(page_num)
+    context = {
+        'rubric': rubric, 
+        'page': page,
+        'news': page.object_list,
+        'form': form
+    }
+    return render(request, 'main/by_rubric.html', context)
+    
