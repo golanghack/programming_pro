@@ -17,17 +17,15 @@
 <h3>Ваши новости</h3>
 <ul class="list-unstyled">
     {% for new in news %}
-    <li class="media my-5 p-3 border">
+    <li class="media my-5 p-3">
         {% url 'main:profile_new_detail' pk=new.pk as url %}
         <a href="{{ url }}">
         {% if new.image %}
         <img class="mr-3" src="{% thumbnail new.image 'default' %}">
-        {% else %}
-        <img class="mr-3" src="{% static 'main/empty.jpg' %}">
         {% endif %}
         </a>
         <div class="media-body">
-            <p>Виберите рубрику {{ new.rubric }}</p>
+            <p>Направление -> {{ new.rubric }}</p>
             <h3><a href="{{ url }}">{{ new.title }}</a></h3>
             <div>{{ new.content }}</div>
             <p class="text-right font-weight-bold">Укажите сложность {{ new.raiting }}</p>

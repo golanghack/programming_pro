@@ -22,8 +22,7 @@
                 <a href="{{ url }}{{ all }}">
                     {% if new.image %} 
                         <img src="{% thumbnail new.image 'default' %}" alt="" class="mr-3">
-                    {% else %} 
-                        <img src="{% static 'main/empty.jpg' %}" alt="" class="mr-3">
+        
                     {% endif %}
                 </a>
                 <div class="media-body">
