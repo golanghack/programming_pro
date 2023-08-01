@@ -90,7 +90,7 @@ class News(models.Model):
                                 verbose_name='Заголовок новости')
     content = models.TextField(verbose_name='Новость')
     weight = models.FloatField(default=0, verbose_name='Рейтинг сложности')
-    source = models.TextField(verbose_name='Источник новости')
+    source = models.CharField(max_length=40, verbose_name='Источник')
     image = models.ImageField(blank=True,
                                 upload_to=get_timestamp_path, 
                                 verbose_name='Изображение')
