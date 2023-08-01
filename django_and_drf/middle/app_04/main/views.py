@@ -29,7 +29,9 @@ from main.forms import (ChangeUserInfoForm, RegisterUserForm,
 from main.utils import signer
 
 def index(request: str) -> render:
-    return render(request, 'main/index.html')
+    news = News.objects.filter(is_active=True)[:10]
+    context = {'news': news}
+    return render(request, 'main/index.html', context)
 
 def other_page(request: str, page: str) -> Union[HttpResponse, Http404]:
     try:
