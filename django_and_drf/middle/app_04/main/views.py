@@ -195,3 +195,15 @@ def detail(request: str, rubric_pk: int, pk: int) -> render:
         'ais': ais
     }
     return render(request, 'main/detail.html', context)
+
+@login_required
+def profile_new_detail(request: str, pk: int) -> render:
+    """Render detail for rubric pk""" 
+
+    new = get_object_or_404(News, pk=pk)
+    ais = new.additionalimage_set.all()
+    context = {
+        'new': new, 
+        'ais': ais
+    }
+    return render(request, 'main/profile_new_detail.html', context)
