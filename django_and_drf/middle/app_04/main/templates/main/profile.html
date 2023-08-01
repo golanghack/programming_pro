@@ -1,12 +1,44 @@
-{% extends 'layout/base.html' %} 
-{% block title %}Ваш профиль{% endblock %} 
-{% block content %} 
-<h2>Ваш профиль как пользователя -> {{ user.username }}</h2>
-{% if user.first_name and user.last_name %} 
+{% extends "layout/base.html" %}
+
+{% load thumbnail %}
+{% load static %}
+
+{% block title %}Профиль пользователя -> {{ user.username }}{% endblock %}
+
+{% block content %}
+<h2>Профиль пользователя {{ user.username }}</h2>
+{% if user.first_name and user.last_name %}
 <p>Доброго времени суток, {{ user.first_name }} {{ user.last_name }}!</p>
-{% else %} 
+{% else %}
 <p>Доброго времени суток!</p>
-{% endif %} 
-<h3>Ваши новости</h3>
+{% endif %}
 <p><a href="{% url 'main:profile_news_add' %}">Добавить новость</a></p>
-{% endblock %} 
+{% if news %}
+<h3>Ваши новости</h3>
+<ul class="list-unstyled">
+    {% for new in news %}
+    <li class="media my-5 p-3 border">
+        {% url 'main:profile_new_detail' pk=new.pk as url %}
+        <a href="{{ url }}">
+        {% if new.image %}
+        <img class="mr-3" src="{% thumbnail new.image 'default' %}">
+        {% else %}
+        <img class="mr-3" src="{% static 'main/empty.jpg' %}">
+        {% endif %}
+        </a>
+        <div class="media-body">
+            <p>Виберите рубрику {{ new.rubric }}</p>
+            <h3><a href="{{ url }}">{{ new.title }}</a></h3>
+            <div>{{ new.content }}</div>
+            <p class="text-right font-weight-bold">Укажите сложность {{ new.raiting }}</p>
+            <p class="text-right font-italic">{{ new.created_at }}</p>
+            <p class="text-right mt-2">
+                <a href="{% url 'main:profile_news_change' pk=new.pk %}">Исправить</a>
+                <a href="{% url 'main:profile_news_delete' pk=new.pk %}">Удалить</a>
+            </p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
