@@ -247,3 +247,16 @@ def profile_news_change(request: str, pk: int) -> render or redirect:
     context = {'form': form, 'formset': formset}
 
     return render(request, 'main/profile_news_change.html', context)
+
+@login_required
+def profile_news_delete(request: str, pk: int) -> redirect or render:
+    """News delete""" 
+
+    new = get_object_or_404(News, pk=pk)
+    if request.method == 'POST':
+        new.delete()
+        messages.add_message(request, messages.SUCCESS, 'Новость удалена')
+        return redirect('main:profile')
+    else:
+        context = {'new': new}
+        return render(request, 'main/profile_news_delete.html', context)
