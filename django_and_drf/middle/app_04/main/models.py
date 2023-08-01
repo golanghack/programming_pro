@@ -86,7 +86,7 @@ class News(models.Model):
     rubric = models.ForeignKey(SubRubric, 
                                 on_delete=models.PROTECT,
                                 verbose_name='Рубрика')
-    title = models.CharField(max_length=60, 
+    title = models.CharField(max_length=160, 
                                 verbose_name='Заголовок новости')
     content = models.TextField(verbose_name='Новость')
     weight = models.FloatField(default=0, verbose_name='Рейтинг сложности')
