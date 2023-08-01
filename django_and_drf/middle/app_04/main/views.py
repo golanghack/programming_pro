@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
@@ -25,7 +25,7 @@ from typing import Union, Callable
 from main.models import (AdvUser, SubRubric, 
                         News)
 from main.forms import (ChangeUserInfoForm, RegisterUserForm,
-                        SearchForm)
+                        SearchForm, NewsForm, AddImageSet)
 from main.utils import signer
 
 def index(request: str) -> render:
@@ -207,3 +207,22 @@ def profile_new_detail(request: str, pk: int) -> render:
         'ais': ais
     }
     return render(request, 'main/profile_new_detail.html', context)
+
+@login_required
+def profile_news_add(request: str) -> redirect:
+    """Controller for add news from user""" 
+
+    if request.method == 'POST':
+        form = NewsForm(request.POST, request.FILES)
+        if form.is_valid():
+            new = form.save()
+            formset = AddImageSet(request.POST, request.FILES, instance=new)
+            if formset.is_valid():
+                formset.save()
+                messages.add_message(request, messages.SUCCESS, 'Новость добавлена')
+                return redirect('main:profile')
+    else:
+        form = NewsForm(initial={'author': request.user.pk})
+        formset = AddImageSet()
+    context = {'form': form, 'formset': formset}
+    return render(request, 'main/profile_news_add.html', context)
