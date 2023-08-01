@@ -49,7 +49,10 @@ class AppLoginView(LoginView):
 @login_required
 def profile(request: str) -> render:
     """profile user"""
-    return render(request, 'main/profile.html')
+
+    news = News.objects.filter(author=request.user.pk)
+    context = {'news': news}
+    return render(request, 'main/profile.html', context)
 
 class AppLogoutView(LoginRequiredMixin, LogoutView):
     """App logout view""" 
