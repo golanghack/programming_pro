@@ -1,10 +1,13 @@
 from django import forms
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
+from django.forms import inlineformset_factory
 from typing import Callable
 
 from main.apps import user_registered 
-from main.models import (AdvUser, SuperRubric, SubRubric)
+from main.models import (AdvUser, SuperRubric, 
+                        SubRubric, News, 
+                        AdditionalImage)
 
 class ChangeUserInfoForm(forms.ModelForm):
     """Change`s forms for email""" 
@@ -81,3 +84,13 @@ class SearchForm(forms.Form):
     keyword = forms.CharField(required=False, 
                                 max_length=30, 
                                 label='')
+
+class NewsForm(forms.ModelForm):
+    """Form for added news for user"""
+
+    class Meta:
+        model = News
+        fields = '__all__'
+        widgets = {'author': forms.HiddenInput}
+
+AddImageSet = inlineformset_factory(News, AdditionalImage, fields='__all__')
