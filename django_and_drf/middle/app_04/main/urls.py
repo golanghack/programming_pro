@@ -7,7 +7,7 @@ from main.views import (index, other_page, AppLoginView,
                         AppPasswordResetConfirmView,
                         AppPasswordResetDoneView,
                         AppPasswordResetView, by_rubric, detail, 
-                        profile_new_detail)
+                        profile_new_detail, profile_news_add)
 
 app_name = 'main'
 urlpatterns = [
@@ -17,6 +17,8 @@ urlpatterns = [
                                             name='register_done'),
     path('accounts/register/', RegisterUserView.as_view(), 
                                             name='register'),
+    path('accounts/profile/add/', profile_news_add, 
+                                            name='profile_news_add'),
     path('accounts/profile/<int:pk>/', profile_new_detail, 
                                             name='profile_new_detail'),
     path('accounts/profile/change/', ChangeUserInfoView.as_view(), 
