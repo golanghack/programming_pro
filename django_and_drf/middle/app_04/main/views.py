@@ -197,7 +197,7 @@ def detail(request: str, rubric_pk: int, pk: int) -> render:
     return render(request, 'main/detail.html', context)
 
 @login_required
-def profile_new_detail(request: str, pk: int) -> render:
+def profile_new_detail(request: str, pk: int) -> render or redirect:
     """Render detail for rubric pk""" 
 
     new = get_object_or_404(News, pk=pk)
@@ -226,3 +226,24 @@ def profile_news_add(request: str) -> redirect:
         formset = AddImageSet()
     context = {'form': form, 'formset': formset}
     return render(request, 'main/profile_news_add.html', context)
+
+@login_required
+def profile_news_change(request: str, pk: int) -> render or redirect:
+    """User change of news""" 
+
+    new = get_object_or_404(News, pk=pk)
+    if request.method == 'POST':
+        form = NewsForm(request.POST, request.FILES, instance=new)
+        if form.is_valid():
+            new = form.save()
+            formset = AddImageSet(request.POST, request.FILES, instance=new)
+            if formset.is_valid():
+                formset.save()
+                messages.add_message(request, messages.SUCCESS, 'Новость исправлена')
+                return redirect('main:profile')
+    else:
+        form = NewsForm(instance=new)
+        formset = AddImageSet(instance=new)
+    context = {'form': form, 'formset': formset}
+
+    return render(request, 'main/profile_news_change.html', context)
