@@ -23,9 +23,10 @@ from django.contrib import messages
 from typing import Union, Callable
 
 from main.models import (AdvUser, SubRubric, 
-                        News)
+                        News, Comment)
 from main.forms import (ChangeUserInfoForm, RegisterUserForm,
-                        SearchForm, NewsForm, AddImageSet)
+                        SearchForm, NewsForm, AddImageSet,
+                        UserCommentForm, AnonCommentForm)
 from main.utils import signer
 
 def index(request: str) -> render:
@@ -190,9 +191,29 @@ def detail(request: str, rubric_pk: int, pk: int) -> render:
 
     new = get_object_or_404(News, pk=pk)
     ais = new.additionalimage_set.all()
+    comments = Comment.objects.filter(new=pk, is_active=True)
+    initial = {'new': new.pk}
+    if request.user.is_authenticated:
+        initial['author'] = request.user.username
+        form_class = UserCommentForm
+    else:
+        form_class = AnonCommentForm
+    form = form_class(initial=initial)
+    if request.method == 'POST':
+        comm_form = form_class(request.POST)
+        if comm_form.is_valid():
+            comm_form.save()
+            messages.add_message(request, messages.SUCCESS, 
+                                    'Комментарий успешно добавлен')
+        else:
+            form = comm_form
+            messages.add_message(request, messages.WARNING,
+                                    'Не удалось добавить комментарий')
     context = {
         'new': new, 
-        'ais': ais
+        'ais': ais,
+        'comments': comments,
+        'form': form 
     }
     return render(request, 'main/detail.html', context)
 
