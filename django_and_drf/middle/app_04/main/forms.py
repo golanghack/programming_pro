@@ -104,3 +104,15 @@ class UserCommentForm(forms.ModelForm):
         model = Comment
         exclude = ('is_active',)
         widgets = {'new': forms.HiddenInput}
+
+
+class AnonCommentForm(forms.ModelForm):
+    """Comment form for anonymouse user""" 
+
+    captcha = CaptchaField(label='Введите текст с картинки',
+                            error_messages={'invalid': 'Неверно'})
+    
+    class Meta:
+        model = Comment
+        exclude = ('is_active',)
+        widgets = {'new': forms.HiddenInput}
