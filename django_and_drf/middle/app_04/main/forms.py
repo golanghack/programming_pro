@@ -1,3 +1,4 @@
+from captcha.fields import CaptchaField
 from django import forms
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
@@ -7,7 +8,7 @@ from typing import Callable
 from main.apps import user_registered 
 from main.models import (AdvUser, SuperRubric, 
                         SubRubric, News, 
-                        AdditionalImage)
+                        AdditionalImage, Comment)
 
 class ChangeUserInfoForm(forms.ModelForm):
     """Change`s forms for email""" 
@@ -94,3 +95,12 @@ class NewsForm(forms.ModelForm):
         widgets = {'author': forms.HiddenInput}
 
 AddImageSet = inlineformset_factory(News, AdditionalImage, fields='__all__')
+
+
+class UserCommentForm(forms.ModelForm):
+    """Comment form for user""" 
+
+    class Meta:
+        model = Comment
+        exclude = ('is_active',)
+        widgets = {'new': forms.HiddenInput}

@@ -130,7 +130,7 @@ class AdditionalImage(models.Model):
 class Comment(models.Model):
     """Comment model""" 
 
-    news = models.ForeignKey(News, on_delete=models.CASCADE,
+    new = models.ForeignKey(News, on_delete=models.CASCADE,
                                     verbose_name='Новость')
     author = models.CharField(max_length=20, 
                                     verbose_name='Автор')
