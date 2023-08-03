@@ -1,8 +1,10 @@
 from django.db import models
+from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractUser
 import typing
 
-from main.utils import get_timestamp_path
+from main.utils import (get_timestamp_path,
+                        send_new_comment_notification)
 
 class AdvUser(AbstractUser):
     """AdvUser 
@@ -146,3 +148,13 @@ class Comment(models.Model):
         verbose_name_plural = 'Комментарии'
         verbose_name = 'Комментарий'
         ordering = ['created_at']
+
+def post_save_manager(sender: str, **kwargs) -> typing.Callable:
+    """Signal for save"""
+
+    author = kwargs['instance'].new.author
+    if kwargs['created'] and author.send_messages:
+        send_new_comment_notification(kwargs['instance'])
+
+#manager for post_save
+post_save.connect(post_save_manager, sender=Comment)

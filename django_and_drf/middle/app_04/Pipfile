@@ -4,13 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
-python-dotenv = "*"
-django-bootstrap5 = "*"
-django-bootstrap-v5 = "*"
-easy-thumbnails = "*"
-django-cleanup = "*"
-django-simple-captcha = "*"
+asgiref = "==3.7.2"
+"backports.zoneinfo" = "==0.2.1"
+django = "==4.2.4"
+sqlparse = "==0.4.4"
+typing-extensions = "==4.7.1"
+python-dotenv = "==1.0.0"
+django-bootstrap-v5 = "==1.0.11"
+django-bootstrap5 = "==23.3"
+easy-thumbnails = "==2.8.5"
+django-cleanup = "==8.0.0"
+django-simple-captcha = "==0.5.18"
 
 [dev-packages]
 
