@@ -2,7 +2,7 @@ from django.contrib import admin
 import datetime
 
 from main.models import (AdvUser, SuperRubric, 
-                        SubRubric, News, AdditionalImage) 
+                        SubRubric, News, AdditionalImage, Comment) 
 from main.forms import SubRubricForm
 from main.utils import send_activation_notification
 
@@ -93,7 +93,13 @@ class NewsAdmin(admin.ModelAdmin):
     )
     inlines = (AdditionalImageInline,)
 
+class CommentAdmin(admin.ModelAdmin):
+    """Comments admin""" 
+
+    list_display = ('author', 'content', 'is_active', 'created_at')
+
 admin.site.register(AdvUser, AdvUserAdmin)
 admin.site.register(SuperRubric, SuperRubricAdmin)
 admin.site.register(SubRubric, SubRubricAdmin)
 admin.site.register(News, NewsAdmin)
+admin.site.register(Comment, CommentAdmin)
