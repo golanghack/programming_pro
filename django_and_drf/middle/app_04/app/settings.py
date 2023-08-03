@@ -49,9 +49,12 @@ INSTALLED_APPS = [
     "django_cleanup",
     "easy_thumbnails",
     "captcha",
+    "rest_framework",
+    "corsheaders",
     # <--END-->
     # <--MINE-->
     "main.apps.MainConfig",
+    "api.apps.ApiConfig",
     # <--END-->
 ]
 
