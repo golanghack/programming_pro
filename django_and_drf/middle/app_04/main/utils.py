@@ -25,10 +25,7 @@ def get_timestamp_path(instance: str, filename: str) -> str:
 def send_new_comment_notification(comment: str):
     """Send message about new comment"""
 
-    if ALLOWED_HOSTS:
-        host = 'http://' + ALLOWED_HOSTS[0]
-    else:
-        host = 'http://localhost:8000'
+    host = 'http://localhost:8000'
     author = comment.new.author
     context = {'author': author,
                 'host': host, 
