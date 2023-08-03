@@ -1,0 +1,6 @@
+ {{ user.username }}!
+
+К одной из ваших новостей оставлен новый комментарий.
+Чтобы прочитать его, пройдите, по ссылке
+
+{{ host }}{% url 'main:profile_new_detail' pk=comment.new.pk %}
