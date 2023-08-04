@@ -31,6 +31,6 @@ def comments(request: str, pk: int) -> Response:
         else:
             return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
     else:
-        comments = Comment.objects.filter(is_active=True, news=pk)
-        serializer = CommentSerializer(comments, mant=True)
+        comments = Comment.objects.filter(is_active=True, new=pk)
+        serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
