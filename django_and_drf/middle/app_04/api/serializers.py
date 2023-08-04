@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from main.models import News
+from main.models import News, Comment
 
 class NewsSerializer(serializers.ModelSerializer):
     """News serialization"""
@@ -16,3 +16,11 @@ class NewsDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = ('id', 'title', 'content', 'weight', 'created_at', 'source', 'image')
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    """Comment serializer""" 
+
+    class Meta:
+        model =Comment
+        fields = ('news', 'author', 'content', 'created_at')
