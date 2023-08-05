@@ -116,3 +116,8 @@ class AnonCommentForm(forms.ModelForm):
         model = Comment
         exclude = ('is_active',)
         widgets = {'new': forms.HiddenInput}
+
+class TextSearchForm(forms.Form):
+    """search form for searching in news""" 
+
+    query = forms.CharField()
