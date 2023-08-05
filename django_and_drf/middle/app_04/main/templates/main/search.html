@@ -10,7 +10,7 @@
     </h2>
     {% for new in results %} 
         <h4>
-            <a href="{{ new.get_absolute.url }}">
+            <a href="{% url 'main:index' %}">
                 {{ new.title }}
             </a>
         </h4>

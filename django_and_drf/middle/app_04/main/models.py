@@ -116,7 +116,7 @@ class News(models.Model):
         super().delete(*args, **kwargs)
 
     def get_absolute_url(self):
-        return f'{self}'
+        return f'/{self.title}/'
 
     class Meta:
         verbose_name_plural = 'Новости'
