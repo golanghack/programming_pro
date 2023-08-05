@@ -19,6 +19,7 @@ djangorestframework = "*"
 django-cors-headers = "*"
 django-taggit = "*"
 markdown = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
