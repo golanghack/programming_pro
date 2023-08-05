@@ -36,6 +36,8 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
 # local email
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+
+SITE_ID = 1
 # Application definition
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -57,6 +59,10 @@ INSTALLED_APPS = [
     "main.apps.MainConfig",
     "api.apps.ApiConfig",
     # <--END-->
+    # <--UTILS-->
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
+    # <--END UTILS-->
 ]
 
 MIDDLEWARE = [
