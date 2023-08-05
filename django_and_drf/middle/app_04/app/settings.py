@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     # <--UTILS-->
     "django.contrib.sites",
     "django.contrib.sitemaps",
+    "django.contrib.postgres",
     # <--END UTILS-->
 ]
 
