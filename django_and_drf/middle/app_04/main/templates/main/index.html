@@ -8,7 +8,7 @@
   </a>
   </p>
 <h2>Последние новости</h2>
-
+<p><a href="{% url 'main:search' %}">Искать по сайту</a></p>
 {% if news %}
 <ul class="list-unstyled">
     {% for new in news %}

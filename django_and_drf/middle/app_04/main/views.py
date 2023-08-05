@@ -296,8 +296,8 @@ def news_search(request: str) -> render:
         form = TextSearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
-            results = News.content.annotate(
+            results = News.objects.annotate(
                 search=SearchVector('title', 'content'),
             ).filter(search=query)
     context = {'form': form, 'query': query, 'results': results}
-    return render(request, context)
+    return render(request, 'main/search.html', context)
