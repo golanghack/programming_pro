@@ -3,9 +3,11 @@
 {% load static %}
 {% block content %} 
 <h2>Последние новости</h2>
+
 {% if news %}
 <ul class="list-unstyled">
     {% for new in news %}
+    
     <li class="media my-5 p-3">
         {% url 'main:detail' rubric_pk=new.rubric.pk pk=new.pk as url %}
         <a href="{{ url }}{{ all }}">

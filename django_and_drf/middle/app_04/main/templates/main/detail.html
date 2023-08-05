@@ -17,6 +17,7 @@
             </p>
             <p>{{ new.source }}</p>
             <p class="text-right font-italic">Добавлена {{ new.created_at }}</p>
+            <p> Теги -> {{ new.tags.all|join:", " }}</p>
         </div>
     </div>
 </div>

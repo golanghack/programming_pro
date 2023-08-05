@@ -107,6 +107,7 @@ class News(models.Model):
     created_at = models.DateTimeField(auto_now_add=True,
                                 db_index=True, 
                                 verbose_name='Опубликована')
+    tags = TaggableManager()
 
     def delete(self, *args, **kwargs):
         for ai in self.additionalimage_set.all():
