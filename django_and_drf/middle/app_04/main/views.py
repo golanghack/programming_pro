@@ -20,13 +20,15 @@ from django.core.paginator import Paginator
 from django.db.models import Q 
 from django.contrib.auth import logout
 from django.contrib import messages
+from django.contrib.postgres.search import SearchVector
 from typing import Union, Callable
 
 from main.models import (AdvUser, SubRubric, 
                         News, Comment)
 from main.forms import (ChangeUserInfoForm, RegisterUserForm,
                         SearchForm, NewsForm, AddImageSet,
-                        UserCommentForm, AnonCommentForm)
+                        UserCommentForm, AnonCommentForm,
+                        TextSearchForm)
 from main.utils import signer
 
 def index(request: str) -> render:
@@ -281,3 +283,21 @@ def profile_news_delete(request: str, pk: int) -> redirect or render:
     else:
         context = {'new': new}
         return render(request, 'main/profile_news_delete.html', context)
+
+
+def news_search(request: str) -> render:
+    """full text search for news""" 
+
+    form = TextSearchForm()
+    query = None
+    results = []
+
+    if 'query' in request.GET:
+        form = TextSearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = News.content.annotate(
+                search=SearchVector('title', 'content'),
+            ).filter(search=query)
+    context = {'form': form, 'query': query, 'results': results}
+    return render(request, context)
