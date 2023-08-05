@@ -8,8 +8,7 @@ class NewsSitemap(Sitemap):
     def items(self):
         return News.objects.all()
 
-    def lastmod(self, obj: str):
-        return obj.updated
+    
 
 class RubricSitemap(Sitemap):
     changefreq = 'weekly'
@@ -18,8 +17,6 @@ class RubricSitemap(Sitemap):
     def items(self):
         return Rubric.objects.all()
 
-    def lastmod(self, obj: str):
-        return obj.updated
 
 
 

@@ -41,6 +41,7 @@ class Rubric(models.Model):
                             blank=True, 
                             verbose_name='Родительская рубрика')
     tags = TaggableManager()
+
     
 class SuperRubricManager(models.Manager):
     """Super rubric manager""" 
@@ -108,7 +109,7 @@ class News(models.Model):
                                 db_index=True, 
                                 verbose_name='Опубликована')
     tags = TaggableManager()
-
+    
     def delete(self, *args, **kwargs):
         for ai in self.additionalimage_set.all():
             ai.delete()
