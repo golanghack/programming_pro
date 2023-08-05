@@ -2,6 +2,11 @@
 {% load thumbnail %}
 {% load static %}
 {% block content %} 
+<p>
+  <a href="{% url 'main:rss' %}">
+  RSS
+  </a>
+  </p>
 <h2>Последние новости</h2>
 
 {% if news %}
