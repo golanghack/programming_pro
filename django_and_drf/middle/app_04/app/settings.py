@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "captcha",
     "rest_framework",
     "corsheaders",
+    "teggit",
     # <--END-->
     # <--MINE-->
     "main.apps.MainConfig",
