@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractUser
+from taggit.managers import TaggableManager
 import typing
 
 from main.utils import (get_timestamp_path,
@@ -39,6 +40,7 @@ class Rubric(models.Model):
                             null=True, 
                             blank=True, 
                             verbose_name='Родительская рубрика')
+    tags = TaggableManager()
     
 class SuperRubricManager(models.Manager):
     """Super rubric manager""" 
