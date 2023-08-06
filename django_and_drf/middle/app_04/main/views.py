@@ -329,4 +329,4 @@ def apod(request):
         'owner':owner
     }
 
-    return render(request, "main:apod.html", context)
+    return render(request, 'main/apod.html', context)
