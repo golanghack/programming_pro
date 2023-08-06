@@ -23,6 +23,7 @@ psycopg2-binary = "*"
 pymemcache = "*"
 requests = "*"
 googletrans = "==3.1.0a0"
+pytest-django = "*"
 
 [dev-packages]
 
