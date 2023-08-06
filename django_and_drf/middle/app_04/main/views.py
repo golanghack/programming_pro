@@ -26,6 +26,8 @@ from django.contrib.postgres.search import (SearchVector,
 from django.conf import settings
 import requests
 import json
+from googletrans import Translator
+translator = Translator()
 from typing import Union, Callable
 
 from main.models import (AdvUser, SubRubric, 
@@ -316,17 +318,16 @@ def apod(request):
     loaded_json = json.loads(response.text)
 
     daily_image = loaded_json.get('url')
-    title = loaded_json.get('title')
-    explanation = loaded_json.get('explanation')
+    pre_title = loaded_json.get('title')
+    title = translator.translate(pre_title, dest='ru').text
+    pre_explanation = loaded_json.get('explanation')
+    explanation = translator.translate(pre_explanation, dest='ru').text
     date = loaded_json.get('date')
-    owner = loaded_json.get('copyright')
-
     context = {
         'daily_image': daily_image,
         'title':title,
         'explanation':explanation,
         'date':date,
-        'owner':owner
     }
 
     return render(request, 'main/apod.html', context)
