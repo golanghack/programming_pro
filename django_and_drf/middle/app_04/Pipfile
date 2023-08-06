@@ -22,7 +22,6 @@ markdown = "*"
 psycopg2-binary = "*"
 pymemcache = "*"
 requests = "*"
-googletrans = "*"
 
 [dev-packages]
 
