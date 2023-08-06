@@ -21,6 +21,7 @@ django-taggit = "*"
 markdown = "*"
 psycopg2-binary = "*"
 pymemcache = "*"
+requests = "*"
 
 [dev-packages]
 
