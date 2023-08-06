@@ -172,3 +172,6 @@ THUMBNAILS_ALIASES = {
 }
 
 THUMBNAILS_BASEDIR = "thumbnails"
+
+NASA_API_KEY = os.environ.get('NASA_API_KEY', 
+            default='nouXS7hpwX262Vl16CjAVyZYg6hOQtnCxHOzTBHO')
