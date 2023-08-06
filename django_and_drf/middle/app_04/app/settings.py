@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     # <--MINE-->
     "main.apps.MainConfig",
     "api.apps.ApiConfig",
+    "apod.apps.ApodConfig",
     # <--END-->
     # <--UTILS-->
     "django.contrib.sites",
