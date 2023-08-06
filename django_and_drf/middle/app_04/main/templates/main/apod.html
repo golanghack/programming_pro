@@ -1,0 +1,15 @@
+{% extends 'layout/base.html' %} 
+{% load bootstrap5 %}
+{% block title %}Астрономическая картинка дня от NASA{% endblock %} 
+{% block content %} 
+<div class="row">
+    <div class="col-md-12" style="text-align: center;">
+            <h2>Астрономическая картинка дня {{ date }} </h2>
+            <hr>
+            <h4>{{ title }}</h4>
+            <img class="img-thumbnail" style="max-width: 500; max-height: 500;"src="{{daily_image}}" alt="">
+            <p>@{{ owner }}</p>
+            <p>{{ explanation }}</p> 
+    </div>
+</div>
+{% endblock %}
