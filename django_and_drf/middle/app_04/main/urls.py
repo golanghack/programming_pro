@@ -8,13 +8,15 @@ from main.views import (index, other_page, AppLoginView,
                         AppPasswordResetDoneView,
                         AppPasswordResetView, by_rubric, detail, 
                         profile_new_detail, profile_news_add, 
-                        profile_news_change, profile_news_delete, news_search)
+                        profile_news_change, profile_news_delete, 
+                        news_search, apod)
 from main.feeds import LatestNewsFeed
 
 app_name = 'main'
 urlpatterns = [
     path('rss/', LatestNewsFeed(), name='rss'),
     path('search/', news_search, name='search'),
+    path('apod/', apod, name='apod'),
     path('accounts/register/activate/<str:sign>/', user_activate, 
                                     name='register_activate'),
     path('accounts/register/done/', RegisterDoneView.as_view(),
