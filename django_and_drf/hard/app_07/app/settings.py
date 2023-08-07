@@ -9,23 +9,30 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from dotenv import load_dotenv
 from pathlib import Path
+import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# my env
+load_dotenv()
+ENV = os.environ.get("ENV")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-ntg&_+ok_tw-)k#q8m(447j04lc$#fu^$=v^ch1o^nvao=bt@h"
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    default="django-insecure-ntg&_+ok_tw-)k#q8m(447j04lc$#fu^$=v^ch1o^nvao=bt@h"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False if ENV == "PROD" else True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(".")
 
 
 # Application definition
@@ -74,9 +81,12 @@ WSGI_APPLICATION = "app.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("DATABASE_NAME", "app_07"),
+        "USER": os.getenv("DATABASE_USER", "app07"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD", "x326y457z628a45B"),
+        "HOST": os.getenv("DATABASE_HOST", "localhost"), 
     }
 }
 
@@ -99,13 +109,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+AUTH_USER_MODEL = "core_user.User"
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
 
@@ -121,3 +131,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+#files
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "uploads"
