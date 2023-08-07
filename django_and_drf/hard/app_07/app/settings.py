@@ -83,7 +83,7 @@ WSGI_APPLICATION = "app.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("DATABASE_NAME", "app_07"),
+        'NAME': os.getenv("DATABASE_NAME", "app07"),
         "USER": os.getenv("DATABASE_USER", "app07"),
         "PASSWORD": os.getenv("DATABASE_PASSWORD", "x326y457z628a45B"),
         "HOST": os.getenv("DATABASE_HOST", "localhost"), 
@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "core_user.User"
+#AUTH_USER_MODEL = "core_user.User"
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
