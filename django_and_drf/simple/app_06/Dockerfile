@@ -7,6 +7,6 @@ WORKDIR /app_06
 
 COPY Pipfile Pipfile.lock /app_06/
 
-RUN pip3 install pipenv && pipenv install 
+RUN pip install pipenv && pipenv install --system
 
 COPY . /app_06/
