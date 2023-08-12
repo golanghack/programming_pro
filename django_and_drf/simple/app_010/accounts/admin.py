@@ -5,7 +5,7 @@ from accounts.forms import MyUserChangeForm, MyUserCreationForm
 
 MyUser = get_user_model()
 
-class MyUserAdmin(MyUser):
+class MyUserAdmin(UserAdmin):
     add_form = MyUserCreationForm
     form = MyUserChangeForm
     model = MyUser
