@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # <--END DOWNLOADED-->
     # <--LOCAL-->
     "books.apps.BooksConfig",
+    "api.apps.ApiConfig",
     # <--END LOCAL-->
 ]
 
