@@ -12,6 +12,7 @@ requests = "*"
 pyyaml = "*"
 uritemplate = "*"
 drf-yasg = "*"
+psycopg = "*"
 
 [dev-packages]
 
