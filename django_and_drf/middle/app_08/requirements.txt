@@ -1,5 +1,6 @@
 asgiref==3.7.2
 backports.zoneinfo==0.2.1
+dj-rest-auth==4.0.1
 Django==4.2.4
 djangorestframework==3.14.0
 pytz==2023.3
