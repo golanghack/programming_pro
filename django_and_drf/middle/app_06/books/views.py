@@ -3,4 +3,4 @@ from books.models import Book
 
 class Books(ListView):
     model = Book
-    template_name = 'books.html'
+    template_name = 'books/books.html'
