@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # <--DOWNLOADED-->
     "rest_framework",
+    "rest_framework.authtoken",
     # <--END DOWNLOADED-->
 
     # <--LOCAL-->
@@ -49,6 +50,10 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ]
 }
 
