@@ -38,12 +38,19 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # <--DOWNLOADED-->
+    "rest_framework",
     # <--END DOWNLOADED-->
     # <--LOCAL-->
     "todos.apps.TodosConfig",
     # <--END LOCAL-->
 ]
 
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ]
+}
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
