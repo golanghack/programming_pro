@@ -25,6 +25,8 @@ SECRET_KEY = "django-insecure-rwt0_8-vvn6uq^+7y(#tx66b&cr!8h61xdjjvcy$afkhe4=l!_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SITE_ID = 1
+
 ALLOWED_HOSTS = []
 
 
@@ -37,10 +39,16 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
     # <--DOWNLOADED-->
+
     "rest_framework",
     "rest_framework.authtoken",
+    "allauth",
+    "allauth.account", 
+    "allauth.socialaccount",
     "dj_rest_auth",
+    "dj_rest_auth.registration",
     # <--END DOWNLOADED-->
 
     # <--LOCAL-->
@@ -140,3 +148,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
