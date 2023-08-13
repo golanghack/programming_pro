@@ -9,6 +9,7 @@ djangorestframework = "*"
 dj-rest-auth = "*"
 django-allauth = "*"
 requests = "*"
+pyyaml = "*"
 
 [dev-packages]
 
