@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # <--DOWNLOADED-->
     "rest_framework",
+    "drf_yasg",
     # <--END DOWNLOADED-->
     # <--LOCAL-->
     "album.apps.AlbumConfig",
