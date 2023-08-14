@@ -9,6 +9,7 @@ django-pytest = "*"
 djangorestframework = "*"
 pyyaml = "*"
 uritemplate = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
