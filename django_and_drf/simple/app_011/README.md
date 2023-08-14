@@ -12,3 +12,7 @@
 
 В качестве площадки для демонстрации АПИ подключите к нему Swagger, чтобы можно было проверить работу АПИ через Postman
 
+# For used this project 
+# clone this repository
+# cd this app
+# docker-compose up 
