@@ -11,10 +11,14 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-from environs import Env  # new
+from environs import Env
+import socket
 
-env = Env()  # new
-env.read_env()  # new
+env = Env() 
+env.read_env()  
+
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,16 +44,17 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",  # new
-    # Third-party
-    "crispy_forms",  # new
-    "crispy_bootstrap5",  # new
-    "allauth",  # new
-    "allauth.account",  # new
+    "django.contrib.sites", 
+    
+    "crispy_forms",  
+    "crispy_bootstrap5",  
+    "allauth",  
+    "allauth.account",  
+    "django_toolbar",
     # Local
-    "accounts.apps.AccountsConfig",  # new
-    "pages.apps.PagesConfig",  # new
-    "books.apps.BooksConfig",  # new
+    "accounts.apps.AccountsConfig", 
+    "pages.apps.PagesConfig",  
+    "books.apps.BooksConfig",  
 ]
 
 MIDDLEWARE = [
@@ -60,6 +65,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"
