@@ -12,8 +12,8 @@ def search(target: int, stack: list) -> int:
         if middle_element == target:
             return middle
         elif middle_element < target:
-            start = middle
+            start = middle + 1
         else:
-            start = middle
+            end = middle - 1
 
     raise ValueError('Target not in stack')
