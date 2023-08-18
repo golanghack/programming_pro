@@ -1,0 +1,11 @@
+#! /usr/bin/env python3 
+
+import re 
+
+text: str = 'This is some text -- with punctuation.'
+pattern = r'(?i)\bT\w+'
+regex = re.compile(pattern)
+
+print('Text -> ', text)
+print('Pattern -> ', pattern)
+print('Matches -> ', regex.findall(text))

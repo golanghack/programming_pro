@@ -1,0 +1,60 @@
+<html>
+    <body>
+        
+        <h1>Мой Заказ</h1>
+        <p>Заказ номер {{ order.id }}</p>
+        <span class="secondary">
+            {{ order.created|date:"M d, Y"}}
+        </span>
+        <p>
+            <h3>Счет по:</h3>
+                {{ order.first_name }} {{ order.last_name }}</br>
+                {{ order.email }}</br>
+        </p>
+        <h3>Товары: </h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Продукт</th>
+                    <th>Цена</th>
+                    <th>Кол-во</th>
+                    <th>Полная цена</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.items.all %} 
+                    <tr class="row{% cycle '1' '2' %}">
+                        <td>{{ item.product.name }}</td>
+                        <td class="num">{{ item.price }}.руб</td>
+                        <td class="num">{{ item.quantity }}</td>
+                        <td class="num">{{ item.get_cost }}.руб</td>
+                    </tr>
+                {% endfor %} 
+                {% if order.coupon %} 
+                    <tr class="subtotal">
+                        <td colspan="3">Полная цена бeз учета скидок</td>
+                        <td class="num">
+                            {{ order.get_total_cost_before_discount|floatformat:2 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            "{{ order.coupon.code }}" купон на
+                            ({{ order.discount }}% скидки)
+                        </td>
+                        <td class="num neg">
+                            -{{ order.get_discount|floatformat:2 }}.руб
+                        </td>
+                    </tr>
+                {% endif %} 
+                <tr class="total">
+                    <td colspan="3">Всего</td>
+                    <td class="num">{{ order.get_total_cost }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <span class="{% if order.paid %}paid{% else %}pending{% endif %}">
+            {% if order.paid %}Оплачено{% else %}Ожидает оплаты{% endif %} 
+        </span>
+    </body>
+</html>

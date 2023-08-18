@@ -1,0 +1,10 @@
+{% extends 'layout/base.html' %} 
+{% load bootstrap5 %} 
+{% block title %}Добавление новости{% endblock %} 
+{% block content %}
+<form action="." method="post" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {% bootstrap_form form layout='horizontal' %} 
+    {% buttons submit='Добавить мою новость' %}{% endbuttons %} 
+</form>
+{% endblock %} 

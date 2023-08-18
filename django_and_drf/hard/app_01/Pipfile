@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+psycopg2-binary = "*"
+djangorestframework = "*"
+django-filter = "*"
+pillow = "*"
+djangorestframework-simplejwt = "*"
+django-shell-plus = "*"
+drf-nested-routers = "*"
+pytest-django = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

@@ -1,0 +1,39 @@
+{% extends 'layout/base.html' %} 
+{% load thumbnail %} 
+{% load static %} 
+{% load bootstrap5 %} 
+{% block title %}{{ rubric }}{% endblock %} 
+{% block content %} 
+<h2 class="mb-2">{{ rubric }}</h2>
+<div class="container-fluid mb-2">
+    <div class="row">
+        <div class="col">&nbsp;</div>
+        <form action="" class="col-md-auto form-inline">
+            {% bootstrap_form form show_label=False %} 
+            {% bootstrap_button content='Искать по рубрикам' button_type='submit' %}
+        </form>
+    </div>
+</div>
+{% if news %} 
+<ul class="list-unstyled">
+    {% for new in news %} 
+        <li class="media my-5 p-3">
+            {% url 'main:detail' rubric_pk=rubric.pk pk=new.pk as url %}
+                <a href="{{ url }}{{ all }}">
+                    {% if new.image %} 
+                        <img src="{% thumbnail new.image 'default' %}" alt="" class="mr-3">
+        
+                    {% endif %}
+                </a>
+                <div class="media-body">
+                    <h3><a href="{{ url }}{{ all }}">{{ new.title }}</a></h3>
+                    <div>{{ new.content }}</div>
+                    <p class="text-right font-weight-bold">{{ new.raiting }}</p>
+                    <p class="text-right font-italic">{{ new.created_at }}</p>
+                </div>
+        </li>
+    {% endfor %}
+</ul>
+{% bootstrap_pagination page url=keyword %} 
+{% endif %} 
+{% endblock %} 

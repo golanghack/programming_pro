@@ -1,0 +1,25 @@
+header h1 {
+    color: wheat;
+}
+.root {
+    font-size: larger;
+}
+
+.container-fluid {
+    background: url('images/bg.gif');
+    color: gold;
+}
+section {
+    color:  goldenrod;
+}
+.row a {
+    color: burlywood;
+}
+
+img.main-image {
+    width: 350px;
+    height: 200px;
+}
+img.additional-image {
+    width: 200px;
+}

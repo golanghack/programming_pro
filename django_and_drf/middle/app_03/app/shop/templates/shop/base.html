@@ -1,0 +1,58 @@
+{% load i18n %} 
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ZoechkaMag{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <div id="header">
+        <a href="/" class="logo">ZoechkaMag</a>
+        {% get_current_language as LANGUAGE_CODE %} 
+        {% get_available_languages as LANGUAGES %} 
+        {% get_language_info_list for LANGUAGES as languages %} 
+        <div class="languages">
+            <p>Language :</p>
+            <ul class="languages">
+                {% for language in languages %} 
+                    <li>
+                        <a href="/{{ language.code }}/"
+                            {% if language.code == LANGUAGE_CODE %} class='selected' {% endif %}>
+                            {{ language.name_local }}
+                        </a>
+                    </li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </div>
+    <div id="subheader">
+        <div class="cart">
+            {% with total_items=cart|length %} 
+                {% if total_items > 0 %} 
+                {% trans 'Your cart' %} 
+                    Ваша корзина -> 
+                    <a href="{% url 'cart:cart_detail' %}">
+                        {% blocktrans with total=cart.total_price count items=total_items %} 
+                        {{ total_items }} шт.{{ total_items|pluralize }}, {{ cart.get_total_price }}руб.
+                        {% plural %} 
+                        {{ items }} items ${{ total / 100 }}
+                        {% endblocktrans %} 
+                    </a>
+                {% elif not order %}    
+                    
+                    {% trans 'Ваша корзина пуста' %}
+                {% endif %} 
+            {% endwith %} 
+        </div>
+    </div>
+    <div id="content">
+        {% block content %} 
+        {% endblock content %} 
+    </div>
+</body>
+</html>

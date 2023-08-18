@@ -1,0 +1,10 @@
+{% extends 'bootstrap/base.html' %} 
+{% block title %}Index{% endblock %} 
+{% block body %} 
+<h1>Hello</h1>
+{{ moment.include_jquery }}
+{{ moment.include_moment() }}
+
+<p>local date is {{ moment(current_time).format('LLL') }}</p>
+<p>That was {{ moment(current_time).fromNow(refresh=True) }}</p>
+{% endblock %} 

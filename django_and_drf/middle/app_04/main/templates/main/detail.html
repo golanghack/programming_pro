@@ -1,0 +1,49 @@
+{% extends 'layout/base.html' %} 
+{% load bootstrap5 %}
+{% block title %}{{ new.title }} -> {{ new.rubric.name }}{% endblock %} 
+{% block content %} 
+<div class="container-fluid mt-3">
+    <div class="row">
+        {% if new.image %}
+        <div class="col-md-auto">
+            <img src="{{ new.image.url }}" alt="" class="main-image">
+        </div>
+        {% endif %} 
+        <div class="col">
+            <h2>{{ new.title }}</h2>
+            <p>{{ new.content }}</p>
+            <p class="font-weight-bold">
+                {{ new.raiting }}
+            </p>
+            <p>{{ new.source }}</p>
+            <p class="text-right font-italic">Добавлена {{ new.created_at }}</p>
+            <p> Теги -> {{ new.tags.all|join:", " }}</p>
+        </div>
+    </div>
+</div>
+{% if ais %} 
+<div class="d-flex justify-content-between flex-wrap mt-5">
+    {% for ai in ais %}
+        <div><img src="{{ ai.image.url }}" alt="" class="additional-image"></div>
+    {% endfor %}
+</div>
+{% endif %} 
+<p><a href="{% url 'main:by_rubric' pk=new.rubric.pk %}{{ all }}">Назад</a></p>
+<h4 class="mt-5">Новый комментарий</h4>
+<form action="" method="post">
+    {% csrf_token %} 
+    {% bootstrap_form form layout='horizontal' %}
+    {% buttons submit='Добавить комментарий' %}{% endbuttons %}
+</form>
+{% if comments %} 
+    <div class="mt-5">
+        {% for comment in comments %} 
+            <div class="my-2 p-2">
+                <h5>{{ comment.author }}</h5>
+                <p>{{ comment.content }}</p>
+                <p class="text-right formt-italic">{{ comment.created_at }}</p>
+            </div>
+        {% endfor %} 
+    </div>
+{% endif %}
+{% endblock %} 

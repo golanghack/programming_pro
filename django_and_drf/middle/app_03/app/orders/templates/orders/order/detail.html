@@ -1,0 +1,87 @@
+{% extends 'admin/base_site.html' %} 
+{% block title %}Order {{ order.id }} {{ block.super }}{% endblock %} 
+{% block breadcrumbs %} 
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">Главная</a> &rsaquo;
+        <a href="{% url 'admin:orders_order_changelist' %}">Заказы</a>&rsaquo;
+        <a href="{% url 'admin:orders_order_change' order.id %}">Заказ {{ order.id }}</a>&rsaquo; Детали
+    </div>
+{% endblock %} 
+
+{% block content %} 
+    <div class="module">
+        <h1>Заказ {{ order.id }}</h1>
+        <ul class="object-tools">
+            <li>
+                <a href="#" onclick="window.print();">
+                Распечатать заказ</a>
+            </li>
+        </ul>
+        <table>
+            <tr>
+                <th>Создан</th>
+                <td>{{ order.created }}</td>
+            </tr>
+            <tr>
+                <th>Покупатель</th>
+                <td>{{ order.first_name }} {{ order.last_name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><a href="mailto:{{ order.email }}">{{ order.email }}</a></td>
+            </tr>
+            <tr>
+                <th>Общая сумма</th>
+                <td>{{ order.get_total_cost }}.руб</td>
+            </tr>
+            <tr>
+                <th>Статус заказа</th>
+                <td>{% if order.paid %} Оплачен {% else %} Ожидает оплаты{% endif %}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="module">
+        <h2>Товары в заказе</h2>
+        <table style="width: 100%">
+            <thead>
+        <tr>
+            <th>Продукты</th>
+            <th>Цена</th>
+            <th>Кол-во</th>
+            <th>Общее</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for item in order.items.all %} 
+                <tr class="row{% cycle '1' '2' %}">
+                    <td>{{ item.product.name }}</td>
+                    <td class="num">{{ item.price }}.руб</td>
+                    <td class="num">{{ item.quantity }}.шт</td>
+                    <td class="num">{{ item.get_cost }}.руб</td>
+                </tr>
+            {% endfor %} 
+            {% if order.coupon %} 
+                <tr class="subtotal">
+                    <td colspan="3">Цена со скидкой</td>
+                    <td class="num">
+                        {{ order.get_total_cost_before_discount|floatformat:2 }}.руб
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        "{{ order.coupon.code }}" купон на
+                        ({{ order.discount }}% скидки)
+                    </td>
+                    <td class="num neg">
+                        -{{ order.get_discount|floatformat:2 }}
+                    </td>
+                </tr>
+            {% endif %} 
+                <tr class="total">
+                    <td colspan="3">Всего</td>
+                    <td class="num">{{ order.get_total_cost|floatformat:2 }}.руб</td>
+                </tr>
+        </tbody>
+    </table>
+    </div>
+{% endblock %} 

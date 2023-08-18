@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+{% load bootstrap5 %}
+{% block title %}Поиск{% endblock %} 
+{% block content %} 
+{% if query %} 
+    <h1>Поиск по запросу -> {{ query }}</h1>
+    <h2>{% with results.count as total %}
+            Найдено -> {{ total }} новостей
+        {% endwith %}
+    </h2>
+    {% for new in results %} 
+        <h4>
+            <a href="{% url 'main:index' %}">
+                {{ new.title }}
+            </a>
+        </h4>
+    {% empty %}
+        <p>Во запросу ничего не найдено</p>
+    {% endfor %} 
+    <p><a href="{% url 'main:search' %}">Искать снова</a></p>
+{% else %} 
+    <h1>Поиск по всем новостям</h1>
+    <form action="" class="col-md-auto form-inline" method="get">
+        {% bootstrap_form form show_label=False %} 
+        {% bootstrap_button content='Искать по новостям' button_type='submit' %}
+    </form>
+{% endif %} 
+{% endblock %}

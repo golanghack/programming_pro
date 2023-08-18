@@ -1,0 +1,12 @@
+[Unit]
+    Description=Gunicorn server or SITENAME
+
+[Service]
+    Restart=on-failure
+    User=my_name
+    WorkingDirectory=/home/my_name/sites/SITENAME/source
+    ExecStart=/home/my_name/sites/SITENAME/pipenv(virtualenv, etc...)/bin/gunicorn\
+                --bind unix:/tmp/SITENAME.socket \
+                my_site_name.wsgi:application
+[Install]
+    WantedBy=multi-user.target

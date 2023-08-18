@@ -1,0 +1,78 @@
+ 
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Главная{% endblock %} AstroNews</title>
+    
+    <link rel="stylesheet" href="{% static 'main/main.css' %}">
+</head>
+<body class="container-fluid">
+    <header class="mb-4">
+        <h1 class="display-1 text-right">
+            Новости Вселенной
+        </h1>
+    </header>
+    <div class="row">
+        <ul class="col nav justify-content-end">
+            <li class="nav-item">
+                <a href="{% url 'main:register' %}" class="nav-link">Регистрация</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ваш профиль
+                      </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a href="{% url 'main:profile' %}" class="dropdown-item">Мои новости</a>
+                    <a href="{% url 'main:change_user_info' %}" class="dropdown-item">Изменить личные данные</a>
+                    <a href="{% url 'main:password_change' %}" class="dropdown-item">Изменить пароль</a>
+                    <a href="{% url 'main:password_reset' %}" class="dropdown-item">Изменить пароль</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{% url 'main:logout' %}" class="dropdown-item">Выйти</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{% url 'main:profile_delete' %}" class="dropdown-item">Удалить</a>
+                </div>
+                </div>
+   
+            </li>
+            {% else %} 
+            <li class="nav-item">
+                <a href="{% url 'main:login' %}" class="nav-link">Вход</a>
+            </li>
+            {% endif %} 
+        </ul>
+    </div>
+    <div class="row">
+        <nav class="col-md-auto flex-column">
+            <a href="{% url 'main:index' %}" class="nav-link root">Главная</a>
+           {% for rubric in rubrics %} 
+                {% ifchanged rubric.super_rubric.pk %} 
+                    <span class="nav-link root font-weight-bold">
+                        {{ rubric.super_rubric.name }}
+                    </span>
+                {% endifchanged %} 
+                <a href="{% url 'main:by_rubric' pk=rubric.pk %}" class="nav-link">
+                    {{ rubric.name }}
+                </a>
+            {% endfor %} 
+            <a href="{% url 'main:other' page='about' %}" class="nav-link root">О сайте</a>
+        </nav>
+        <section class="col py-4">
+            {% block content %} 
+            {% endblock %} 
+        </section>
+    </div>
+    <footer class="mt-5">
+        <p class="text-right font-italic">&copy; Golanghack 2023.</p>
+    </footer>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

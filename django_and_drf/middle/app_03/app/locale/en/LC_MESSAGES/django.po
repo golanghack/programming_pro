@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-18 17:56+0300\n"
+"PO-Revision-Date: 2023-06-18 14:56+0000\n"
+"Last-Translator:   <admin@admin.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
+
+#: app/settings.py:170
+msgid "English"
+msgstr "English"
+
+#: app/settings.py:171
+msgid "Russian"
+msgstr "Russian"
+
+#: app/urls.py:31
+msgid "cart/"
+msgstr "cart/"
+
+#: app/urls.py:32
+msgid "orders/"
+msgstr "orders/"
+
+#: app/urls.py:33
+msgid "payment/"
+msgstr "payment/"
+
+#: app/urls.py:34
+msgid "coupons/"
+msgstr "coupons/"
+
+#: payment/urls.py:8
+msgid "process/"
+msgstr "process/"
+
+#: payment/urls.py:9
+msgid "completed/"
+msgstr "completed/"
+
+#: payment/urls.py:10
+msgid "canceled/"
+msgstr "canceled/"
+
+#: shop/templates/shop/base.html:21
+msgid "Your cart"
+msgstr "Your cart"
+
+#: shop/templates/shop/base.html:24
+#, python-format
+msgid ""
+" \n"
+"                        %(total_items)s шт.%(total_items|pluralize)s, %(cart.get_total_price)sруб.\n"
+"                        "
+msgid_plural ""
+" \n"
+"                        %(items)s items $%(total / 100)s\n"
+"                        "
+msgstr[0] ""
+"%(total_items)s items %(total_items|pluralize)s, %(cart.get_total_price)s$."
+msgstr[1] ""
+
+#: shop/templates/shop/base.html:32
+msgid "Ваша корзина пуста"
+msgstr "Your cart is empty"
+
+#: shop/templates/shop/product/detail.html:24
+msgid "Добавить в корзину"
+msgstr "Add to cart"
+
+#: shop/templates/shop/product/detail.html:29
+msgid "Еще с этим приобретают:"
+msgstr "With this product bouth"

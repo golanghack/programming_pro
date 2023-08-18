@@ -1,0 +1,56 @@
+{% extends 'shop/base.html' %} 
+{% load static %} 
+{% block title %} Оплата заказа{% endblock %} 
+
+{% block content %} 
+    <h1>Заказ</h1>
+    <table class="cart">
+        <thead>
+            <th>Изображение</th>
+            <th>Продукт</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Всего</th>
+        </thead>
+        <tbody>
+            {% for item in order.items.all %} 
+                <tr class="row{% cycle '1' '2' %}">
+                    <td><img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt=""></td>
+                    <td>{{ item.product.name }}</td>
+                    <td class="num">{{ item.ptice }}.руб</td>
+                    <td class="num">{{ item.quantity }}</td>
+                    <td class="num">{{ item.get_cost }}.руб</td>
+                </tr>
+            {% endfor %} 
+            {% if order.coupon %} 
+                <tr class="subtotal">
+                    <td>Цена со скидкой</td>
+                    <td colspan="3"></td>
+                    <td class="num">
+                        {{ order.get_total_cost_before_discount|floatformat:2 }}.руб
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        "{{ order.coupon.code }}" купон на ({{ order.discount }}% скидку)
+                    </td>
+                    <td colspan="3"></td>
+                    <td class="num neg">
+                        -{{ order.get_discount|floatformat:2 }}.руб
+                    </td>
+                </tr>
+            {% endif %} 
+            <tr class="total">
+                <td>Всего</td>
+                <td colspan="3"></td>
+                <td class="num">
+                    {{ order.get_total_cost|floatformat:2 }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <form action="{% url 'payment:process' %}" method="post">
+        <input type="submit" name="" id="" value="Оплатить">
+        {% csrf_token %} 
+    </form>
+{% endblock %} 

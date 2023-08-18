@@ -1,0 +1,17 @@
+#! /usr/bin/env python3 
+
+import decimal
+
+context = decimal.getcontext()
+
+print('Emax     -> ', context.Emax)
+print('Emin     -> ', context.Emin)
+print('capitals -> ', context.capitals)
+print('prec     -> ', context.prec)
+print('rounding -> ', context.rounding)
+print('flags    -> ')
+for f, v in context.flags.items():
+    print(f'{f} <->{v}')
+print('traps    -> ')
+for t, v in context.traps.items():
+    print(f'{t} <-> {v}')
