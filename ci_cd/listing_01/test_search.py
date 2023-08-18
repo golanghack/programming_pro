@@ -1,5 +1,6 @@
 #! /usr/bin/env python3 
 
+from pytest import raises
 from search import search
 
 def test_search():
@@ -14,3 +15,16 @@ def test_search_first_element_as_a_target():
 
 def test_search_last_element_as_a_target():
     assert search(4, [1, 2, 3, 4]) == 3, 'last element'
+
+
+def test_exception_not_found():
+    """Testing exeption work"""
+
+    with raises(ValueError, match='Target not in stack'):
+        search(-1, [1, 2, 3, 4])
+
+    with raises(ValueError, match='Target not in stack'):
+        search(8, [1, 2, 3, 4])
+
+    with raises(ValueError, match='Target not in stack'):
+        search(4, [1, 2, 8])
