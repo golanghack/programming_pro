@@ -6,4 +6,7 @@ setup(
     license='Apache2.0',
     packages=['webcount', 'test'],
     install_requires=['requests'],
+    author='golanghack',
+    author_email='admin@admin.com',
+    description='a simple experiment with setup, tox, pytest'
 )
