@@ -1,5 +1,5 @@
 from flask import Flask, request
-from math_json_tree.json_mutator import math_mutator
+from json_mutator import math_mutator
 
 app = Flask(__name__)
 
