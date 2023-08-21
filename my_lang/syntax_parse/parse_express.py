@@ -6,6 +6,7 @@ index incrementing
 """
 
 from syntax_parse.skip_space import skip_space
+from syntax_parse.parse_symbol import parse_symbol
 
 def parse_express(input_s: str, idx: int):
     idx = skip_space(input_s, idx)
