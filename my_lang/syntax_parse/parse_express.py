@@ -5,6 +5,8 @@ If first char is char or str different whitespace
 index incrementing
 """
 
+from syntax_parse.skip_space import skip_space
+
 def parse_express(input_s: str, idx: int):
     idx = skip_space(input_s, idx)
     if input_s[idx] == '(':
