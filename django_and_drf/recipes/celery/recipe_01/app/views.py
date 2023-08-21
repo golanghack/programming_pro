@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework.generics import CreateAPIView
+from app.models import Order, Shipment
+from app.serializers import OrderSerializer, ShipmentSerializer
 
-# Create your views here.
+class CreateOrder(CreateAPIView):
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
+
+class CreateShipment(CreateAPIView):
+    serializer_class = ShipmentSerializer
+    queryset = Shipment.objects.all()
