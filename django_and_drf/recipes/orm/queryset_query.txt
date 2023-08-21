@@ -1,0 +1,16 @@
+###set model App
+>>> queryset = App.objects.all()
+>>> str(queryset.query)
+
+!!!SQL
+SELECT "apps_app"."id", "apps_app"."custom_id" FROM "apps_app";
+!!!
+
+### set model App
+>>> queryset = App.objects.filter(years_ago__gt=15)
+>>> str(queryset.query)
+
+!!!SQL
+SELECT "apps_app"."id", "apps_app"."custom_id" FROM "apps_app" 
+WHERE "apps_app"."years_ago" > 15;
+!!!
