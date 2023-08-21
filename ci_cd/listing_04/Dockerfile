@@ -1,4 +1,7 @@
 FROM jenkins/jenkins:lts
 USER root 
-RUN apt-get update && apt-get install -y python-pip python3.9 && rm -rf /var/lib/apt/lists/*
+RUN apt update
+RUN apt install python3.9 -y
+RUN apt install python3-pip -y
+RUN  rm -rf /var/lib/apt/lists/*
 RUN pip install tox 
