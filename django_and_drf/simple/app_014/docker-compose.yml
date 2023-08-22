@@ -7,5 +7,14 @@ services:
       - .:/app_014
     ports:
       - 8000:8000
-
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+      command: -p 5000
+      ports: "5000:5432"
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data
   

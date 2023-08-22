@@ -91,7 +91,7 @@ DATABASES = {
         'NAME': 'app_014',
         'USER':'app_014',
         'PASSWORD': '123abc123',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': 5432
     }
 }
