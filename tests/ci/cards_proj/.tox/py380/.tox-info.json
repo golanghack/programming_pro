@@ -1,0 +1,6 @@
+{
+  "ToxEnv": {
+    "name": "py380",
+    "type": "VirtualEnvRunner"
+  }
+}
