@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>News</h1>
+    {% for article in articles %}
+        <b><a href="{{ article.link }}">{{ article.title }}</a></b>
+        <i>{{ article.published }}</i>
+        <p>{{ article.summary }}</p>
+        <hr>
+    {% endfor %}
+</body>
+</html>
