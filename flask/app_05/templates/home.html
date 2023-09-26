@@ -7,16 +7,28 @@
 </head>
 <body>
 
-<form action="">
+<form action="/" method="post">
     <input type="text" name="rubric" placeholder="search rubric">
     <input type="submit" name="" id="" value="search">
 </form>
-    <h1>News</h1>
+<form action="/" method="post">
+    <input type="text" name="weather" id="" placeholder="weather">
+    <input type="submit" value="weather">
+</form>
+<h1>Weather</h1>
+    <h2>Current</h2>
+    <p>City -> <b>{{ weather[-1] }}</b></p>
+    <p>Temperature -> {{ weather[0] }}&#8451;</p>
+    <p>Wind -> {{ weather[1] }}m/s</p>
+    <p>Clouds -> {{ weather[2] }}</p>
+
+<h1>News</h1>
     {% for article in articles %}
         <b><a href="{{ article.link }}">{{ article.title }}</a></b>
         <i>{{ article.published }}</i>
         <p>{{ article.summary }}</p>
         <hr>
     {% endfor %}
+
 </body>
 </html>
