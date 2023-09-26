@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+
+<form action="">
+    <input type="text" name="rubric" placeholder="search rubric">
+    <input type="submit" name="" id="" value="search">
+</form>
+    <h1>News</h1>
+    {% for article in articles %}
+        <b><a href="{{ article.link }}">{{ article.title }}</a></b>
+        <i>{{ article.published }}</i>
+        <p>{{ article.summary }}</p>
+        <hr>
+    {% endfor %}
+</body>
+</html>
