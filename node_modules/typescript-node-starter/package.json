@@ -1,0 +1,40 @@
+{
+  "name": "typescript-node-starter",
+  "version": "1.0.5",
+  "description": "typescript-node-starter is a template generator that quickly generates a Typescript template ✨",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "typescript",
+    "tsc",
+    "javascript",
+    "NodeJS",
+    "starter",
+    "kit",
+    "stack",
+    "node stack",
+    "mern stack",
+    "vue",
+    "react",
+    "redux",
+    "angular",
+    "gatsby"
+  ],
+  "author": "Yassine",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yassine955/typescript-node-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yassine955/typescript-node-starter/issues"
+  },
+  "homepage": "https://github.com/yassine955/typescript-node-starter#readme",
+  "dependencies": {
+    "inquirer": "^7.0.4",
+    "ncp": "^2.0.0"
+  }
+}
