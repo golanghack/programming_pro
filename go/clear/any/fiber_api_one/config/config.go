@@ -11,7 +11,7 @@ import (
 func Config(key string) string {
 	// load 
 	err := godotenv.Load(".env")
-	if err == nil {
+	if err != nil {
 		fmt.Print("Error loading environment")
 	}
 	return os.Getenv(key)
