@@ -2,7 +2,10 @@ module github.com/golanghack/programming_pro/tree/go/go/clear/any/fiber_api_one
 
 go 1.21.1
 
-require github.com/gofiber/fiber/v2 v2.50.0
+require (
+	github.com/gofiber/fiber/v2 v2.50.0
+	github.com/joho/godotenv v1.5.1
+)
 
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
