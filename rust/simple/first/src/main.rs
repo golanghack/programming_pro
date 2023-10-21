@@ -9,5 +9,5 @@ fn main() {
 }
 
 fn add(i: i32, j: i32) -> i32 {
-     return i + j;
+     return i + j
 }

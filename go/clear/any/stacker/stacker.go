@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -31,7 +32,7 @@ func main() {
 	fmt.Println(x)
 	aStack.Push(33.5)
 	fmt.Println("стек пуст", aStack.IsEmpty())
-	fmt.Println("Len() == %d Cap == %d\n", aStack.Len(), aStack.Cap())
+	fmt.Printf("Len() == %d Cap == %d\n", aStack.Len(), aStack.Cap())
 	difference := aStack.Cap() - aStack.Len()
 	for i := 0; i < difference; i++ {
 		aStack.Push(strings.Repeat("*", difference - i))

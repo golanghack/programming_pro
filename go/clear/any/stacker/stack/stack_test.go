@@ -32,7 +32,7 @@ func TestStack(t *testing.T) {
 	assertTrue(t, aStack.IsEmpty() == false, "не пустой стек", count) // 9
 	count++ 
 	value2, err := aStack.Pop()
-	assertEqualString(t, value2.(string), "три", "неизвестный текст")
+	assertEqualString(t, value2.(string), "три", "неизвестный текст",count)
 }
 
 func assertTrue(t *testing.T, condition bool, message string, id int) {
