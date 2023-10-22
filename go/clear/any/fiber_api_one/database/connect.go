@@ -6,9 +6,11 @@ import (
 	"strconv"
 
 	"github.com/golanghack/programming_pro/tree/go/go/clear/any/fiber_api_one/config"
+	"github.com/golanghack/programming_pro/tree/go/go/clear/any/fiber_api_one/internal/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
+
 // Declare the variable for the database
 var DB *gorm.DB
 
@@ -32,4 +34,8 @@ func ConnectDB() {
     }
 
     fmt.Println("Connection Opened to Database")
+
+    // migrations
+    DB.AutoMigrate(&model.Note{})
+    fmt.Println("Migrated")
 }
