@@ -1,0 +1,27 @@
+version: "3"
+
+tasks:
+    build:
+        desc: Build my app
+        cmds:
+        - GOFLAGS=-mod=mod go build -o bin/rest_server internal/main.go 
+
+    run: 
+        desc: Run 
+        cmds:
+        - GOFLAGS=-mod=mod go run internal/main.go
+
+    swagger.gen:
+        desc: Generate for my code
+        cmds:
+        - GOFLAGS=-mod=mod go generate github.com/golanghack/programming_pro/tree/go/go/clear/any/rest_server/internal github.com/golanghack/programming_pro/tree/go/go/clear/any/rest_server/pkg/swagger
+
+    swagger.validate:
+        desc: Validate swagger
+        cmds:
+        - swagger validate pkg/swagger/swagger.yml
+
+    swagger.doc:
+        desc: Doc for swagger
+        cmds:
+        - docker run -i yousan/swagger-yaml-to-html < pkg/swagger/swagger.yml > doc/index.html

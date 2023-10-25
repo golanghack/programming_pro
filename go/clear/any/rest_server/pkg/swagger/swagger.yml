@@ -1,0 +1,57 @@
+consumes:
+- application/json
+info:
+  description: HTTP server Go with Swagger endpoints documantation
+  title: rest_server
+  version: 0.1.0
+produces:
+- application/json
+schemes:
+- http 
+swagger: "2.0"
+
+paths:
+  /healthz:
+    get:
+      operationId: checkHealth
+      produces:
+      - text/plain
+      responses:
+        '200':
+          description: OK message.
+          schema: 
+            type: string
+            enum:
+            - OK 
+  /hello/{user}:
+    get:
+      description: Return user.
+      parameters:
+        - name: user
+          in: path
+          type: string
+          required: true 
+          description: name of user.
+      responses:
+        200: 
+          description: Return the greet.
+          schema: 
+            type: string
+        400:
+          description: Invalid name user. 
+  /go/{name}:
+    get:
+      description: Return Go image.
+      produces:
+      - image/png
+      parameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+          description: name of go to display.
+      responses:
+        200: 
+          description: Return Gother.
+          schema:
+            type: file
